@@ -1,23 +1,18 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { SidebarComponent } from '../sidebar/sidebar';
 
-import { Sidebar } from './sidebar';
+describe('SidebarComponent', () => {
+  let fixture: ComponentFixture<SidebarComponent>;
 
-describe('Sidebar', () => {
-  let component: Sidebar;
-  let fixture: ComponentFixture<Sidebar>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Sidebar]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(Sidebar);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [SidebarComponent],
+      providers: [provideRouter([])]
+    });
+    fixture = TestBed.createComponent(SidebarComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(fixture.componentInstance).toBeTruthy());
 });

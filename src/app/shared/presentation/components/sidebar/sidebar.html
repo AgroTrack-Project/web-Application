@@ -1,1 +1,14 @@
-<p>sidebar works!</p>
+<aside class="sidebar">
+  <nav>
+    <ul>
+      @for (item of menuItems; track item.route) {
+        <li [class.active]="isActive(item.route)">
+          <a [routerLink]="item.route">
+            <span class="material-icons">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+</aside>

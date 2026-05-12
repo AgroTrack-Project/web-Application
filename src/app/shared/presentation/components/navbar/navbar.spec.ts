@@ -1,23 +1,18 @@
+import { describe, it, expect, beforeEach } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { NavbarComponent } from './navbar';
 
-import { Navbar } from './navbar';
+describe('NavbarComponent', () => {
+  let fixture: ComponentFixture<NavbarComponent>;
 
-describe('Navbar', () => {
-  let component: Navbar;
-  let fixture: ComponentFixture<Navbar>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Navbar]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(Navbar);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [NavbarComponent],
+      providers: [provideRouter([])]
+    });
+    fixture = TestBed.createComponent(NavbarComponent);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(fixture.componentInstance).toBeTruthy());
 });
