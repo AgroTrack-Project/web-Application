@@ -1,0 +1,92 @@
+@if (store.loading()) {
+  <div class="spinner-wrapper">
+    <div class="spinner"></div>
+  </div>
+} @else if (store.currentUser()) {
+  <div class="profile-page">
+    <h1 class="page-title">{{ 'profile.title' | translate }}</h1>
+
+    <div class="profile-layout">
+
+      <!-- Left card -->
+      <div class="profile-card">
+        <div class="field">
+          <label>{{ 'profile.name_label' | translate }}</label>
+          <input type="text"
+            [class.editable]="editing()"
+            [readonly]="!editing()"
+            [value]="editing() ? name() : store.currentUser()!.getName()"
+            (input)="onNameInput($event)" />
+        </div>
+
+        <div class="field">
+          <label>{{ 'profile.email_label' | translate }}</label>
+          <input type="email"
+            [class.editable]="editing()"
+            [readonly]="!editing()"
+            [value]="editing() ? email() : store.currentUser()!.getEmail()"
+            (input)="onEmailInput($event)" />
+        </div>
+
+        @if (!editing() && planData().upgrades.length > 0) {
+          <div class="field">
+            <label>{{ 'profile.plan_label' | translate }}</label>
+            <div class="plan-options">
+              @for (opt of planData().upgrades; track opt.name; let i = $index) {
+                <div class="plan-option" [class.highlighted]="i === 0">
+                  <div class="plan-option-info">
+                    <span class="plan-option-name">{{ opt.name | translate }}</span>
+                    <span class="plan-option-desc">{{ opt.desc | translate }}</span>
+                  </div>
+                  <span class="plan-option-price">{{ opt.price | translate }}</span>
+                </div>
+              }
+            </div>
+          </div>
+          <button class="change-plan-btn">{{ 'profile.change_plan' | translate }}</button>
+        }
+
+        @if (!editing()) {
+          <button class="edit-profile-btn" (click)="startEditing()">{{ 'profile.edit' | translate }}</button>
+        } @else {
+          <div class="edit-actions">
+            <button class="save-btn" (click)="saveChanges()">{{ 'profile.save' | translate }}</button>
+            <button class="cancel-btn" (click)="cancelEditing()">{{ 'profile.cancel' | translate }}</button>
+          </div>
+        }
+      </div>
+
+      <!-- Right section -->
+      <div class="plan-section">
+        <div class="current-plan-card">
+          <div class="plan-header">
+            <span class="plan-label">{{ planData().label | translate }}</span>
+            <span class="now-badge">{{ 'profile.now' | translate }}</span>
+          </div>
+          <ul class="plan-features">
+            @for (f of planData().features; track f) {
+              <li>{{ f | translate }}</li>
+            }
+          </ul>
+        </div>
+
+        @if (planData().nextPlan) {
+          <p class="improve-text">{{ 'profile.improve' | translate }}</p>
+          <div class="next-plan-card">
+            <div class="plan-header">
+              <span class="next-plan-label">{{ planData().nextPlan!.label | translate }}</span>
+              <span class="after-badge">{{ 'profile.after' | translate }}</span>
+            </div>
+            <ul class="next-plan-features">
+              @for (f of planData().nextPlan!.features; track f) {
+                <li>{{ f | translate }}</li>
+              }
+            </ul>
+            <span class="most-popular">{{ 'profile.most_popular' | translate }}</span>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+}

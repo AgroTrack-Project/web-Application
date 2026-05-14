@@ -1,0 +1,70 @@
+{
+  "navbar": {
+    "logout": "Sign out"
+  },
+  "sidebar": {
+    "start": "Start",
+    "plots": "Plots",
+    "alerts": "Alerts",
+    "dashboard": "Dashboard",
+    "configuration": "Configuration",
+    "profile": "Profile"
+  },
+  "profile": {
+    "title": "My profile",
+    "name_label": "Full name",
+    "email_label": "Mail",
+    "plan_label": "Plan",
+    "change_plan": "Change Plan",
+    "edit": "Edit Profile",
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "now": "Now",
+    "after": "After",
+    "most_popular": "Most Popular",
+    "improve": "Improve your experience",
+    "plans": {
+      "basic": {
+        "label": "PLAN - BASIC",
+        "f1": "Up to 3 plots",
+        "f2": "Irrigation recommendations",
+        "f3": "Basic weather alerts"
+      },
+      "pro": {
+        "label": "PLAN - PRO",
+        "f1": "Up to 10 plots",
+        "f2": "Dashboard",
+        "f3": "Everything in the basic plan",
+        "f4": "Advanced weather alerts",
+        "f5": "PDF export"
+      },
+      "enterprise": {
+        "label": "PLAN - ENTERPRISE",
+        "f1": "Unlimited plots",
+        "f2": "Everything in the Pro plan",
+        "f3": "Excel export and loss metrics",
+        "f4": "Dedicated priority support"
+      }
+    },
+    "upgrades": {
+      "pro": { "name": "Pro Plan", "desc": "For growing farmers", "price": "S/ 85 / month" },
+      "enterprise": { "name": "Enterprise Plan", "desc": "For agricultural SMEs", "price": "S/ 149 / month" }
+    }
+  },
+  "configuration": {
+    "title": "Alert settings",
+    "subtitle": "Activate or deactivate the alerts you want to receive.",
+    "frost": {
+      "title": "Frost alert",
+      "desc": "Receive alerts when the temperature drops below 0°C."
+    },
+    "drought": {
+      "title": "Drought alert",
+      "desc": "Notices when it doesn't rain for 7 days or more."
+    },
+    "heavy_rain": {
+      "title": "Heavy rain alert",
+      "desc": "Warnings for heavy rain forecast."
+    }
+  }
+}

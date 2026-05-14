@@ -1,0 +1,63 @@
+<div class="config-page">
+  <h1 class="page-title">{{ 'configuration.title' | translate }}</h1>
+  <p class="page-subtitle">{{ 'configuration.subtitle' | translate }}</p>
+
+  @if (store.loading()) {
+  <div class="spinner-wrapper">
+    <div class="spinner"></div>
+  </div>
+} @else if (store.currentAlertPreference()) {
+  <div class="alerts-card">
+
+      <div class="alert-row">
+        <div class="alert-left">
+          <div class="alert-icon">
+            <span class="material-icons">ac_unit</span>
+          </div>
+          <div>
+            <p class="alert-title">{{ 'configuration.frost.title' | translate }}</p>
+            <p class="alert-desc">{{ 'configuration.frost.desc' | translate }}</p>
+          </div>
+        </div>
+        <input type="checkbox" class="toggle"
+          [checked]="store.currentAlertPreference()!.isEnabled('FROST')"
+          (change)="toggle('FROST')" />
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="alert-row">
+        <div class="alert-left">
+          <div class="alert-icon">
+            <span class="material-icons">wb_sunny</span>
+          </div>
+          <div>
+            <p class="alert-title">{{ 'configuration.drought.title' | translate }}</p>
+            <p class="alert-desc">{{ 'configuration.drought.desc' | translate }}</p>
+          </div>
+        </div>
+        <input type="checkbox" class="toggle"
+          [checked]="store.currentAlertPreference()!.isEnabled('DROUGHT')"
+          (change)="toggle('DROUGHT')" />
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="alert-row">
+        <div class="alert-left">
+          <div class="alert-icon">
+            <span class="material-icons">water_drop</span>
+          </div>
+          <div>
+            <p class="alert-title">{{ 'configuration.heavy_rain.title' | translate }}</p>
+            <p class="alert-desc">{{ 'configuration.heavy_rain.desc' | translate }}</p>
+          </div>
+        </div>
+        <input type="checkbox" class="toggle"
+          [checked]="store.currentAlertPreference()!.isEnabled('HEAVY_RAIN')"
+          (change)="toggle('HEAVY_RAIN')" />
+      </div>
+
+    </div>
+  }
+</div>

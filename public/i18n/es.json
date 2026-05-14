@@ -1,0 +1,70 @@
+{
+  "navbar": {
+    "logout": "Salir"
+  },
+  "sidebar": {
+    "start": "Inicio",
+    "plots": "Parcelas",
+    "alerts": "Alertas",
+    "dashboard": "Dashboard",
+    "configuration": "Configuración",
+    "profile": "Perfil"
+  },
+  "profile": {
+    "title": "Mi perfil",
+    "name_label": "Nombre completo",
+    "email_label": "Correo",
+    "plan_label": "Plan",
+    "change_plan": "Cambiar plan",
+    "edit": "Editar perfil",
+    "save": "Guardar cambios",
+    "cancel": "Cancelar",
+    "now": "Ahora",
+    "after": "Después",
+    "most_popular": "Más popular",
+    "improve": "Mejora tu experiencia",
+    "plans": {
+      "basic": {
+        "label": "PLAN - BÁSICO",
+        "f1": "Hasta 3 parcelas",
+        "f2": "Recomendaciones de riego",
+        "f3": "Alertas climáticas básicas"
+      },
+      "pro": {
+        "label": "PLAN - PRO",
+        "f1": "Hasta 10 parcelas",
+        "f2": "Dashboard",
+        "f3": "Todo lo del plan básico",
+        "f4": "Alertas climáticas avanzadas",
+        "f5": "Exportación en PDF"
+      },
+      "enterprise": {
+        "label": "PLAN - ENTERPRISE",
+        "f1": "Parcelas ilimitadas",
+        "f2": "Todo lo del plan Pro",
+        "f3": "Exportación en Excel y métricas de pérdida",
+        "f4": "Soporte prioritario dedicado"
+      }
+    },
+    "upgrades": {
+      "pro": { "name": "Plan Pro", "desc": "Para agricultores en crecimiento", "price": "S/ 85 / mes" },
+      "enterprise": { "name": "Plan Enterprise", "desc": "Para PyMEs agrícolas", "price": "S/ 149 / mes" }
+    }
+  },
+  "configuration": {
+    "title": "Configuración de alertas",
+    "subtitle": "Activa o desactiva las alertas que deseas recibir.",
+    "frost": {
+      "title": "Alerta de helada",
+      "desc": "Recibe alertas cuando la temperatura baja de 0°C."
+    },
+    "drought": {
+      "title": "Alerta de sequía",
+      "desc": "Avisos cuando no llueve por 7 días o más."
+    },
+    "heavy_rain": {
+      "title": "Alerta de lluvia intensa",
+      "desc": "Advertencias por pronóstico de lluvia fuerte."
+    }
+  }
+}

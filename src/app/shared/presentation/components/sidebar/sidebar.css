@@ -50,3 +50,35 @@ li.active a .material-icons {
   font-size: 20px;
   color: #555;
 }
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    padding: 4px 8px;
+  }
+
+  ul {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  li a {
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .material-icons {
+    font-size: 22px;
+  }
+}

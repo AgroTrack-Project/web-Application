@@ -1,15 +1,19 @@
 .navbar {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 24px;
   height: 60px;
-  background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 48px;
 }
+
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -28,7 +32,9 @@
 }
 
 .navbar-actions {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .btn-logout {
@@ -57,4 +63,28 @@
 .material-icons {
   font-size: 20px;
   color: #555;
+}
+
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding: 0 20px;
+    height: 52px;
+  }
+
+  .navbar-brand img {
+    height: 26px;
+  }
+
+  .brand-name {
+    font-size: 15px;
+  }
+
+  .btn-logout {
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  .btn-logout .material-icons {
+    font-size: 18px;
+  }
 }

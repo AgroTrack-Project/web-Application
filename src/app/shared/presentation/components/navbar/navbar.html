@@ -1,12 +1,15 @@
 <nav class="navbar">
-  <div class="navbar-brand">
-    <img src="assets/images/logoagrotrack.png" alt="AgroTrack" />
-    <span class="brand-name">AgroTrack</span>
-  </div>
-  <div class="navbar-actions">
-    <button class="btn-logout" (click)="logout()">
-      <span class="material-icons">logout</span>
-      Salir
-    </button>
+  <div class="navbar-inner">
+    <div class="navbar-brand">
+      <img src="assets/images/logoagrotrack.png" alt="AgroTrack" />
+      <span class="brand-name">AgroTrack</span>
+    </div>
+    <div class="navbar-actions">
+      <app-language-switcher />
+      <button class="btn-logout" (click)="logout()">
+        <span class="material-icons">logout</span>
+        {{ 'navbar.logout' | translate }}
+      </button>
+    </div>
   </div>
 </nav>
