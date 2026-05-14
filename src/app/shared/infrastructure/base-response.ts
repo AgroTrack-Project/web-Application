@@ -4,5 +4,5 @@ export interface BaseResponse {
 
 /** Base contract for API resources that expose a numeric identifier*/
 export interface BaseResource {
-  id: number;
+  id: string;
 }
