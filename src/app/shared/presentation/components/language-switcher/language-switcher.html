@@ -1,1 +1,5 @@
-<p>language-switcher works!</p>
+<mat-button-toggle-group [value]="currentLanguage" (change)="useLanguage($event.value)">
+  @for (lang of languages; track lang) {
+    <mat-button-toggle [value]="lang">{{ lang.toUpperCase() }}</mat-button-toggle>
+  }
+</mat-button-toggle-group>

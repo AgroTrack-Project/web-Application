@@ -5,7 +5,7 @@
         <li [class.active]="isActive(item.route)">
           <a [routerLink]="item.route">
             <span class="material-icons">{{ item.icon }}</span>
-            <span>{{ item.label }}</span>
+            <span>{{ item.label | translate }}</span>
           </a>
         </li>
       }

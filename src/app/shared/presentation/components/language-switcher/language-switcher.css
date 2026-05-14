@@ -1,0 +1,17 @@
+::ng-deep .mat-button-toggle-group {
+  border: 1.5px solid #d0d0d0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+::ng-deep .mat-button-toggle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+::ng-deep .mat-button-toggle-checked {
+  background: #1b5e20;
+  color: #fff;
+}

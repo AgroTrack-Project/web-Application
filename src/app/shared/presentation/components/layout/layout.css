@@ -20,3 +20,9 @@ body {
   flex: 1;
   max-width: 900px;
 }
+
+@media (max-width: 768px) {
+  .layout {
+    padding: 12px 12px 90px 12px;
+  }
+}
