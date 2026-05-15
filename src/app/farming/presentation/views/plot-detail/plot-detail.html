@@ -1,0 +1,117 @@
+<div class="detail-page">
+
+  <div class="detail-header">
+    <button class="back-btn" (click)="goBack()">
+      <span class="material-icons">arrow_back</span>
+    </button>
+
+    @if (store.loading()) {
+      <div class="header-skeleton"></div>
+    } @else if (plot()) {
+      <div class="header-info">
+        <h1 class="plot-title">{{ plot()!.getName() }}</h1>
+        <span class="soil-badge">Suelo óptimo</span>
+      </div>
+    } @else {
+      <h1 class="plot-title">Parcela no encontrada</h1>
+    }
+  </div>
+
+  @if (!store.loading() && plot()) {
+    <p class="advisory-text">
+      <span class="material-icons advisory-icon">info</span>
+      Las condiciones del suelo son adecuadas para el cultivo actual.
+    </p>
+
+    <div class="meta-row">
+      <div class="meta-item">
+        <span class="material-icons">location_on</span>
+        <span>{{ plot()!.getLocation() }}</span>
+      </div>
+      <div class="meta-item">
+        <span class="material-icons">straighten</span>
+        <span>{{ plot()!.getSizeHectares() }} ha</span>
+      </div>
+      <span class="status-badge status-{{ plot()!.getStatus().toLowerCase() }}">
+        {{ plot()!.getStatus() }}
+      </span>
+    </div>
+
+    <div class="tabs">
+      @for (tab of tabs; track tab.key) {
+        <button
+          class="tab-btn"
+          [class.active]="activeTab() === tab.key"
+          (click)="setTab(tab.key)">
+          {{ tab.label }}
+        </button>
+      }
+    </div>
+
+    <div class="tab-content">
+
+      @if (activeTab() === 'crops') {
+        <div class="crop-form">
+          <h3 class="form-title">Registrar cultivo</h3>
+          <div class="crop-form-row">
+            <div class="field">
+              <label>Tipo de cultivo</label>
+              <input
+                type="text"
+                [value]="cropType()"
+                (input)="onCropTypeInput($event)"
+                placeholder="Ej: Maíz, Papa, Trigo..." />
+            </div>
+            <div class="field">
+              <label>Fecha de siembra</label>
+              <input
+                type="date"
+                [value]="cropSowingDate()"
+                (input)="onCropSowingDateInput($event)" />
+            </div>
+            <button class="add-crop-btn" (click)="addCrop()">
+              <span class="material-icons">add</span>
+              Agregar
+            </button>
+          </div>
+        </div>
+
+        @if (crops().length === 0) {
+          <div class="empty-crops">
+            <span class="material-icons empty-icon">eco</span>
+            <p>No hay cultivos registrados en esta parcela</p>
+          </div>
+        } @else {
+          <div class="crops-list">
+            @for (crop of crops(); track crop.getId()) {
+              <app-crop-card [crop]="crop" (deleteCrop)="deleteCrop($event)" />
+            }
+          </div>
+        }
+      }
+
+      @if (activeTab() === 'soil') {
+        <div class="tab-placeholder">
+          <span class="material-icons placeholder-icon">science</span>
+          <p>Análisis de suelo próximamente</p>
+        </div>
+      }
+
+      @if (activeTab() === 'irrigation') {
+        <div class="tab-placeholder">
+          <span class="material-icons placeholder-icon">water_drop</span>
+          <p>Gestión de riego próximamente</p>
+        </div>
+      }
+
+      @if (activeTab() === 'history') {
+        <div class="tab-placeholder">
+          <span class="material-icons placeholder-icon">history</span>
+          <p>Historial de la parcela próximamente</p>
+        </div>
+      }
+
+    </div>
+  }
+
+</div>

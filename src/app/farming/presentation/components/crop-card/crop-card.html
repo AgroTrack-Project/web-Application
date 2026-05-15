@@ -1,0 +1,24 @@
+<div class="crop-card">
+  <div class="crop-header">
+    <div class="crop-type">
+      <span class="material-icons">grass</span>
+      <span class="type-label">{{ crop.getType() }}</span>
+    </div>
+    <span class="crop-status-badge crop-status-{{ crop.getStatus().toLowerCase() }}">
+      {{ crop.getStatus() }}
+    </span>
+  </div>
+
+  <div class="crop-meta">
+    <div class="meta-item">
+      <span class="meta-label">Siembra</span>
+      <span class="meta-value">{{ formatDate(crop.getSowingDate()) }}</span>
+    </div>
+  </div>
+
+  <div class="crop-actions">
+    <button class="icon-btn delete-btn" title="Eliminar" (click)="deleteCrop.emit(crop.getId())">
+      <span class="material-icons">delete</span>
+    </button>
+  </div>
+</div>

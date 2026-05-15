@@ -51,6 +51,49 @@
       "enterprise": { "name": "Plan Enterprise", "desc": "Para PyMEs agrícolas", "price": "S/ 149 / mes" }
     }
   },
+  "plots": {
+    "title": "Mis Parcelas",
+    "subtitle": "Gestiona tus parcelas agrícolas registradas.",
+    "add_plot": "Agregar Parcela",
+    "empty": "Aún no tienes parcelas registradas.",
+    "add_first_plot": "Registra tu primera parcela",
+    "crops_title": "Cultivos",
+    "add_crop": "Agregar Cultivo",
+    "no_crops": "No hay cultivos registrados en esta parcela.",
+    "edit_plot": "Editar Parcela",
+    "edit_crop": "Editar Cultivo",
+    "form": {
+      "name": "Nombre de la parcela",
+      "location": "Ubicación",
+      "size_hectares": "Tamaño (hectáreas)",
+      "status": "Estado",
+      "save": "Guardar",
+      "cancel": "Cancelar"
+    },
+    "status": {
+      "active": "Activa",
+      "inactive": "Inactiva"
+    },
+    "crop_form": {
+      "type": "Tipo de cultivo",
+      "sowing_date": "Fecha de siembra",
+      "harvest_date": "Fecha de cosecha",
+      "status": "Estado"
+    },
+    "crop_status": {
+      "active": "Activo",
+      "harvested": "Cosechado",
+      "lost": "Perdido"
+    }
+  },
+  "plot_detail": {
+    "not_found": "Parcela no encontrada",
+    "crop_count": "cultivo(s)",
+    "crops_title": "Cultivos Registrados",
+    "add_crop": "Agregar Cultivo",
+    "no_crops": "No hay cultivos registrados en esta parcela.",
+    "add_first_crop": "Registra tu primer cultivo"
+  },
   "configuration": {
     "title": "Configuración de alertas",
     "subtitle": "Activa o desactiva las alertas que deseas recibir.",
