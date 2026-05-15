@@ -102,10 +102,10 @@
       }
 
       @if (activeTab() === 'irrigation') {
-        <div class="tab-placeholder">
-          <span class="material-icons placeholder-icon">water_drop</span>
-          <p>{{ 'plot_detail.irrigation_coming_soon' | translate }}</p>
-        </div>
+        <app-irrigation-summary
+          [plotId]="plotId()"
+          [sowingDate]="activeCropSowingDate()">
+        </app-irrigation-summary>
       }
 
       @if (activeTab() === 'history') {

@@ -1,60 +1,81 @@
-<section class="soil-summary-section">
-  <div class="section-header">
-    <div>
-      <h3>{{ 'soil.summary.title' | translate }}</h3>
-      <p>{{ 'soil.summary.subtitle' | translate }}</p>
-    </div>
-  </div>
+<section class="soil-form-card">
+  <h3>{{ 'soil.form.title' | translate }}</h3>
 
-  @if (latestRecord(); as record) {
-    <div class="summary-grid">
-      <div class="summary-box">
-        <span>{{ 'soil.status.humidity' | translate }}</span>
-        <strong>{{ record.getHumidity() }}%</strong>
-      </div>
+  <form [formGroup]="soilForm" (ngSubmit)="registerSoilRecord()" class="soil-form">
+    <div class="field humidity-field">
+      <label for="humidity">{{ 'soil.form.humidity_label' | translate }}</label>
+      <input
+        id="humidity"
+        type="number"
+        min="0"
+        max="100"
+        formControlName="humidity"
+        [class.invalid]="isHumidityInvalid()" />
 
-      <div class="summary-box">
-        <span>{{ 'soil.status.temperature' | translate }}</span>
-        <strong>{{ record.getTemperature() }}°C</strong>
-      </div>
+      <span class="hint">0 – 100</span>
 
-      <div class="summary-box">
-        <span>{{ 'soil.summary.condition' | translate }}</span>
-        <strong>{{ statusTranslationKey() | translate }}</strong>
-      </div>
-
-      <div class="summary-box">
-        <span>{{ 'soil.status.last_record' | translate }}</span>
-        <strong>{{ record.getRecordedAt() | date:'dd/MM/yyyy' }}</strong>
-      </div>
+      @if (isHumidityInvalid()) {
+        <small>{{ 'soil.form.humidity_error' | translate }}</small>
+      }
     </div>
 
-    <div class="records-table-wrapper">
-      <table class="records-table">
-        <thead>
-        <tr>
-          <th>{{ 'soil.summary.date' | translate }}</th>
-          <th>{{ 'soil.status.humidity' | translate }}</th>
-          <th>{{ 'soil.status.temperature' | translate }}</th>
-        </tr>
-        </thead>
+    <div class="field">
+      <label for="temperature">{{ 'soil.form.temperature_label' | translate }}</label>
+      <input
+        id="temperature"
+        type="number"
+        formControlName="temperature"
+        [class.invalid]="isTemperatureInvalid()" />
 
-        <tbody>
-          @for (soilRecord of records(); track soilRecord.getId()) {
-            <tr>
-              <td>{{ soilRecord.getRecordedAt() | date:'dd/MM/yyyy HH:mm' }}</td>
-              <td>{{ soilRecord.getHumidity() }}%</td>
-              <td>{{ soilRecord.getTemperature() }}°C</td>
-            </tr>
-          }
-        </tbody>
-      </table>
+      @if (isTemperatureInvalid()) {
+        <small>{{ 'soil.form.temperature_error' | translate }}</small>
+      }
+    </div>
+
+    <button class="register-btn" type="submit">
+      {{ 'soil.form.register' | translate }}
+    </button>
+  </form>
+</section>
+
+<section class="records-card">
+  <h3>{{ 'soil.history.title' | translate }}</h3>
+
+  @if (records().length === 0) {
+    <div class="empty-history">
+      <span class="material-icons">science</span>
+      <p>{{ 'soil.history.empty' | translate }}</p>
     </div>
   } @else {
-    <div class="empty-summary">
-      <span class="material-icons">science</span>
-      <h4>{{ 'soil.summary.empty_title' | translate }}</h4>
-      <p>{{ 'soil.summary.empty_message' | translate }}</p>
+    <div class="records-list">
+      @for (soilRecord of records(); track soilRecord.getId()) {
+        <div class="record-row">
+          <span class="record-date">
+            {{ soilRecord.getRecordedAt() | date:'dd/MM/yyyy, hh:mm:ss a' }}
+          </span>
+
+          <div class="record-values">
+            <span>
+              {{ 'soil.status.humidity_short' | translate }}
+              {{ soilRecord.getHumidity() }}%
+            </span>
+
+            <span>
+              {{ 'soil.status.temperature_short' | translate }}
+              {{ soilRecord.getTemperature() }}°C
+            </span>
+
+            <span>
+              {{ soilRecord.getStatus() === 'DRY'
+              ? ('soil.status.low' | translate)
+              : soilRecord.getStatus() === 'OPTIMAL'
+                ? ('soil.status.normal' | translate)
+                : ('soil.status.high' | translate)
+              }}
+            </span>
+          </div>
+        </div>
+      }
     </div>
   }
 </section>

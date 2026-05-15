@@ -1,0 +1,44 @@
+<section class="irrigation-card">
+  <h3>{{ 'soil.irrigation.suggested_title' | translate }}</h3>
+
+  <div class="suggested-grid">
+    @for (irrigation of suggestedIrrigations(); track irrigation.id) {
+      <article class="suggested-item">
+        <strong>{{ irrigation.date | date:'EEEE, dd MMM' }}</strong>
+        <span>{{ irrigation.startTime }} – {{ irrigation.endTime }}</span>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="irrigation-card history-card">
+  <h3>{{ 'soil.irrigation.history_title' | translate }}</h3>
+
+  @if (irrigationHistory().length === 0) {
+    <div class="empty-irrigation-history">
+      <span class="material-icons">water_drop</span>
+      <p>{{ 'soil.irrigation.empty_history' | translate }}</p>
+    </div>
+  } @else {
+    <div class="irrigation-history-list">
+      @for (recommendation of irrigationHistory(); track recommendation.getId()) {
+        <div class="irrigation-history-row">
+          <div>
+            <strong>{{ recommendation.getMessage() }}</strong>
+
+            <p>
+              {{ recommendation.getRespondedAt()
+              ? (recommendation.getRespondedAt() | date:'dd/MM/yyyy, hh:mm:ss a')
+              : (recommendation.getGeneratedAt() | date:'dd/MM/yyyy, hh:mm:ss a')
+              }}
+            </p>
+          </div>
+
+          <span class="history-status" [class]="statusClass(recommendation)">
+            {{ statusKey(recommendation) | translate }}
+          </span>
+        </div>
+      }
+    </div>
+  }
+</section>

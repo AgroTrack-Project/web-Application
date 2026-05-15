@@ -1,38 +1,28 @@
 <section class="soil-status-card">
-  <div class="card-header">
-    <div>
-      <span class="eyebrow">{{ 'soil.status.eyebrow' | translate }}</span>
-      <h3>{{ 'soil.status.title' | translate }}</h3>
-    </div>
-
-    <span class="status-pill" [class]="statusClass()">
-      {{ statusTranslationKey() | translate }}
-    </span>
-  </div>
+  <span class="eyebrow">{{ 'soil.status.title' | translate }}</span>
 
   @if (latestRecord(); as record) {
-    <div class="soil-metrics">
-      <div class="metric">
-        <span class="material-icons metric-icon">water_drop</span>
-        <div>
-          <span class="metric-label">{{ 'soil.status.humidity' | translate }}</span>
-          <strong>{{ record.getHumidity() }}%</strong>
-        </div>
-      </div>
-
-      <div class="metric">
-        <span class="material-icons metric-icon">device_thermostat</span>
-        <div>
-          <span class="metric-label">{{ 'soil.status.temperature' | translate }}</span>
-          <strong>{{ record.getTemperature() }}°C</strong>
-        </div>
-      </div>
+    <div class="main-reading">
+      <strong>{{ record.getHumidity() }}%</strong>
     </div>
 
-    <p class="last-record">
-      {{ 'soil.status.last_record' | translate }}:
-      {{ record.getRecordedAt() | date:'dd/MM/yyyy HH:mm' }}
-    </p>
+    <div class="humidity-state" [class]="statusClass()">
+      {{ 'soil.status.humidity' | translate }} · {{ statusTranslationKey() | translate }}
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="soil-footer">
+      <div>
+        <span class="footer-label">{{ 'soil.status.temperature_short' | translate }}</span>
+        <strong>{{ record.getTemperature() }}°C</strong>
+      </div>
+
+      <div>
+        <span class="footer-label">TS</span>
+        <strong>{{ record.getRecordedAt() | date:'dd/MM/yyyy, hh:mm a' }}</strong>
+      </div>
+    </div>
   } @else {
     <div class="empty-soil-state">
       <span class="material-icons">info</span>

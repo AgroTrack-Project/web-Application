@@ -113,11 +113,16 @@
       "eyebrow": "Monitoring",
       "title": "Soil status",
       "humidity": "Humidity",
+      "humidity_short": "Hum",
       "temperature": "Temperature",
+      "temperature_short": "Temp",
       "last_record": "Last record",
-      "dry": "Needs irrigation",
+      "dry": "Dry",
       "optimal": "Optimal",
-      "wet": "Excess moisture",
+      "wet": "Wet",
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
       "unknown": "No data",
       "no_data_message": "There are no soil records for this plot yet."
     },
@@ -127,15 +132,49 @@
       "dry": "Humidity is below the recommended level. Check the plot and consider irrigation.",
       "optimal": "The soil is in suitable condition. Immediate irrigation is not required.",
       "wet": "Humidity is high. Irrigation is not recommended for now to avoid excess water.",
-      "unknown": "Register humidity and temperature data to receive a recommendation."
+      "unknown": "Register humidity and temperature data to receive a recommendation.",
+      "confirm": "Confirm",
+      "reject": "Reject",
+      "no_pending": "There is no pending recommendation for this plot.",
+      "no_soil_record": "Register soil data to confirm or reject a recommendation."
     },
-    "summary": {
-      "title": "Soil data",
-      "subtitle": "Check the latest record and available measurements for this plot.",
-      "condition": "Condition",
-      "date": "Date",
-      "empty_title": "No soil records",
-      "empty_message": "When you register humidity and temperature, they will appear in this section."
+    "form": {
+      "title": "Register soil data",
+      "humidity_label": "Humidity (%)",
+      "temperature_label": "Temperature (°C)",
+      "humidity_error": "Humidity must be between 0 and 100.",
+      "temperature_error": "Enter a valid temperature.",
+      "register": "Register"
+    },
+    "history": {
+      "title": "Reading history",
+      "empty": "There are no readings registered for this plot yet."
+    },
+    "irrigation": {
+      "suggested_title": "Upcoming suggested irrigations",
+      "history_title": "Irrigation history",
+      "empty_history": "There are no irrigation decisions registered for this plot yet.",
+      "status": {
+        "applied": "Applied",
+        "not_applied": "Not applied",
+        "pending": "Pending"
+      }
+    }
+  },
+  "configuration": {
+    "title": "Alert settings",
+    "subtitle": "Activate or deactivate the alerts you want to receive.",
+    "frost": {
+      "title": "Frost alert",
+      "desc": "Receive alerts when the temperature drops below 0°C."
+    },
+    "drought": {
+      "title": "Drought alert",
+      "desc": "Notices when it doesn't rain for 7 days or more."
+    },
+    "heavy_rain": {
+      "title": "Heavy rain alert",
+      "desc": "Warnings for heavy rain forecast."
     }
   }
 }
