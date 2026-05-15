@@ -46,12 +46,30 @@
 
 .soil-badge {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 12px;
   border-radius: 12px;
+  white-space: nowrap;
+}
+
+.soil-badge.status-dry {
+  background: #fff3cd;
+  color: #8a5a00;
+}
+
+.soil-badge.status-optimal {
   background: #e8f5e9;
   color: #1b5e20;
-  white-space: nowrap;
+}
+
+.soil-badge.status-wet {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.soil-badge.status-unknown {
+  background: #eeeeee;
+  color: #555555;
 }
 
 .header-skeleton {
@@ -85,6 +103,12 @@
   font-size: 1rem;
   color: #4a7c4a;
   flex-shrink: 0;
+}
+
+.detail-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 /* ── Meta row ─────────────────────────── */
@@ -266,4 +290,5 @@
   .plot-title { font-size: 1.4rem; }
   .crop-form-row { flex-direction: column; }
   .add-crop-btn { width: 100%; justify-content: center; }
+  .detail-summary-grid { grid-template-columns: 1fr }
 }

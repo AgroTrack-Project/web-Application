@@ -10,28 +10,32 @@
     } @else if (plot()) {
       <div class="header-info">
         <h1 class="plot-title">{{ plot()!.getName() }}</h1>
-        <span class="soil-badge">Suelo óptimo</span>
+        <span class="soil-badge" [class]="soilStore.getStatusClassForPlot(plotId())">
+          {{ soilStore.getStatusTranslationKeyForPlot(plotId()) | translate }}
+        </span>
       </div>
     } @else {
-      <h1 class="plot-title">Parcela no encontrada</h1>
+      <h1 class="plot-title">{{ 'plot_detail.not_found' | translate }}</h1>
     }
   </div>
 
   @if (!store.loading() && plot()) {
-    <p class="advisory-text">
-      <span class="material-icons advisory-icon">info</span>
-      Las condiciones del suelo son adecuadas para el cultivo actual.
-    </p>
+    <div class="detail-summary-grid">
+      <app-soil-status-card [plotId]="plotId()"></app-soil-status-card>
+      <app-soil-advice-card [plotId]="plotId()"></app-soil-advice-card>
+    </div>
 
     <div class="meta-row">
       <div class="meta-item">
         <span class="material-icons">location_on</span>
         <span>{{ plot()!.getLocation() }}</span>
       </div>
+
       <div class="meta-item">
         <span class="material-icons">straighten</span>
         <span>{{ plot()!.getSizeHectares() }} ha</span>
       </div>
+
       <span class="status-badge status-{{ plot()!.getStatus().toLowerCase() }}">
         {{ plot()!.getStatus() }}
       </span>
@@ -43,7 +47,7 @@
           class="tab-btn"
           [class.active]="activeTab() === tab.key"
           (click)="setTab(tab.key)">
-          {{ tab.label }}
+          {{ tab.labelKey | translate }}
         </button>
       }
     </div>
@@ -52,26 +56,29 @@
 
       @if (activeTab() === 'crops') {
         <div class="crop-form">
-          <h3 class="form-title">Registrar cultivo</h3>
+          <h3 class="form-title">{{ 'plot_detail.crops.register_title' | translate }}</h3>
+
           <div class="crop-form-row">
             <div class="field">
-              <label>Tipo de cultivo</label>
+              <label>{{ 'plot_detail.crops.type_label' | translate }}</label>
               <input
                 type="text"
                 [value]="cropType()"
                 (input)="onCropTypeInput($event)"
-                placeholder="Ej: Maíz, Papa, Trigo..." />
+                [placeholder]="'plot_detail.crops.type_placeholder' | translate" />
             </div>
+
             <div class="field">
-              <label>Fecha de siembra</label>
+              <label>{{ 'plot_detail.crops.sowing_date_label' | translate }}</label>
               <input
                 type="date"
                 [value]="cropSowingDate()"
                 (input)="onCropSowingDateInput($event)" />
             </div>
+
             <button class="add-crop-btn" (click)="addCrop()">
               <span class="material-icons">add</span>
-              Agregar
+              {{ 'plot_detail.crops.add' | translate }}
             </button>
           </div>
         </div>
@@ -79,7 +86,7 @@
         @if (crops().length === 0) {
           <div class="empty-crops">
             <span class="material-icons empty-icon">eco</span>
-            <p>No hay cultivos registrados en esta parcela</p>
+            <p>{{ 'plot_detail.crops.empty' | translate }}</p>
           </div>
         } @else {
           <div class="crops-list">
@@ -91,23 +98,20 @@
       }
 
       @if (activeTab() === 'soil') {
-        <div class="tab-placeholder">
-          <span class="material-icons placeholder-icon">science</span>
-          <p>Análisis de suelo próximamente</p>
-        </div>
+        <app-soil-record-summary [plotId]="plotId()"></app-soil-record-summary>
       }
 
       @if (activeTab() === 'irrigation') {
         <div class="tab-placeholder">
           <span class="material-icons placeholder-icon">water_drop</span>
-          <p>Gestión de riego próximamente</p>
+          <p>{{ 'plot_detail.irrigation_coming_soon' | translate }}</p>
         </div>
       }
 
       @if (activeTab() === 'history') {
         <div class="tab-placeholder">
           <span class="material-icons placeholder-icon">history</span>
-          <p>Historial de la parcela próximamente</p>
+          <p>{{ 'plot_detail.history_coming_soon' | translate }}</p>
         </div>
       }
 
