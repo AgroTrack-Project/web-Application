@@ -53,61 +53,89 @@
   },
   "plots": {
     "title": "Mis Parcelas",
-    "subtitle": "Gestiona tus parcelas agrícolas registradas.",
-    "add_plot": "Agregar Parcela",
-    "empty": "Aún no tienes parcelas registradas.",
-    "add_first_plot": "Registra tu primera parcela",
-    "crops_title": "Cultivos",
-    "add_crop": "Agregar Cultivo",
-    "no_crops": "No hay cultivos registrados en esta parcela.",
-    "edit_plot": "Editar Parcela",
-    "edit_crop": "Editar Cultivo",
-    "form": {
-      "name": "Nombre de la parcela",
-      "location": "Ubicación",
-      "size_hectares": "Tamaño (hectáreas)",
-      "status": "Estado",
-      "save": "Guardar",
-      "cancel": "Cancelar"
+    "subtitle": "Gestiona tus parcelas registradas",
+    "add": "Agregar Parcela",
+    "empty": "No tienes parcelas registradas",
+    "register_first": "Registrar primera parcela",
+    "summary": {
+      "registered": "Parcelas registradas",
+      "limit": "Límite de parcelas",
+      "current_plan": "Plan actual"
     },
     "status": {
-      "active": "Activa",
-      "inactive": "Inactiva"
-    },
-    "crop_form": {
-      "type": "Tipo de cultivo",
-      "sowing_date": "Fecha de siembra",
-      "harvest_date": "Fecha de cosecha",
-      "status": "Estado"
-    },
-    "crop_status": {
       "active": "Activo",
-      "harvested": "Cosechado",
-      "lost": "Perdido"
+      "inactive": "Inactivo"
+    },
+    "form": {
+      "back": "Volver",
+      "register_title": "Registrar parcela",
+      "edit_title": "Editar parcela",
+      "subtitle": "Completa la información de la parcela para gestionar su seguimiento agrícola.",
+      "name_label": "Nombre",
+      "name_placeholder": "Ej: Parcela Norte",
+      "name_required": "El nombre es obligatorio.",
+      "location_label": "Ubicación",
+      "size_label": "Tamaño (hectáreas)",
+      "size_placeholder": "Ej: 2.5",
+      "size_required": "Ingresa un tamaño válido mayor a 0.",
+      "status_label": "Estado",
+      "cancel": "Cancelar",
+      "register_plot": "Registrar parcela",
+      "save_changes": "Guardar cambios",
+      "validation_error": "Revisa los campos obligatorios antes de continuar.",
+      "not_found_error": "No se encontró la parcela seleccionada.",
+      "limit_error": "Has alcanzado el límite de parcelas de tu plan.",
+      "limit_title": "Límite alcanzado",
+      "limit_message": "Tu plan actual permite registrar hasta {{max}} parcelas."
     }
   },
   "plot_detail": {
     "not_found": "Parcela no encontrada",
-    "crop_count": "cultivo(s)",
-    "crops_title": "Cultivos Registrados",
-    "add_crop": "Agregar Cultivo",
-    "no_crops": "No hay cultivos registrados en esta parcela.",
-    "add_first_crop": "Registra tu primer cultivo"
+    "tabs": {
+      "crops": "Cultivos",
+      "soil": "Suelo",
+      "irrigation": "Riego",
+      "history": "Historial"
+    },
+    "crops": {
+      "register_title": "Registrar cultivo",
+      "type_label": "Tipo de cultivo",
+      "type_placeholder": "Ej: Maíz, Papa, Trigo...",
+      "sowing_date_label": "Fecha de siembra",
+      "add": "Agregar",
+      "empty": "No hay cultivos registrados en esta parcela"
+    },
+    "irrigation_coming_soon": "Gestión de riego próximamente",
+    "history_coming_soon": "Historial de la parcela próximamente"
   },
-  "configuration": {
-    "title": "Configuración de alertas",
-    "subtitle": "Activa o desactiva las alertas que deseas recibir.",
-    "frost": {
-      "title": "Alerta de helada",
-      "desc": "Recibe alertas cuando la temperatura baja de 0°C."
+  "soil": {
+    "status": {
+      "eyebrow": "Monitoreo",
+      "title": "Estado del suelo",
+      "humidity": "Humedad",
+      "temperature": "Temperatura",
+      "last_record": "Último registro",
+      "dry": "Necesita riego",
+      "optimal": "Óptimo",
+      "wet": "Exceso de humedad",
+      "unknown": "Sin datos",
+      "no_data_message": "Aún no hay registros de suelo para esta parcela."
     },
-    "drought": {
-      "title": "Alerta de sequía",
-      "desc": "Avisos cuando no llueve por 7 días o más."
+    "advice": {
+      "eyebrow": "Asesoría",
+      "title": "Recomendación del suelo",
+      "dry": "La humedad está por debajo del nivel recomendado. Se sugiere revisar la parcela y considerar riego.",
+      "optimal": "El suelo se encuentra en condiciones adecuadas. No se requiere riego inmediato.",
+      "wet": "La humedad está elevada. No se recomienda regar por ahora para evitar exceso de agua.",
+      "unknown": "Registra datos de humedad y temperatura para recibir una recomendación."
     },
-    "heavy_rain": {
-      "title": "Alerta de lluvia intensa",
-      "desc": "Advertencias por pronóstico de lluvia fuerte."
+    "summary": {
+      "title": "Datos del suelo",
+      "subtitle": "Consulta el último registro y las mediciones disponibles para esta parcela.",
+      "condition": "Condición",
+      "date": "Fecha",
+      "empty_title": "Sin registros de suelo",
+      "empty_message": "Cuando registres humedad y temperatura, aparecerán en esta sección."
     }
   }
 }

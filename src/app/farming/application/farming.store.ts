@@ -96,4 +96,13 @@ export class FarmingStore {
   getCropsForPlot(plotId: string): Crop[] {
     return this.cropsSignal().filter(c => c.getPlotId() === plotId);
   }
+  getPlotById(id: string): Plot | undefined {
+    return this.plotsSignal().find(plot => plot.getId() === id);
+  }
+
+  getActiveUserPlotsCount(userId: string): number {
+    return this.plotsSignal().filter(
+      plot => plot.getUserId() === userId && plot.getStatus() !== PlotStatus.DELETED
+    ).length;
+  }
 }

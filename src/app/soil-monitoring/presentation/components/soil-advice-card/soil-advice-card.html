@@ -1,0 +1,11 @@
+<section class="soil-advice-card" [class]="statusClass()">
+  <div class="advice-icon">
+    <span class="material-icons">tips_and_updates</span>
+  </div>
+
+  <div>
+    <span class="eyebrow">{{ 'soil.advice.eyebrow' | translate }}</span>
+    <h3>{{ 'soil.advice.title' | translate }}</h3>
+    <p>{{ adviceTranslationKey() | translate }}</p>
+  </div>
+</section>

@@ -53,61 +53,89 @@
   },
   "plots": {
     "title": "My Plots",
-    "subtitle": "Manage your registered agricultural plots.",
-    "add_plot": "Add Plot",
-    "empty": "You have no registered plots yet.",
-    "add_first_plot": "Register your first plot",
-    "crops_title": "Crops",
-    "add_crop": "Add Crop",
-    "no_crops": "No crops registered for this plot.",
-    "edit_plot": "Edit Plot",
-    "edit_crop": "Edit Crop",
-    "form": {
-      "name": "Plot name",
-      "location": "Location",
-      "size_hectares": "Size (hectares)",
-      "status": "Status",
-      "save": "Save",
-      "cancel": "Cancel"
+    "subtitle": "Manage your registered plots",
+    "add": "Add Plot",
+    "empty": "You do not have registered plots",
+    "register_first": "Register first plot",
+    "summary": {
+      "registered": "Registered plots",
+      "limit": "Plot limit",
+      "current_plan": "Current plan"
     },
     "status": {
       "active": "Active",
       "inactive": "Inactive"
     },
-    "crop_form": {
-      "type": "Crop type",
-      "sowing_date": "Sowing date",
-      "harvest_date": "Harvest date",
-      "status": "Status"
-    },
-    "crop_status": {
-      "active": "Active",
-      "harvested": "Harvested",
-      "lost": "Lost"
+    "form": {
+      "back": "Back",
+      "register_title": "Register plot",
+      "edit_title": "Edit plot",
+      "subtitle": "Complete the plot information to manage its agricultural tracking.",
+      "name_label": "Name",
+      "name_placeholder": "Example: North Plot",
+      "name_required": "The name is required.",
+      "location_label": "Location",
+      "size_label": "Size (hectares)",
+      "size_placeholder": "Example: 2.5",
+      "size_required": "Enter a valid size greater than 0.",
+      "status_label": "Status",
+      "cancel": "Cancel",
+      "register_plot": "Register plot",
+      "save_changes": "Save changes",
+      "validation_error": "Review the required fields before continuing.",
+      "not_found_error": "The selected plot was not found.",
+      "limit_error": "You have reached the plot limit for your plan.",
+      "limit_title": "Limit reached",
+      "limit_message": "Your current plan allows up to {{max}} plots."
     }
   },
   "plot_detail": {
     "not_found": "Plot not found",
-    "crop_count": "crop(s)",
-    "crops_title": "Registered Crops",
-    "add_crop": "Add Crop",
-    "no_crops": "No crops registered for this plot.",
-    "add_first_crop": "Register your first crop"
+    "tabs": {
+      "crops": "Crops",
+      "soil": "Soil",
+      "irrigation": "Irrigation",
+      "history": "History"
+    },
+    "crops": {
+      "register_title": "Register crop",
+      "type_label": "Crop type",
+      "type_placeholder": "Example: Corn, Potato, Wheat...",
+      "sowing_date_label": "Sowing date",
+      "add": "Add",
+      "empty": "There are no crops registered in this plot"
+    },
+    "irrigation_coming_soon": "Irrigation management coming soon",
+    "history_coming_soon": "Plot history coming soon"
   },
-  "configuration": {
-    "title": "Alert settings",
-    "subtitle": "Activate or deactivate the alerts you want to receive.",
-    "frost": {
-      "title": "Frost alert",
-      "desc": "Receive alerts when the temperature drops below 0°C."
+  "soil": {
+    "status": {
+      "eyebrow": "Monitoring",
+      "title": "Soil status",
+      "humidity": "Humidity",
+      "temperature": "Temperature",
+      "last_record": "Last record",
+      "dry": "Needs irrigation",
+      "optimal": "Optimal",
+      "wet": "Excess moisture",
+      "unknown": "No data",
+      "no_data_message": "There are no soil records for this plot yet."
     },
-    "drought": {
-      "title": "Drought alert",
-      "desc": "Notices when it doesn't rain for 7 days or more."
+    "advice": {
+      "eyebrow": "Advice",
+      "title": "Soil recommendation",
+      "dry": "Humidity is below the recommended level. Check the plot and consider irrigation.",
+      "optimal": "The soil is in suitable condition. Immediate irrigation is not required.",
+      "wet": "Humidity is high. Irrigation is not recommended for now to avoid excess water.",
+      "unknown": "Register humidity and temperature data to receive a recommendation."
     },
-    "heavy_rain": {
-      "title": "Heavy rain alert",
-      "desc": "Warnings for heavy rain forecast."
+    "summary": {
+      "title": "Soil data",
+      "subtitle": "Check the latest record and available measurements for this plot.",
+      "condition": "Condition",
+      "date": "Date",
+      "empty_title": "No soil records",
+      "empty_message": "When you register humidity and temperature, they will appear in this section."
     }
   }
 }

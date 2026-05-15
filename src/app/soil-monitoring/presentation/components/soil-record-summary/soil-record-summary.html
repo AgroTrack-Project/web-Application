@@ -1,0 +1,60 @@
+<section class="soil-summary-section">
+  <div class="section-header">
+    <div>
+      <h3>{{ 'soil.summary.title' | translate }}</h3>
+      <p>{{ 'soil.summary.subtitle' | translate }}</p>
+    </div>
+  </div>
+
+  @if (latestRecord(); as record) {
+    <div class="summary-grid">
+      <div class="summary-box">
+        <span>{{ 'soil.status.humidity' | translate }}</span>
+        <strong>{{ record.getHumidity() }}%</strong>
+      </div>
+
+      <div class="summary-box">
+        <span>{{ 'soil.status.temperature' | translate }}</span>
+        <strong>{{ record.getTemperature() }}°C</strong>
+      </div>
+
+      <div class="summary-box">
+        <span>{{ 'soil.summary.condition' | translate }}</span>
+        <strong>{{ statusTranslationKey() | translate }}</strong>
+      </div>
+
+      <div class="summary-box">
+        <span>{{ 'soil.status.last_record' | translate }}</span>
+        <strong>{{ record.getRecordedAt() | date:'dd/MM/yyyy' }}</strong>
+      </div>
+    </div>
+
+    <div class="records-table-wrapper">
+      <table class="records-table">
+        <thead>
+        <tr>
+          <th>{{ 'soil.summary.date' | translate }}</th>
+          <th>{{ 'soil.status.humidity' | translate }}</th>
+          <th>{{ 'soil.status.temperature' | translate }}</th>
+        </tr>
+        </thead>
+
+        <tbody>
+          @for (soilRecord of records(); track soilRecord.getId()) {
+            <tr>
+              <td>{{ soilRecord.getRecordedAt() | date:'dd/MM/yyyy HH:mm' }}</td>
+              <td>{{ soilRecord.getHumidity() }}%</td>
+              <td>{{ soilRecord.getTemperature() }}°C</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="empty-summary">
+      <span class="material-icons">science</span>
+      <h4>{{ 'soil.summary.empty_title' | translate }}</h4>
+      <p>{{ 'soil.summary.empty_message' | translate }}</p>
+    </div>
+  }
+</section>

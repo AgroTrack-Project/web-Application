@@ -1,0 +1,59 @@
+.soil-advice-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #ffffff;
+  border: 1px solid #d9edd9;
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(44, 62, 45, 0.08);
+}
+
+.advice-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #d9edd9;
+  color: #2d7a3a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  display: block;
+  color: #5d8970;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.soil-advice-card h3 {
+  margin: 0 0 8px;
+  color: #2c3e2d;
+  font-size: 1.25rem;
+}
+
+.soil-advice-card p {
+  margin: 0;
+  color: #5f615c;
+  line-height: 1.45;
+}
+
+.soil-advice-card.status-dry .advice-icon {
+  background: #fff3cd;
+  color: #8a5a00;
+}
+
+.soil-advice-card.status-wet .advice-icon {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.soil-advice-card.status-unknown .advice-icon {
+  background: #eeeeee;
+  color: #555555;
+}
