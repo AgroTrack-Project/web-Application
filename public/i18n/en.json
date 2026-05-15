@@ -51,6 +51,49 @@
       "enterprise": { "name": "Enterprise Plan", "desc": "For agricultural SMEs", "price": "S/ 149 / month" }
     }
   },
+  "plots": {
+    "title": "My Plots",
+    "subtitle": "Manage your registered agricultural plots.",
+    "add_plot": "Add Plot",
+    "empty": "You have no registered plots yet.",
+    "add_first_plot": "Register your first plot",
+    "crops_title": "Crops",
+    "add_crop": "Add Crop",
+    "no_crops": "No crops registered for this plot.",
+    "edit_plot": "Edit Plot",
+    "edit_crop": "Edit Crop",
+    "form": {
+      "name": "Plot name",
+      "location": "Location",
+      "size_hectares": "Size (hectares)",
+      "status": "Status",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "crop_form": {
+      "type": "Crop type",
+      "sowing_date": "Sowing date",
+      "harvest_date": "Harvest date",
+      "status": "Status"
+    },
+    "crop_status": {
+      "active": "Active",
+      "harvested": "Harvested",
+      "lost": "Lost"
+    }
+  },
+  "plot_detail": {
+    "not_found": "Plot not found",
+    "crop_count": "crop(s)",
+    "crops_title": "Registered Crops",
+    "add_crop": "Add Crop",
+    "no_crops": "No crops registered for this plot.",
+    "add_first_crop": "Register your first crop"
+  },
   "configuration": {
     "title": "Alert settings",
     "subtitle": "Activate or deactivate the alerts you want to receive.",
