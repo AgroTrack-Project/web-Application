@@ -91,6 +91,8 @@
   },
   "plot_detail": {
     "not_found": "Parcela no encontrada",
+    "edit": "Editar",
+    "delete": "Eliminar",
     "tabs": {
       "crops": "Cultivos",
       "soil": "Suelo",

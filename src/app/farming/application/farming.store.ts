@@ -70,6 +70,19 @@ export class FarmingStore {
     });
   }
 
+  deleteCropsByPlot(plotId: string): void {
+    const cropsToDelete = this.getCropsForPlot(plotId);
+
+    cropsToDelete.forEach(crop => {
+      this.farmingApi.crops.delete(crop.getId()).subscribe({
+        next: () => this.cropsSignal.update(crops =>
+          crops.filter(item => item.getId() !== crop.getId())
+        ),
+        error: err => this.errorSignal.set(err.message)
+      });
+    });
+  }
+
   createCrop(crop: Crop): void {
     this.farmingApi.crops.create(crop).subscribe({
       next: created => this.cropsSignal.update(crops => [...crops, created]),

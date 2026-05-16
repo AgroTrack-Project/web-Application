@@ -8,6 +8,7 @@ import { Plot } from '../../../domain/model/plot.entity';
 import { PlotCard } from '../../components/plot-card/plot-card';
 import { ProPlan } from '../../../../identity/domain/model/pro-plan.entity';
 import { EnterprisePlan } from '../../../../identity/domain/model/enterprise-plan.entity';
+import { SoilMonitoringStore } from '../../../../soil-monitoring/application/soil-monitoring.store';
 
 @Component({
   selector: 'app-plots',
@@ -19,6 +20,7 @@ export class Plots implements OnInit {
   store = inject(FarmingStore);
   identityStore = inject(IdentityStore);
   private router = inject(Router);
+  soilStore = inject(SoilMonitoringStore);
 
   readonly planName = computed(() => {
     const user = this.identityStore.currentUser();
@@ -39,6 +41,8 @@ export class Plots implements OnInit {
     this.store.loadPlots();
     this.store.loadCrops();
     this.identityStore.loadUsers();
+    this.soilStore.loadSoilRecords();
+    this.soilStore.loadIrrigationRecommendations();
   }
 
   goToPlot(plot: Plot): void {
@@ -54,6 +58,10 @@ export class Plots implements OnInit {
   }
 
   deletePlot(id: string): void {
+    this.store.deleteCropsByPlot(id);
+    this.soilStore.deleteSoilRecordsByPlot(id);
+    this.soilStore.deleteIrrigationRecommendationsByPlot(id);
+
     this.store.deletePlot(id);
   }
 }

@@ -225,4 +225,31 @@ export class SoilMonitoringStore {
       error: err => this.errorSignal.set(err.message)
     });
   }
+
+  deleteSoilRecordsByPlot(plotId: string): void {
+    const recordsToDelete = this.getRecordsForPlot(plotId);
+
+    recordsToDelete.forEach(record => {
+      this.soilMonitoringApi.soilRecords.delete(record.getId()).subscribe({
+        next: () => this.soilRecordsSignal.update(records =>
+          records.filter(item => item.getId() !== record.getId())
+        ),
+        error: err => this.errorSignal.set(err.message)
+      });
+    });
+  }
+
+  deleteIrrigationRecommendationsByPlot(plotId: string): void {
+    const recommendationsToDelete = this.getRecommendationsForPlot(plotId);
+
+    recommendationsToDelete.forEach(recommendation => {
+      this.soilMonitoringApi.irrigationRecommendations.delete(recommendation.getId()).subscribe({
+        next: () => this.irrigationRecommendationsSignal.update(recommendations =>
+          recommendations.filter(item => item.getId() !== recommendation.getId())
+        ),
+        error: err => this.errorSignal.set(err.message)
+      });
+    });
+  }
+
 }

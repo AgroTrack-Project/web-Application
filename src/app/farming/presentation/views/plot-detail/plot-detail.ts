@@ -14,6 +14,7 @@ import { SoilAdviceCard } from '../../../../soil-monitoring/presentation/compone
 import { SoilRecordSummary } from '../../../../soil-monitoring/presentation/components/soil-record-summary/soil-record-summary';
 import { IrrigationSummary } from '../../../../soil-monitoring/presentation/components/irrigation-summary/irrigation-summary';
 
+
 type Tab = 'crops' | 'soil' | 'irrigation' | 'history';
 
 @Component({
@@ -70,6 +71,10 @@ export class PlotDetail implements OnInit {
     this.router.navigate(['/parcelas']);
   }
 
+  goToEditCurrentPlot(): void {
+    this.router.navigate(['/parcelas', this.plotId(), 'editar']);
+  }
+
   setTab(tab: Tab): void {
     this.activeTab.set(tab);
   }
@@ -93,6 +98,17 @@ export class PlotDetail implements OnInit {
 
   deleteCrop(id: string): void {
     this.store.deleteCrop(id);
+  }
+
+  deleteCurrentPlot(): void {
+    const id = this.plotId();
+
+    this.store.deleteCropsByPlot(id);
+    this.soilStore.deleteSoilRecordsByPlot(id);
+    this.soilStore.deleteIrrigationRecommendationsByPlot(id);
+
+    this.store.deletePlot(id);
+    this.router.navigate(['/parcelas']);
   }
 
   onCropTypeInput(e: Event): void {

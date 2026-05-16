@@ -91,6 +91,8 @@
   },
   "plot_detail": {
     "not_found": "Plot not found",
+    "edit": "Edit",
+    "delete": "Delete",
     "tabs": {
       "crops": "Crops",
       "soil": "Soil",

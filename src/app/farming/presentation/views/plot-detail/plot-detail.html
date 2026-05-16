@@ -11,8 +11,18 @@
       <div class="header-info">
         <h1 class="plot-title">{{ plot()!.getName() }}</h1>
         <span class="soil-badge" [class]="soilStore.getStatusClassForPlot(plotId())">
-          {{ soilStore.getStatusTranslationKeyForPlot(plotId()) | translate }}
-        </span>
+      {{ soilStore.getStatusTranslationKeyForPlot(plotId()) | translate }}
+    </span>
+      </div>
+
+      <div class="detail-actions">
+        <button class="edit-plot-btn" type="button" (click)="goToEditCurrentPlot()">
+          {{ 'plot_detail.edit' | translate }}
+        </button>
+
+        <button class="delete-plot-btn" type="button" (click)="deleteCurrentPlot()">
+          {{ 'plot_detail.delete' | translate }}
+        </button>
       </div>
     } @else {
       <h1 class="plot-title">{{ 'plot_detail.not_found' | translate }}</h1>
