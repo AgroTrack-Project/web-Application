@@ -3,7 +3,7 @@
     "logout": "Sign out"
   },
   "sidebar": {
-    "start": "Start",
+    "start": "Home",
     "plots": "Plots",
     "alerts": "Alerts",
     "dashboard": "Dashboard",
@@ -235,5 +235,15 @@
   "plot_card": {
     "edit": "Edit",
     "delete": "Delete"
+  },
+  "home": {
+    "greeting": "Hello",
+    "subtitle": "Summary of your plots and recent alerts.",
+    "card_plots": "Plots",
+    "card_attention": "In attention",
+    "card_critical": "Critical",
+    "your_plots": "Your plots",
+    "new_plot": "+ New plot",
+    "crop_label": "CROP"
   }
 }

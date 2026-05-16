@@ -3,7 +3,7 @@
     "logout": "Salir"
   },
   "sidebar": {
-    "start": "Inicio",
+    "start": "Home",
     "plots": "Parcelas",
     "alerts": "Alertas",
     "dashboard": "Dashboard",
@@ -235,5 +235,15 @@
   "plot_card": {
     "edit": "Editar",
     "delete": "Eliminar"
+  },
+  "home": {
+    "greeting": "Hola",
+    "subtitle": "Resumen de tus parcelas y alertas recientes.",
+    "card_plots": "Parcelas",
+    "card_attention": "En atención",
+    "card_critical": "Críticas",
+    "your_plots": "Tus parcelas",
+    "new_plot": "+ Nueva parcela",
+    "crop_label": "CULTIVO"
   }
 }
