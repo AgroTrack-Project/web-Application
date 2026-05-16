@@ -1,12 +1,12 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FarmingStore } from '../../../../farming/application/farming.store';
 import { IdentityStore } from '../../../../identity/application/identity.store';
 
 @Component({
   selector: 'app-home',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
