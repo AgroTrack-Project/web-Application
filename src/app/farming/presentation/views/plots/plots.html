@@ -66,6 +66,10 @@
 
       <div class="form-fields">
         <div class="field">
+          <label>ID</label>
+          <input type="text" [value]="plotId()" readonly class="readonly-input" />
+        </div>
+        <div class="field">
           <label>Nombre</label>
           <input type="text" [value]="plotName()" (input)="onPlotNameInput($event)" placeholder="Ej: Parcela Norte" />
         </div>

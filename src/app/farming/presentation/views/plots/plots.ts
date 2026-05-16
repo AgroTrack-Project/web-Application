@@ -31,6 +31,7 @@ export class Plots implements OnInit {
 
   showPlotModal = signal(false);
   editingPlot = signal<Plot | null>(null);
+  plotId = signal('');
   plotName = signal('');
   plotLocation = signal(PERU_DEPARTMENTS[0]);
   plotSizeHectares = signal(0);
@@ -64,6 +65,7 @@ export class Plots implements OnInit {
 
   openAddPlotModal(): void {
     this.editingPlot.set(null);
+    this.plotId.set(crypto.randomUUID());
     this.plotName.set('');
     this.plotLocation.set(PERU_DEPARTMENTS[0]);
     this.plotSizeHectares.set(0);
@@ -73,6 +75,7 @@ export class Plots implements OnInit {
 
   openEditPlotModal(plot: Plot): void {
     this.editingPlot.set(plot);
+    this.plotId.set(plot.getId());
     this.plotName.set(plot.getName());
     this.plotLocation.set(plot.getLocation());
     this.plotSizeHectares.set(plot.getSizeHectares());
@@ -90,7 +93,7 @@ export class Plots implements OnInit {
       this.store.updatePlot(existing);
     } else {
       const plot = new Plot(
-        crypto.randomUUID(),
+        this.plotId(),
         this.plotName(),
         this.plotLocation(),
         this.plotSizeHectares(),
