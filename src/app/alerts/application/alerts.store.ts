@@ -105,13 +105,14 @@ export class AlertsStore {
     cities: string[]
   ): void {
 
-    this.loading.set(true);
-
-    /**
-     * Clears previous alerts
-     * before loading new ones.
-     */
     this.alerts.set([]);
+
+    if (cities.length === 0) {
+      this.loading.set(false);
+      return;
+    }
+
+    this.loading.set(true);
 
     cities.forEach(city => {
 
