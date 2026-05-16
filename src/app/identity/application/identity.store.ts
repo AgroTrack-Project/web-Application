@@ -23,6 +23,7 @@ export class IdentityStore {
   readonly alertPreferences = this.alertPreferencesSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
+  readonly currentUserId = this.currentUserIdSignal.asReadonly();
   readonly currentUser = computed(() => this.usersSignal().find(u => u.getId() === this.currentUserIdSignal()));
   readonly currentAlertPreference = computed(() => this.alertPreferencesSignal().find(p => p.getUserId() === this.currentUserIdSignal()));
 
