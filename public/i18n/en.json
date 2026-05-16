@@ -54,6 +54,7 @@
   "plots": {
     "title": "My Plots",
     "subtitle": "Manage your registered agricultural plots.",
+    "new_plot": "New Plot",
     "add_plot": "Add Plot",
     "empty": "You have no registered plots yet.",
     "add_first_plot": "Register your first plot",
@@ -62,9 +63,16 @@
     "no_crops": "No crops registered for this plot.",
     "edit_plot": "Edit Plot",
     "edit_crop": "Edit Crop",
+    "summary": {
+      "registered": "Registered plots",
+      "limit": "Plot limit",
+      "plan": "Current plan"
+    },
     "form": {
+      "id": "Plot ID",
       "name": "Plot name",
-      "location": "Location",
+      "location": "Location (Department)",
+      "location_placeholder": "E.g.: North Plot",
       "size_hectares": "Size (hectares)",
       "status": "Status",
       "save": "Save",
@@ -76,6 +84,7 @@
     },
     "crop_form": {
       "type": "Crop type",
+      "type_placeholder": "E.g.: Corn, Potato, Wheat...",
       "sowing_date": "Sowing date",
       "harvest_date": "Harvest date",
       "status": "Status"
@@ -88,11 +97,41 @@
   },
   "plot_detail": {
     "not_found": "Plot not found",
+    "soil_badge": "Optimal soil",
+    "advisory": "Soil conditions are suitable for the current crop.",
     "crop_count": "crop(s)",
     "crops_title": "Registered Crops",
     "add_crop": "Add Crop",
     "no_crops": "No crops registered for this plot.",
-    "add_first_crop": "Register your first crop"
+    "add_first_crop": "Register your first crop",
+    "tabs": {
+      "crops": "Crops",
+      "soil": "Soil",
+      "irrigation": "Irrigation",
+      "history": "Harvest History"
+    },
+    "crop_form": {
+      "title": "Register crop",
+      "add_btn": "Add"
+    },
+    "edit_crop_title": "Edit Crop",
+    "save": "Save",
+    "cancel": "Cancel",
+    "soil_coming_soon": "Soil analysis coming soon",
+    "irrigation_coming_soon": "Irrigation management coming soon",
+    "harvest_history_title": "Harvest History",
+    "no_harvest_history": "No harvested crops yet."
+  },
+  "crop_card": {
+    "edit": "Edit",
+    "harvest": "Harvest",
+    "delete": "Delete",
+    "sowing": "Sowing",
+    "harvest_date": "Harvest date"
+  },
+  "plot_card": {
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "configuration": {
     "title": "Alert settings",

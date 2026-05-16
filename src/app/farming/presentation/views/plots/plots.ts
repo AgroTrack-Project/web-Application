@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { FarmingStore } from '../../../application/farming.store';
 import { IdentityStore } from '../../../../identity/application/identity.store';
 import { Plot } from '../../../domain/model/plot.entity';
@@ -18,7 +19,7 @@ const PERU_DEPARTMENTS = [
 
 @Component({
   selector: 'app-plots',
-  imports: [PlotCard],
+  imports: [PlotCard, TranslatePipe],
   templateUrl: './plots.html',
   styleUrl: './plots.css'
 })

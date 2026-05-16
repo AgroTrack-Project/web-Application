@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Crop } from '../../../domain/model/crop.entity';
 
 @Component({
   selector: 'app-crop-card',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './crop-card.html',
   styleUrl: './crop-card.css'
 })

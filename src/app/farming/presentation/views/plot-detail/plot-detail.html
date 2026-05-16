@@ -10,17 +10,17 @@
     } @else if (plot()) {
       <div class="header-info">
         <h1 class="plot-title">{{ plot()!.getName() }}</h1>
-        <span class="soil-badge">Suelo óptimo</span>
+        <span class="soil-badge">{{ 'plot_detail.soil_badge' | translate }}</span>
       </div>
     } @else {
-      <h1 class="plot-title">Parcela no encontrada</h1>
+      <h1 class="plot-title">{{ 'plot_detail.not_found' | translate }}</h1>
     }
   </div>
 
   @if (!store.loading() && plot()) {
     <p class="advisory-text">
       <span class="material-icons advisory-icon">info</span>
-      Las condiciones del suelo son adecuadas para el cultivo actual.
+      {{ 'plot_detail.advisory' | translate }}
     </p>
 
     <div class="meta-row">
@@ -37,7 +37,7 @@
         <span>{{ plot()!.getSizeHectares() }} ha</span>
       </div>
       <span class="status-badge status-{{ plot()!.getStatus().toLowerCase() }}">
-        {{ plot()!.getStatus() }}
+        {{ 'plots.status.' + plot()!.getStatus().toLowerCase() | translate }}
       </span>
     </div>
 
@@ -47,7 +47,7 @@
           class="tab-btn"
           [class.active]="activeTab() === tab.key"
           (click)="setTab(tab.key)">
-          {{ tab.label }}
+          {{ tab.label | translate }}
         </button>
       }
     </div>
@@ -56,18 +56,18 @@
 
       @if (activeTab() === 'crops') {
         <div class="crop-form">
-          <h3 class="form-title">Registrar cultivo</h3>
+          <h3 class="form-title">{{ 'plot_detail.crop_form.title' | translate }}</h3>
           <div class="crop-form-row">
             <div class="field">
-              <label>Tipo de cultivo</label>
+              <label>{{ 'plots.crop_form.type' | translate }}</label>
               <input
                 type="text"
                 [value]="cropType()"
                 (input)="onCropTypeInput($event)"
-                placeholder="Ej: Maíz, Papa, Trigo..." />
+                [placeholder]="'plots.crop_form.type_placeholder' | translate" />
             </div>
             <div class="field">
-              <label>Fecha de siembra</label>
+              <label>{{ 'plots.crop_form.sowing_date' | translate }}</label>
               <input
                 type="date"
                 [value]="cropSowingDate()"
@@ -75,7 +75,7 @@
             </div>
             <button class="add-crop-btn" (click)="addCrop()">
               <span class="material-icons">add</span>
-              Agregar
+              {{ 'plot_detail.crop_form.add_btn' | translate }}
             </button>
           </div>
         </div>
@@ -83,7 +83,7 @@
         @if (activeCrops().length === 0) {
           <div class="empty-crops">
             <span class="material-icons empty-icon">eco</span>
-            <p>No hay cultivos registrados en esta parcela</p>
+            <p>{{ 'plot_detail.no_crops' | translate }}</p>
           </div>
         } @else {
           <div class="crops-list">
@@ -101,24 +101,24 @@
       @if (activeTab() === 'soil') {
         <div class="tab-placeholder">
           <span class="material-icons placeholder-icon">science</span>
-          <p>Análisis de suelo próximamente</p>
+          <p>{{ 'plot_detail.soil_coming_soon' | translate }}</p>
         </div>
       }
 
       @if (activeTab() === 'irrigation') {
         <div class="tab-placeholder">
           <span class="material-icons placeholder-icon">water_drop</span>
-          <p>Gestión de riego próximamente</p>
+          <p>{{ 'plot_detail.irrigation_coming_soon' | translate }}</p>
         </div>
       }
 
       @if (activeTab() === 'history') {
         <div class="harvest-history">
-          <h3 class="section-title">Historial de cosechas</h3>
+          <h3 class="section-title">{{ 'plot_detail.harvest_history_title' | translate }}</h3>
           @if (harvestedCrops().length === 0) {
             <div class="empty-crops">
               <span class="material-icons empty-icon">agriculture</span>
-              <p>No hay cosechas registradas aún.</p>
+              <p>{{ 'plot_detail.no_harvest_history' | translate }}</p>
             </div>
           } @else {
             <div class="crops-list">
@@ -143,7 +143,7 @@
     <div class="form-modal" (click)="$event.stopPropagation()">
 
       <div class="modal-header">
-        <h2>Edit Crop</h2>
+        <h2>{{ 'plot_detail.edit_crop_title' | translate }}</h2>
         <button class="close-btn" (click)="closeEditCropModal()">
           <span class="material-icons">close</span>
         </button>
@@ -151,21 +151,20 @@
 
       <div class="form-fields">
         <div class="field">
-          <label>Crop type</label>
+          <label>{{ 'plots.crop_form.type' | translate }}</label>
           <input type="text" [value]="editCropType()" (input)="onEditCropTypeInput($event)" />
         </div>
         <div class="field">
-          <label>Sowing date</label>
+          <label>{{ 'plots.crop_form.sowing_date' | translate }}</label>
           <input type="date" [value]="editCropSowingDate()" (input)="onEditCropSowingDateInput($event)" />
         </div>
       </div>
 
       <div class="modal-actions">
-        <button class="cancel-btn" (click)="closeEditCropModal()">Cancel</button>
-        <button class="save-btn" (click)="saveEditCrop()">Save</button>
+        <button class="cancel-btn" (click)="closeEditCropModal()">{{ 'plot_detail.cancel' | translate }}</button>
+        <button class="save-btn" (click)="saveEditCrop()">{{ 'plot_detail.save' | translate }}</button>
       </div>
 
     </div>
   </div>
 }
-

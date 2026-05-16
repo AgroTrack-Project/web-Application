@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { FarmingStore } from '../../../application/farming.store';
 import { Plot } from '../../../domain/model/plot.entity';
 import { Crop } from '../../../domain/model/crop.entity';
@@ -10,7 +11,7 @@ type Tab = 'crops' | 'soil' | 'irrigation' | 'history';
 
 @Component({
   selector: 'app-plot-detail',
-  imports: [CropCard],
+  imports: [CropCard, TranslatePipe],
   templateUrl: './plot-detail.html',
   styleUrl: './plot-detail.css'
 })
@@ -47,10 +48,10 @@ export class PlotDetail implements OnInit {
   );
 
   readonly tabs: { key: Tab; label: string }[] = [
-    { key: 'crops',      label: 'Cultivos'  },
-    { key: 'soil',       label: 'Suelo'     },
-    { key: 'irrigation', label: 'Riego'     },
-    { key: 'history',    label: 'Historial' },
+    { key: 'crops',      label: 'plot_detail.tabs.crops'      },
+    { key: 'soil',       label: 'plot_detail.tabs.soil'       },
+    { key: 'irrigation', label: 'plot_detail.tabs.irrigation' },
+    { key: 'history',    label: 'plot_detail.tabs.history'    },
   ];
 
   ngOnInit(): void {

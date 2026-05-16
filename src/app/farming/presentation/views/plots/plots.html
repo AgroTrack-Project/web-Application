@@ -2,26 +2,26 @@
 
   <div class="plots-header">
     <div>
-      <h1 class="page-title">Mis Parcelas</h1>
-      <p class="page-subtitle">Gestiona tus parcelas registradas</p>
+      <h1 class="page-title">{{ 'plots.title' | translate }}</h1>
+      <p class="page-subtitle">{{ 'plots.subtitle' | translate }}</p>
     </div>
     <button class="add-btn" (click)="openAddPlotModal()">
       <span class="material-icons">add</span>
-      Agregar Parcela
+      {{ 'plots.add_plot' | translate }}
     </button>
   </div>
 
   <div class="summary-cards">
     <div class="summary-card">
-      <span class="summary-label">Parcelas registradas</span>
+      <span class="summary-label">{{ 'plots.summary.registered' | translate }}</span>
       <span class="summary-value">{{ store.userPlots().length }}</span>
     </div>
     <div class="summary-card">
-      <span class="summary-label">Límite de parcelas</span>
+      <span class="summary-label">{{ 'plots.summary.limit' | translate }}</span>
       <span class="summary-value">{{ maxPlots() }}</span>
     </div>
     <div class="summary-card">
-      <span class="summary-label">Plan actual</span>
+      <span class="summary-label">{{ 'plots.summary.plan' | translate }}</span>
       <span class="summary-value plan-badge">{{ planName() }}</span>
     </div>
   </div>
@@ -33,9 +33,9 @@
   } @else if (store.userPlots().length === 0) {
     <div class="empty-state">
       <span class="material-icons empty-icon">landscape</span>
-      <p>No tienes parcelas registradas</p>
+      <p>{{ 'plots.empty' | translate }}</p>
       <button class="add-btn" (click)="openAddPlotModal()">
-        Registrar primera parcela
+        {{ 'plots.add_first_plot' | translate }}
       </button>
     </div>
   } @else {
@@ -58,7 +58,7 @@
     <div class="form-modal" (click)="$event.stopPropagation()">
 
       <div class="modal-header">
-        <h2>{{ editingPlot() ? 'Editar Parcela' : 'Nueva Parcela' }}</h2>
+        <h2>{{ editingPlot() ? ('plots.edit_plot' | translate) : ('plots.new_plot' | translate) }}</h2>
         <button class="close-btn" (click)="closePlotModal()">
           <span class="material-icons">close</span>
         </button>
@@ -66,15 +66,15 @@
 
       <div class="form-fields">
         <div class="field">
-          <label>ID</label>
+          <label>{{ 'plots.form.id' | translate }}</label>
           <input type="text" [value]="plotId()" readonly class="readonly-input" />
         </div>
         <div class="field">
-          <label>Nombre</label>
-          <input type="text" [value]="plotName()" (input)="onPlotNameInput($event)" placeholder="Ej: Parcela Norte" />
+          <label>{{ 'plots.form.name' | translate }}</label>
+          <input type="text" [value]="plotName()" (input)="onPlotNameInput($event)" [placeholder]="'plots.form.location_placeholder' | translate" />
         </div>
         <div class="field">
-          <label>Ubicación (Departamento)</label>
+          <label>{{ 'plots.form.location' | translate }}</label>
           <select [value]="plotLocation()" (change)="onPlotLocationChange($event)">
             @for (dept of departments; track dept) {
               <option [value]="dept">{{ dept }}</option>
@@ -82,23 +82,23 @@
           </select>
         </div>
         <div class="field">
-          <label>Tamaño (hectáreas)</label>
+          <label>{{ 'plots.form.size_hectares' | translate }}</label>
           <input type="number" [value]="plotSizeHectares()" (input)="onPlotSizeInput($event)" min="0" step="0.1" />
         </div>
         @if (editingPlot()) {
           <div class="field">
-            <label>Estado</label>
+            <label>{{ 'plots.form.status' | translate }}</label>
             <select [value]="plotStatus()" (change)="onPlotStatusChange($event)">
-              <option value="ACTIVE">Activo</option>
-              <option value="INACTIVE">Inactivo</option>
+              <option value="ACTIVE">{{ 'plots.status.active' | translate }}</option>
+              <option value="INACTIVE">{{ 'plots.status.inactive' | translate }}</option>
             </select>
           </div>
         }
       </div>
 
       <div class="modal-actions">
-        <button class="cancel-btn" (click)="closePlotModal()">Cancelar</button>
-        <button class="save-btn" (click)="savePlot()">Guardar</button>
+        <button class="cancel-btn" (click)="closePlotModal()">{{ 'plots.form.cancel' | translate }}</button>
+        <button class="save-btn" (click)="savePlot()">{{ 'plots.form.save' | translate }}</button>
       </div>
 
     </div>
