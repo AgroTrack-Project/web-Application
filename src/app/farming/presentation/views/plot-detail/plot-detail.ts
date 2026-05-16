@@ -38,6 +38,14 @@ export class PlotDetail implements OnInit {
     this.store.getCropsForPlot(this.plotId())
   );
 
+  readonly activeCrops = computed<Crop[]>(() =>
+    this.store.getCropsForPlot(this.plotId()).filter(c => c.getStatus() !== CropStatus.HARVESTED)
+  );
+
+  readonly harvestedCrops = computed<Crop[]>(() =>
+    this.store.getCropsForPlot(this.plotId()).filter(c => c.getStatus() === CropStatus.HARVESTED)
+  );
+
   readonly tabs: { key: Tab; label: string }[] = [
     { key: 'crops',      label: 'Cultivos'  },
     { key: 'soil',       label: 'Suelo'     },

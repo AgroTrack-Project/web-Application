@@ -80,14 +80,14 @@
           </div>
         </div>
 
-        @if (crops().length === 0) {
+        @if (activeCrops().length === 0) {
           <div class="empty-crops">
             <span class="material-icons empty-icon">eco</span>
             <p>No hay cultivos registrados en esta parcela</p>
           </div>
         } @else {
           <div class="crops-list">
-            @for (crop of crops(); track crop.getId()) {
+            @for (crop of activeCrops(); track crop.getId()) {
               <app-crop-card
                 [crop]="crop"
                 (editCrop)="openEditCrop($event)"
@@ -113,9 +113,23 @@
       }
 
       @if (activeTab() === 'history') {
-        <div class="tab-placeholder">
-          <span class="material-icons placeholder-icon">history</span>
-          <p>Historial de la parcela próximamente</p>
+        <div class="harvest-history">
+          <h3 class="section-title">Historial de cosechas</h3>
+          @if (harvestedCrops().length === 0) {
+            <div class="empty-crops">
+              <span class="material-icons empty-icon">agriculture</span>
+              <p>No hay cosechas registradas aún.</p>
+            </div>
+          } @else {
+            <div class="crops-list">
+              @for (crop of harvestedCrops(); track crop.getId()) {
+                <app-crop-card
+                  [crop]="crop"
+                  (editCrop)="openEditCrop($event)"
+                  (deleteCrop)="deleteCrop($event)" />
+              }
+            </div>
+          }
         </div>
       }
 
