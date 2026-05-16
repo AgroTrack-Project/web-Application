@@ -11,8 +11,8 @@
       <div class="header-info">
         <h1 class="plot-title">{{ plot()!.getName() }}</h1>
         <span class="soil-badge" [class]="soilStore.getStatusClassForPlot(plotId())">
-      {{ soilStore.getStatusTranslationKeyForPlot(plotId()) | translate }}
-    </span>
+          {{ soilStore.getStatusTranslationKeyForPlot(plotId()) | translate }}
+        </span>
       </div>
 
       <div class="detail-actions">
@@ -37,6 +37,10 @@
 
     <div class="meta-row">
       <div class="meta-item">
+        <span class="material-icons">tag</span>
+        <span class="plot-id-text">{{ plot()!.getId() }}</span>
+      </div>
+      <div class="meta-item">
         <span class="material-icons">location_on</span>
         <span>{{ plot()!.getLocation() }}</span>
       </div>
@@ -47,7 +51,7 @@
       </div>
 
       <span class="status-badge status-{{ plot()!.getStatus().toLowerCase() }}">
-        {{ plot()!.getStatus() }}
+        {{ 'plots.status.' + plot()!.getStatus().toLowerCase() | translate }}
       </span>
     </div>
 

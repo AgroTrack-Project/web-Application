@@ -3,7 +3,7 @@
     "logout": "Sign out"
   },
   "sidebar": {
-    "start": "Start",
+    "start": "Home",
     "plots": "Plots",
     "alerts": "Alerts",
     "dashboard": "Dashboard",
@@ -54,13 +54,22 @@
   },
   "plots": {
     "title": "My Plots",
-    "subtitle": "Manage your registered plots",
+    "subtitle": "Manage your registered agricultural plots.",
+    "new_plot": "New Plot",
+    "add_plot": "Add Plot",
     "add": "Add Plot",
-    "empty": "You do not have registered plots",
+    "empty": "You have no registered plots yet.",
+    "add_first_plot": "Register your first plot",
     "register_first": "Register first plot",
+    "crops_title": "Crops",
+    "add_crop": "Add Crop",
+    "no_crops": "No crops registered for this plot.",
+    "edit_plot": "Edit Plot",
+    "edit_crop": "Edit Crop",
     "summary": {
       "registered": "Registered plots",
       "limit": "Plot limit",
+      "plan": "Current plan",
       "current_plan": "Current plan"
     },
     "crop_status": {
@@ -77,14 +86,21 @@
       "register_title": "Register plot",
       "edit_title": "Edit plot",
       "subtitle": "Complete the plot information to manage its agricultural tracking.",
+      "id": "Plot ID",
+      "name": "Plot name",
       "name_label": "Name",
       "name_placeholder": "Example: North Plot",
       "name_required": "The name is required.",
+      "location": "Location (Department)",
       "location_label": "Location",
+      "location_placeholder": "E.g.: North Plot",
+      "size_hectares": "Size (hectares)",
       "size_label": "Size (hectares)",
       "size_placeholder": "Example: 2.5",
       "size_required": "Enter a valid size greater than 0.",
+      "status": "Status",
       "status_label": "Status",
+      "save": "Save",
       "cancel": "Cancel",
       "register_plot": "Register plot",
       "save_changes": "Save changes",
@@ -93,10 +109,24 @@
       "limit_error": "You have reached the plot limit for your plan.",
       "limit_title": "Limit reached",
       "limit_message": "Your current plan allows up to {{max}} plots."
+    },
+    "crop_form": {
+      "type": "Crop type",
+      "type_placeholder": "E.g.: Corn, Potato, Wheat...",
+      "sowing_date": "Sowing date",
+      "harvest_date": "Harvest date",
+      "status": "Status"
     }
   },
   "plot_detail": {
     "not_found": "Plot not found",
+    "soil_badge": "Optimal soil",
+    "advisory": "Soil conditions are suitable for the current crop.",
+    "crop_count": "crop(s)",
+    "crops_title": "Registered Crops",
+    "add_crop": "Add Crop",
+    "no_crops": "No crops registered for this plot.",
+    "add_first_crop": "Register your first crop",
     "edit": "Edit",
     "delete": "Delete",
     "tabs": {
@@ -105,11 +135,10 @@
       "irrigation": "Irrigation",
       "history": "Harvest History"
     },
-    "edit_crop_title": "Edit Crop",
-    "save": "Save",
-    "cancel": "Cancel",
-    "harvest_history_title": "Harvest History",
-    "no_harvest_history": "No harvested crops yet.",
+    "crop_form": {
+      "title": "Register crop",
+      "add_btn": "Add"
+    },
     "crops": {
       "register_title": "Register crop",
       "type_label": "Crop type",
@@ -118,8 +147,14 @@
       "add": "Add",
       "empty": "There are no crops registered in this plot"
     },
+    "edit_crop_title": "Edit Crop",
+    "save": "Save",
+    "cancel": "Cancel",
+    "soil_coming_soon": "Soil analysis coming soon",
     "irrigation_coming_soon": "Irrigation management coming soon",
-    "history_coming_soon": "Plot history coming soon"
+    "history_coming_soon": "Plot history coming soon",
+    "harvest_history_title": "Harvest History",
+    "no_harvest_history": "No harvested crops yet."
   },
   "soil": {
     "status": {
@@ -196,5 +231,21 @@
     "delete": "Delete",
     "sowing": "Sowing",
     "harvest_date": "Harvest date"
+  },
+  "plot_card": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "home": {
+    "greeting": "Hello",
+    "subtitle": "Summary of your plots and recent alerts.",
+    "card_plots": "Plots",
+    "card_critical": "Critical",
+    "your_plots": "Your plots",
+    "new_plot": "+ New plot",
+    "crop_label": "CROP",
+    "recent_alerts": "Recent Alerts",
+    "view_all": "View all →",
+    "no_alerts": "No recent alerts registered."
   }
 }

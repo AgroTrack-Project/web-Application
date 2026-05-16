@@ -1,1 +1,53 @@
-<p>home works!</p>
+<div class="home-container">
+  <header class="home-header">
+    <h1>{{ 'home.greeting' | translate }}, {{ username() }}</h1>
+    <p>{{ 'home.subtitle' | translate }}</p>
+  </header>
+
+  <div class="summary-cards">
+    <div class="summary-card">
+      <span class="card-label">{{ 'home.card_plots' | translate }}</span>
+      <span class="card-number">{{ plotCount() }}</span>
+    </div>
+    <div class="summary-card">
+      <span class="card-label">{{ 'home.card_critical' | translate }}</span>
+      <span class="card-number">0</span>
+    </div>
+  </div>
+
+  <section class="plots-section">
+    <div class="section-header">
+      <h2>{{ 'home.your_plots' | translate }}</h2>
+      <button class="btn-primary" (click)="goToNewPlot()">{{ 'home.new_plot' | translate }}</button>
+    </div>
+
+    <div class="plots-grid">
+      @for (plot of plots(); track plot.getId()) {
+        <div class="plot-card">
+          <div class="plot-card-top">
+            <span class="plot-name">{{ plot.getName() }}</span>
+            <span class="status-badge status-{{ plot.getStatus().toLowerCase() }}">
+              {{ 'plots.status.' + plot.getStatus().toLowerCase() | translate }}
+            </span>
+          </div>
+          <p class="plot-meta">{{ plot.getLocation() }} · {{ plot.getSizeHectares() }} ha</p>
+          <div class="crop-info">
+            <span class="material-icons crop-icon">grass</span>
+            <span class="crop-label">{{ 'home.crop_label' | translate }}</span>
+            <span class="crop-value">{{ getFirstCropType(plot.getId()) }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="alerts-section">
+    <div class="section-header">
+      <h2>{{ 'home.recent_alerts' | translate }}</h2>
+      <a class="link-action" routerLink="/alertas">{{ 'home.view_all' | translate }}</a>
+    </div>
+    <div class="alerts-empty">
+      <p>{{ 'home.no_alerts' | translate }}</p>
+    </div>
+  </section>
+</div>

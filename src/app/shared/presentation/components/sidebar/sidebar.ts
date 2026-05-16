@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class SidebarComponent {
   menuItems = [
-    { label: 'sidebar.start',         icon: 'dashboard',     route: '/home' },
+    { label: 'sidebar.start',         icon: 'home',          route: '/home' },
     { label: 'sidebar.plots',         icon: 'agriculture',   route: '/parcelas' },
     { label: 'sidebar.alerts',        icon: 'notifications', route: '/alertas' },
     { label: 'sidebar.dashboard',     icon: 'dashboard',     route: '/dashboard' },

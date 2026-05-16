@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, computed } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { FarmingStore } from '../../../application/farming.store';
 import { IdentityStore } from '../../../../identity/application/identity.store';
 import { Plot } from '../../../domain/model/plot.entity';

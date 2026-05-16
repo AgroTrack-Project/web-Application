@@ -1,8 +1,8 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { IdentityStore } from '../../../application/identity.store';
-import {EnterprisePlan} from '../../../domain/model/enterprise-plan.entity';
-import {ProPlan} from '../../../domain/model/pro-plan.entity';
+import { EnterprisePlan } from '../../../domain/model/enterprise-plan.entity';
+import { ProPlan } from '../../../domain/model/pro-plan.entity';
 
 type PlanType = 'BASIC' | 'PRO' | 'ENTERPRISE';
 

@@ -3,7 +3,7 @@
     "logout": "Salir"
   },
   "sidebar": {
-    "start": "Inicio",
+    "start": "Home",
     "plots": "Parcelas",
     "alerts": "Alertas",
     "dashboard": "Dashboard",
@@ -54,13 +54,22 @@
   },
   "plots": {
     "title": "Mis Parcelas",
-    "subtitle": "Gestiona tus parcelas registradas",
+    "subtitle": "Gestiona tus parcelas agrícolas registradas.",
+    "new_plot": "Nueva Parcela",
+    "add_plot": "Agregar Parcela",
     "add": "Agregar Parcela",
-    "empty": "No tienes parcelas registradas",
+    "empty": "Aún no tienes parcelas registradas.",
+    "add_first_plot": "Registra tu primera parcela",
     "register_first": "Registrar primera parcela",
+    "crops_title": "Cultivos",
+    "add_crop": "Agregar Cultivo",
+    "no_crops": "No hay cultivos registrados en esta parcela.",
+    "edit_plot": "Editar Parcela",
+    "edit_crop": "Editar Cultivo",
     "summary": {
       "registered": "Parcelas registradas",
       "limit": "Límite de parcelas",
+      "plan": "Plan actual",
       "current_plan": "Plan actual"
     },
     "crop_status": {
@@ -77,14 +86,21 @@
       "register_title": "Registrar parcela",
       "edit_title": "Editar parcela",
       "subtitle": "Completa la información de la parcela para gestionar su seguimiento agrícola.",
+      "id": "ID de Parcela",
+      "name": "Nombre de la parcela",
       "name_label": "Nombre",
       "name_placeholder": "Ej: Parcela Norte",
       "name_required": "El nombre es obligatorio.",
+      "location": "Ubicación (Departamento)",
       "location_label": "Ubicación",
+      "location_placeholder": "Ej: Parcela Norte",
+      "size_hectares": "Tamaño (hectáreas)",
       "size_label": "Tamaño (hectáreas)",
       "size_placeholder": "Ej: 2.5",
       "size_required": "Ingresa un tamaño válido mayor a 0.",
+      "status": "Estado",
       "status_label": "Estado",
+      "save": "Guardar",
       "cancel": "Cancelar",
       "register_plot": "Registrar parcela",
       "save_changes": "Guardar cambios",
@@ -93,10 +109,24 @@
       "limit_error": "Has alcanzado el límite de parcelas de tu plan.",
       "limit_title": "Límite alcanzado",
       "limit_message": "Tu plan actual permite registrar hasta {{max}} parcelas."
+    },
+    "crop_form": {
+      "type": "Tipo de cultivo",
+      "type_placeholder": "Ej: Maíz, Papa, Trigo...",
+      "sowing_date": "Fecha de siembra",
+      "harvest_date": "Fecha de cosecha",
+      "status": "Estado"
     }
   },
   "plot_detail": {
     "not_found": "Parcela no encontrada",
+    "soil_badge": "Suelo óptimo",
+    "advisory": "Las condiciones del suelo son adecuadas para el cultivo actual.",
+    "crop_count": "cultivo(s)",
+    "crops_title": "Cultivos Registrados",
+    "add_crop": "Agregar Cultivo",
+    "no_crops": "No hay cultivos registrados en esta parcela.",
+    "add_first_crop": "Registra tu primer cultivo",
     "edit": "Editar",
     "delete": "Eliminar",
     "tabs": {
@@ -104,6 +134,10 @@
       "soil": "Suelo",
       "irrigation": "Riego",
       "history": "Historial de cosechas"
+    },
+    "crop_form": {
+      "title": "Registrar cultivo",
+      "add_btn": "Agregar"
     },
     "crops": {
       "register_title": "Registrar cultivo",
@@ -113,11 +147,12 @@
       "add": "Agregar",
       "empty": "No hay cultivos registrados en esta parcela"
     },
-    "irrigation_coming_soon": "Gestión de riego próximamente",
-    "history_coming_soon": "Historial de la parcela próximamente",
     "edit_crop_title": "Editar Cultivo",
     "save": "Guardar",
     "cancel": "Cancelar",
+    "soil_coming_soon": "Análisis de suelo próximamente",
+    "irrigation_coming_soon": "Gestión de riego próximamente",
+    "history_coming_soon": "Historial de la parcela próximamente",
     "harvest_history_title": "Historial de cosechas",
     "no_harvest_history": "No hay cosechas registradas aún."
   },
@@ -138,7 +173,6 @@
       "high": "Alto",
       "unknown": "Sin datos",
       "no_data_message": "Aún no hay registros de suelo para esta parcela."
-
     },
     "advice": {
       "eyebrow": "Asesoría",
@@ -197,5 +231,21 @@
     "delete": "Eliminar",
     "sowing": "Siembra",
     "harvest_date": "Fecha de cosecha"
+  },
+  "plot_card": {
+    "edit": "Editar",
+    "delete": "Eliminar"
+  },
+  "home": {
+    "greeting": "Hola",
+    "subtitle": "Resumen de tus parcelas y alertas recientes.",
+    "card_plots": "Parcelas",
+    "card_critical": "Críticas",
+    "your_plots": "Tus parcelas",
+    "new_plot": "+ Nueva parcela",
+    "crop_label": "CULTIVO",
+    "recent_alerts": "Alertas recientes",
+    "view_all": "Ver todas →",
+    "no_alerts": "No hay alertas registradas."
   }
 }

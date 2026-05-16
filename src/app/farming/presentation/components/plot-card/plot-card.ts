@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { Plot } from '../../../domain/model/plot.entity';
 
 @Component({
   selector: 'app-plot-card',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './plot-card.html',
   styleUrl: './plot-card.css'
 })

@@ -2,7 +2,7 @@
   <div class="plot-card-header">
     <h3 class="plot-name">{{ plot.getName() }}</h3>
     <span class="status-badge status-{{ plot.getStatus().toLowerCase() }}">
-      {{ plot.getStatus() }}
+      {{ 'plots.status.' + plot.getStatus().toLowerCase() | translate }}
     </span>
   </div>
 
@@ -18,10 +18,10 @@
   </div>
 
   <div class="plot-actions" (click)="$event.stopPropagation()">
-    <button class="icon-btn" title="Editar" (click)="editPlot.emit(plot)">
+    <button class="icon-btn" [title]="'plot_card.edit' | translate" (click)="editPlot.emit(plot)">
       <span class="material-icons">edit</span>
     </button>
-    <button class="icon-btn delete-btn" title="Eliminar" (click)="deletePlot.emit(plot.getId())">
+    <button class="icon-btn delete-btn" [title]="'plot_card.delete' | translate" (click)="deletePlot.emit(plot.getId())">
       <span class="material-icons">delete</span>
     </button>
   </div>

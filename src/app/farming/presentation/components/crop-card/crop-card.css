@@ -106,33 +106,9 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.icon-btn:hover {
-  background: #e0dbd0;
-  color: #333;
-}
-
-.icon-btn .material-icons {
-  font-size: 1rem;
-}
-
-.edit-btn:hover {
-  background: #e3f2fd;
-  color: #0d47a1;
-}
-
-.harvest-btn {
-  width: auto;
-  padding: 0 0.65rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.harvest-btn:hover {
-  background: #f1f8e9;
-  color: #33691e;
-}
-
-.delete-btn:hover {
-  background: #fce4ec;
-  color: #b71c1c;
-}
+.icon-btn:hover    { background: #e0dbd0; color: #333; }
+.icon-btn .material-icons { font-size: 1rem; }
+.edit-btn:hover    { background: #e3f2fd; color: #0d47a1; }
+.harvest-btn       { width: auto; padding: 0 0.65rem; font-size: 0.8rem; font-weight: 600; }
+.harvest-btn:hover { background: #f1f8e9; color: #33691e; }
+.delete-btn:hover  { background: #fce4ec; color: #b71c1c; }

@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
 import { FarmingStore } from '../../../application/farming.store';
 import { Plot } from '../../../domain/model/plot.entity';
 import { Crop } from '../../../domain/model/crop.entity';
