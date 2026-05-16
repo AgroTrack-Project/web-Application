@@ -1,3 +1,8 @@
+/**
+ * Entity that represents
+ * a climate alert notification
+ * generated from weather risks.
+ */
 export class AlertNotification {
 
   constructor(

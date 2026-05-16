@@ -1,3 +1,8 @@
+/**
+ * Entity that represents
+ * climate information obtained
+ * from the external weather API.
+ */
 export class ClimateEntity {
 
   constructor(
