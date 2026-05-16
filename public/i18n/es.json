@@ -62,6 +62,11 @@
       "limit": "Límite de parcelas",
       "current_plan": "Plan actual"
     },
+    "crop_status": {
+      "active": "Activo",
+      "harvested": "Cosechado",
+      "lost": "Perdido"
+    },
     "status": {
       "active": "Activo",
       "inactive": "Inactivo"
@@ -97,7 +102,7 @@
       "crops": "Cultivos",
       "soil": "Suelo",
       "irrigation": "Riego",
-      "history": "Historial"
+      "history": "Historial de cosechas"
     },
     "crops": {
       "register_title": "Registrar cultivo",
@@ -108,7 +113,12 @@
       "empty": "No hay cultivos registrados en esta parcela"
     },
     "irrigation_coming_soon": "Gestión de riego próximamente",
-    "history_coming_soon": "Historial de la parcela próximamente"
+    "history_coming_soon": "Historial de la parcela próximamente",
+    "edit_crop_title": "Editar Cultivo",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "harvest_history_title": "Historial de cosechas",
+    "no_harvest_history": "No hay cosechas registradas aún."
   },
   "soil": {
     "status": {
@@ -179,5 +189,12 @@
       "title": "Alerta de lluvia intensa",
       "desc": "Advertencias por pronóstico de lluvia fuerte."
     }
+  },
+  "crop_card": {
+    "edit": "Editar",
+    "harvest": "Cosechar",
+    "delete": "Eliminar",
+    "sowing": "Siembra",
+    "harvest_date": "Fecha de cosecha"
   }
 }

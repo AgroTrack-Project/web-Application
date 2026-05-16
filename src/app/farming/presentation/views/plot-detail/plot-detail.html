@@ -93,15 +93,19 @@
           </div>
         </div>
 
-        @if (crops().length === 0) {
+        @if (activeCrops().length === 0) {
           <div class="empty-crops">
             <span class="material-icons empty-icon">eco</span>
             <p>{{ 'plot_detail.crops.empty' | translate }}</p>
           </div>
         } @else {
           <div class="crops-list">
-            @for (crop of crops(); track crop.getId()) {
-              <app-crop-card [crop]="crop" (deleteCrop)="deleteCrop($event)" />
+            @for (crop of activeCrops(); track crop.getId()) {
+              <app-crop-card
+                [crop]="crop"
+                (editCrop)="openEditCrop($event)"
+                (harvestCrop)="harvestCrop($event)"
+                (deleteCrop)="deleteCrop($event)" />
             }
           </div>
         }
@@ -119,9 +123,24 @@
       }
 
       @if (activeTab() === 'history') {
-        <div class="tab-placeholder">
-          <span class="material-icons placeholder-icon">history</span>
-          <p>{{ 'plot_detail.history_coming_soon' | translate }}</p>
+        <div class="harvest-history">
+          <h3 class="section-title">{{ 'plot_detail.harvest_history_title' | translate }}</h3>
+
+          @if (harvestedCrops().length === 0) {
+            <div class="empty-crops">
+              <span class="material-icons empty-icon">agriculture</span>
+              <p>{{ 'plot_detail.no_harvest_history' | translate }}</p>
+            </div>
+          } @else {
+            <div class="crops-list">
+              @for (crop of harvestedCrops(); track crop.getId()) {
+                <app-crop-card
+                  [crop]="crop"
+                  (editCrop)="openEditCrop($event)"
+                  (deleteCrop)="deleteCrop($event)" />
+              }
+            </div>
+          }
         </div>
       }
 
@@ -129,3 +148,47 @@
   }
 
 </div>
+
+@if (showEditCropModal()) {
+  <div class="modal-backdrop" (click)="closeEditCropModal()">
+    <div class="form-modal" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2>{{ 'plot_detail.edit_crop_title' | translate }}</h2>
+
+        <button class="close-btn" type="button" (click)="closeEditCropModal()">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+
+      <div class="form-fields">
+        <div class="field">
+          <label>{{ 'plot_detail.crops.type_label' | translate }}</label>
+          <input
+            type="text"
+            [value]="editCropType()"
+            (input)="onEditCropTypeInput($event)" />
+        </div>
+
+        <div class="field">
+          <label>{{ 'plot_detail.crops.sowing_date_label' | translate }}</label>
+          <input
+            type="date"
+            [value]="editCropSowingDate()"
+            (input)="onEditCropSowingDateInput($event)" />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" type="button" (click)="closeEditCropModal()">
+          {{ 'plot_detail.cancel' | translate }}
+        </button>
+
+        <button class="save-btn" type="button" (click)="saveEditCrop()">
+          {{ 'plot_detail.save' | translate }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+}

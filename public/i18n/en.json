@@ -62,6 +62,11 @@
       "limit": "Plot limit",
       "current_plan": "Current plan"
     },
+    "crop_status": {
+      "active": "Active",
+      "harvested": "Harvested",
+      "lost": "Lost"
+    },
     "status": {
       "active": "Active",
       "inactive": "Inactive"
@@ -97,8 +102,13 @@
       "crops": "Crops",
       "soil": "Soil",
       "irrigation": "Irrigation",
-      "history": "History"
+      "history": "Harvest History"
     },
+    "edit_crop_title": "Edit Crop",
+    "save": "Save",
+    "cancel": "Cancel",
+    "harvest_history_title": "Harvest History",
+    "no_harvest_history": "No harvested crops yet.",
     "crops": {
       "register_title": "Register crop",
       "type_label": "Crop type",
@@ -178,5 +188,12 @@
       "title": "Heavy rain alert",
       "desc": "Warnings for heavy rain forecast."
     }
+  },
+  "crop_card": {
+    "edit": "Edit",
+    "harvest": "Harvest",
+    "delete": "Delete",
+    "sowing": "Sowing",
+    "harvest_date": "Harvest date"
   }
 }

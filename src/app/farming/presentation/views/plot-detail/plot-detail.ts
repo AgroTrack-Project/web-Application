@@ -35,6 +35,10 @@ export class PlotDetail implements OnInit {
 
   cropType = signal('');
   cropSowingDate = signal('');
+  editingCrop = signal<Crop | null>(null);
+  showEditCropModal = signal(false);
+  editCropType = signal('');
+  editCropSowingDate = signal('');
 
   readonly plot = computed<Plot | undefined>(() =>
     this.store.plots().find(p => p.getId() === this.plotId())
@@ -44,8 +48,16 @@ export class PlotDetail implements OnInit {
     this.store.getCropsForPlot(this.plotId())
   );
 
+  readonly activeCrops = computed<Crop[]>(() =>
+    this.crops().filter(crop => crop.getStatus() !== CropStatus.HARVESTED)
+  );
+
+  readonly harvestedCrops = computed<Crop[]>(() =>
+    this.crops().filter(crop => crop.getStatus() === CropStatus.HARVESTED)
+  );
+
   readonly activeCropSowingDate = computed<string | null>(() => {
-    const activeCrop = this.crops().find(crop => crop.getStatus() === CropStatus.ACTIVE);
+    const activeCrop = this.activeCrops()[0];
 
     return activeCrop
       ? activeCrop.getSowingDate().toISOString()
@@ -98,6 +110,59 @@ export class PlotDetail implements OnInit {
 
   deleteCrop(id: string): void {
     this.store.deleteCrop(id);
+  }
+
+  openEditCrop(crop: Crop): void {
+    this.editingCrop.set(crop);
+    this.editCropType.set(crop.getType());
+    this.editCropSowingDate.set(crop.getSowingDate().toISOString().split('T')[0]);
+    this.showEditCropModal.set(true);
+  }
+
+  closeEditCropModal(): void {
+    this.showEditCropModal.set(false);
+    this.editingCrop.set(null);
+    this.editCropType.set('');
+    this.editCropSowingDate.set('');
+  }
+
+  saveEditCrop(): void {
+    const crop = this.editingCrop();
+
+    if (!crop || !this.editCropType().trim() || !this.editCropSowingDate()) {
+      return;
+    }
+
+    const harvestDate = crop.getHarvestDate()?.toISOString().split('T')[0] ?? '';
+
+    crop.update(
+      this.editCropType().trim(),
+      this.editCropSowingDate(),
+      harvestDate
+    );
+
+    this.store.updateCrop(crop);
+    this.closeEditCropModal();
+  }
+
+  harvestCrop(id: string): void {
+    const crop = this.store.getCropsForPlot(this.plotId())
+      .find(item => item.getId() === id);
+
+    if (!crop) {
+      return;
+    }
+
+    crop.markAsHarvested(new Date().toISOString().split('T')[0]);
+    this.store.updateCrop(crop);
+  }
+
+  onEditCropTypeInput(event: Event): void {
+    this.editCropType.set((event.target as HTMLInputElement).value);
+  }
+
+  onEditCropSowingDateInput(event: Event): void {
+    this.editCropSowingDate.set((event.target as HTMLInputElement).value);
   }
 
   deleteCurrentPlot(): void {
