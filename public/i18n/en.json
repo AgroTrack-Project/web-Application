@@ -243,6 +243,9 @@
     "card_critical": "Critical",
     "your_plots": "Your plots",
     "new_plot": "+ New plot",
-    "crop_label": "CROP"
+    "crop_label": "CROP",
+    "recent_alerts": "Recent Alerts",
+    "view_all": "View all →",
+    "no_alerts": "No recent alerts registered."
   }
 }

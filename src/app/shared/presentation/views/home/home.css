@@ -163,6 +163,36 @@
   color: #333;
 }
 
+.alerts-section {
+  margin-top: 32px;
+}
+
+.link-action {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2e7d32;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-action:hover {
+  text-decoration: underline;
+}
+
+.alerts-empty {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.alerts-empty p {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
   .home-container {
     padding: 16px;

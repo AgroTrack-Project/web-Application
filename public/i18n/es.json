@@ -243,6 +243,9 @@
     "card_critical": "Críticas",
     "your_plots": "Tus parcelas",
     "new_plot": "+ Nueva parcela",
-    "crop_label": "CULTIVO"
+    "crop_label": "CULTIVO",
+    "recent_alerts": "Alertas recientes",
+    "view_all": "Ver todas →",
+    "no_alerts": "No hay alertas registradas."
   }
 }
