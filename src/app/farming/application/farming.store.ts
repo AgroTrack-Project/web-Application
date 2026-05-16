@@ -23,7 +23,7 @@ export class FarmingStore {
   );
 
   readonly userPlots = computed(() =>
-    this.plotsSignal().filter(p => p.getUserId() === '1' && p.getStatus() !== PlotStatus.DELETED)
+    this.plotsSignal().filter(p => p.getStatus() !== PlotStatus.DELETED)
   );
 
   loadPlots(): void {

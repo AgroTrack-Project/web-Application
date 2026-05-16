@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FarmingStore } from '../../../application/farming.store';
 import { IdentityStore } from '../../../../identity/application/identity.store';
 import { Plot } from '../../../domain/model/plot.entity';
+import { PlotStatus } from '../../../domain/model/plot-status.enum';
 import { PlotCard } from '../../components/plot-card/plot-card';
 import { ProPlan } from '../../../../identity/domain/model/pro-plan.entity';
 import { EnterprisePlan } from '../../../../identity/domain/model/enterprise-plan.entity';
@@ -21,6 +22,15 @@ export class Plots implements OnInit {
   identityStore = inject(IdentityStore);
   private router = inject(Router);
   soilStore = inject(SoilMonitoringStore);
+
+  readonly currentUserId = computed(() => this.identityStore.currentUserId());
+
+  readonly filteredPlots = computed(() => {
+    const userId = this.currentUserId();
+    return this.store.plots().filter(
+      p => p.getUserId() === userId && p.getStatus() !== PlotStatus.DELETED
+    );
+  });
 
   readonly planName = computed(() => {
     const user = this.identityStore.currentUser();
