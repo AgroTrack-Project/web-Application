@@ -10,6 +10,7 @@ import { Crop } from '../../../domain/model/crop.entity';
 export class CropCard {
   @Input() crop!: Crop;
   @Output() editCrop = new EventEmitter<Crop>();
+  @Output() harvestCrop = new EventEmitter<string>();
   @Output() deleteCrop = new EventEmitter<string>();
 
   formatDate(date: Date | null): string {

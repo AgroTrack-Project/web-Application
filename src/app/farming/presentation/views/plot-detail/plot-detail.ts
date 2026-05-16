@@ -25,6 +25,11 @@ export class PlotDetail implements OnInit {
   cropType = signal('');
   cropSowingDate = signal('');
 
+  editingCrop = signal<Crop | null>(null);
+  showEditCropModal = signal(false);
+  editCropType = signal('');
+  editCropSowingDate = signal('');
+
   readonly plot = computed<Plot | undefined>(() =>
     this.store.plots().find(p => p.getId() === this.plotId())
   );
@@ -71,6 +76,33 @@ export class PlotDetail implements OnInit {
 
   deleteCrop(id: string): void { this.store.deleteCrop(id); }
 
+  openEditCrop(crop: Crop): void {
+    this.editingCrop.set(crop);
+    this.editCropType.set(crop.getType());
+    this.editCropSowingDate.set(crop.getSowingDate().toISOString().split('T')[0]);
+    this.showEditCropModal.set(true);
+  }
+
+  closeEditCropModal(): void { this.showEditCropModal.set(false); }
+
+  saveEditCrop(): void {
+    const crop = this.editingCrop();
+    if (!crop || !this.editCropType().trim() || !this.editCropSowingDate()) return;
+    const harvestStr = crop.getHarvestDate()?.toISOString().split('T')[0] ?? '';
+    crop.update(this.editCropType().trim(), this.editCropSowingDate(), harvestStr);
+    this.store.updateCrop(crop);
+    this.showEditCropModal.set(false);
+  }
+
+  harvestCrop(id: string): void {
+    const crop = this.store.getCropsForPlot(this.plotId()).find(c => c.getId() === id);
+    if (!crop) return;
+    crop.markAsHarvested(new Date().toISOString().split('T')[0]);
+    this.store.updateCrop(crop);
+  }
+
   onCropTypeInput(e: Event): void { this.cropType.set((e.target as HTMLInputElement).value); }
   onCropSowingDateInput(e: Event): void { this.cropSowingDate.set((e.target as HTMLInputElement).value); }
+  onEditCropTypeInput(e: Event): void { this.editCropType.set((e.target as HTMLInputElement).value); }
+  onEditCropSowingDateInput(e: Event): void { this.editCropSowingDate.set((e.target as HTMLInputElement).value); }
 }

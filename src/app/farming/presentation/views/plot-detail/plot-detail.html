@@ -88,7 +88,11 @@
         } @else {
           <div class="crops-list">
             @for (crop of crops(); track crop.getId()) {
-              <app-crop-card [crop]="crop" (deleteCrop)="deleteCrop($event)" />
+              <app-crop-card
+                [crop]="crop"
+                (editCrop)="openEditCrop($event)"
+                (harvestCrop)="harvestCrop($event)"
+                (deleteCrop)="deleteCrop($event)" />
             }
           </div>
         }
@@ -119,3 +123,35 @@
   }
 
 </div>
+
+@if (showEditCropModal()) {
+  <div class="modal-backdrop" (click)="closeEditCropModal()">
+    <div class="form-modal" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2>Edit Crop</h2>
+        <button class="close-btn" (click)="closeEditCropModal()">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+
+      <div class="form-fields">
+        <div class="field">
+          <label>Crop type</label>
+          <input type="text" [value]="editCropType()" (input)="onEditCropTypeInput($event)" />
+        </div>
+        <div class="field">
+          <label>Sowing date</label>
+          <input type="date" [value]="editCropSowingDate()" (input)="onEditCropSowingDateInput($event)" />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" (click)="closeEditCropModal()">Cancel</button>
+        <button class="save-btn" (click)="saveEditCrop()">Save</button>
+      </div>
+
+    </div>
+  </div>
+}
+
