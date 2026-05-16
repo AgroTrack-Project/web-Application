@@ -1,0 +1,46 @@
+<div class="alerts-wrapper">
+
+  <h1>
+    ALERTAS CLIMÁTICAS
+  </h1>
+
+  <div class="alerts-total">
+
+    TOTAL:
+    {{ store.alerts().length }}
+
+  </div>
+
+  <div
+    *ngIf="store.alerts().length === 0"
+    class="empty-alerts">
+
+    No hay alertas registradas
+
+  </div>
+
+  <div
+    *ngIf="store.alerts().length > 0"
+    class="alerts-container">
+
+    <div
+      *ngFor="let alert of store.alerts()"
+      class="alert-card">
+
+      <h2>
+        {{ alert.title }}
+      </h2>
+
+      <p>
+        {{ alert.message }}
+      </p>
+
+      <span>
+        {{ alert.city }}
+      </span>
+
+    </div>
+
+  </div>
+
+</div>
