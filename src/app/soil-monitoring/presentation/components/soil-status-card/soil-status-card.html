@@ -1,0 +1,32 @@
+<section class="soil-status-card">
+  <span class="eyebrow">{{ 'soil.status.title' | translate }}</span>
+
+  @if (latestRecord(); as record) {
+    <div class="main-reading">
+      <strong>{{ record.getHumidity() }}%</strong>
+    </div>
+
+    <div class="humidity-state" [class]="statusClass()">
+      {{ 'soil.status.humidity' | translate }} · {{ statusTranslationKey() | translate }}
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="soil-footer">
+      <div>
+        <span class="footer-label">{{ 'soil.status.temperature_short' | translate }}</span>
+        <strong>{{ record.getTemperature() }}°C</strong>
+      </div>
+
+      <div>
+        <span class="footer-label">TS</span>
+        <strong>{{ record.getRecordedAt() | date:'dd/MM/yyyy, hh:mm a' }}</strong>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-soil-state">
+      <span class="material-icons">info</span>
+      <p>{{ 'soil.status.no_data_message' | translate }}</p>
+    </div>
+  }
+</section>

@@ -4,6 +4,7 @@
       <span class="material-icons">grass</span>
       <span class="type-label">{{ crop.getType() }}</span>
     </div>
+
     <span class="crop-status-badge crop-status-{{ crop.getStatus().toLowerCase() }}">
       {{ 'plots.crop_status.' + crop.getStatus().toLowerCase() | translate }}
     </span>
@@ -14,6 +15,7 @@
       <span class="meta-label">{{ 'crop_card.sowing' | translate }}</span>
       <span class="meta-value">{{ formatDate(crop.getSowingDate()) }}</span>
     </div>
+
     @if (crop.getHarvestDate()) {
       <div class="meta-item">
         <span class="meta-label">{{ 'crop_card.harvest_date' | translate }}</span>
@@ -23,15 +25,29 @@
   </div>
 
   <div class="crop-actions">
-    <button class="icon-btn edit-btn" [title]="'crop_card.edit' | translate" (click)="editCrop.emit(crop)">
+    <button
+      class="icon-btn edit-btn"
+      type="button"
+      [title]="'crop_card.edit' | translate"
+      (click)="editCrop.emit(crop)">
       <span class="material-icons">edit</span>
     </button>
+
     @if (crop.isActive()) {
-      <button class="icon-btn harvest-btn" [title]="'crop_card.harvest' | translate" (click)="harvestCrop.emit(crop.getId())">
+      <button
+        class="icon-btn harvest-btn"
+        type="button"
+        [title]="'crop_card.harvest' | translate"
+        (click)="harvestCrop.emit(crop.getId())">
         {{ 'crop_card.harvest' | translate }}
       </button>
     }
-    <button class="icon-btn delete-btn" [title]="'crop_card.delete' | translate" (click)="deleteCrop.emit(crop.getId())">
+
+    <button
+      class="icon-btn delete-btn"
+      type="button"
+      [title]="'crop_card.delete' | translate"
+      (click)="deleteCrop.emit(crop.getId())">
       <span class="material-icons">delete</span>
     </button>
   </div>

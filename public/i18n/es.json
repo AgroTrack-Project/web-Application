@@ -47,6 +47,7 @@
       }
     },
     "upgrades": {
+      "basic": { "name": "Plan Básico", "desc": "Para agricultores independientes", "price": "S/ 39 / mes" },
       "pro": { "name": "Plan Pro", "desc": "Para agricultores en crecimiento", "price": "S/ 85 / mes" },
       "enterprise": { "name": "Plan Enterprise", "desc": "Para PyMEs agrícolas", "price": "S/ 149 / mes" }
     }
@@ -56,8 +57,10 @@
     "subtitle": "Gestiona tus parcelas agrícolas registradas.",
     "new_plot": "Nueva Parcela",
     "add_plot": "Agregar Parcela",
+    "add": "Agregar Parcela",
     "empty": "Aún no tienes parcelas registradas.",
     "add_first_plot": "Registra tu primera parcela",
+    "register_first": "Registrar primera parcela",
     "crops_title": "Cultivos",
     "add_crop": "Agregar Cultivo",
     "no_crops": "No hay cultivos registrados en esta parcela.",
@@ -66,21 +69,46 @@
     "summary": {
       "registered": "Parcelas registradas",
       "limit": "Límite de parcelas",
-      "plan": "Plan actual"
+      "plan": "Plan actual",
+      "current_plan": "Plan actual"
     },
-    "form": {
-      "id": "ID de Parcela",
-      "name": "Nombre de la parcela",
-      "location": "Ubicación (Departamento)",
-      "location_placeholder": "Ej: Parcela Norte",
-      "size_hectares": "Tamaño (hectáreas)",
-      "status": "Estado",
-      "save": "Guardar",
-      "cancel": "Cancelar"
+    "crop_status": {
+      "active": "Activo",
+      "harvested": "Cosechado",
+      "lost": "Perdido"
     },
     "status": {
-      "active": "Activa",
-      "inactive": "Inactiva"
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "form": {
+      "back": "Volver",
+      "register_title": "Registrar parcela",
+      "edit_title": "Editar parcela",
+      "subtitle": "Completa la información de la parcela para gestionar su seguimiento agrícola.",
+      "id": "ID de Parcela",
+      "name": "Nombre de la parcela",
+      "name_label": "Nombre",
+      "name_placeholder": "Ej: Parcela Norte",
+      "name_required": "El nombre es obligatorio.",
+      "location": "Ubicación (Departamento)",
+      "location_label": "Ubicación",
+      "location_placeholder": "Ej: Parcela Norte",
+      "size_hectares": "Tamaño (hectáreas)",
+      "size_label": "Tamaño (hectáreas)",
+      "size_placeholder": "Ej: 2.5",
+      "size_required": "Ingresa un tamaño válido mayor a 0.",
+      "status": "Estado",
+      "status_label": "Estado",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "register_plot": "Registrar parcela",
+      "save_changes": "Guardar cambios",
+      "validation_error": "Revisa los campos obligatorios antes de continuar.",
+      "not_found_error": "No se encontró la parcela seleccionada.",
+      "limit_error": "Has alcanzado el límite de parcelas de tu plan.",
+      "limit_title": "Límite alcanzado",
+      "limit_message": "Tu plan actual permite registrar hasta {{max}} parcelas."
     },
     "crop_form": {
       "type": "Tipo de cultivo",
@@ -88,11 +116,6 @@
       "sowing_date": "Fecha de siembra",
       "harvest_date": "Fecha de cosecha",
       "status": "Estado"
-    },
-    "crop_status": {
-      "active": "Activo",
-      "harvested": "Cosechado",
-      "lost": "Perdido"
     }
   },
   "plot_detail": {
@@ -104,6 +127,8 @@
     "add_crop": "Agregar Cultivo",
     "no_crops": "No hay cultivos registrados en esta parcela.",
     "add_first_crop": "Registra tu primer cultivo",
+    "edit": "Editar",
+    "delete": "Eliminar",
     "tabs": {
       "crops": "Cultivos",
       "soil": "Suelo",
@@ -114,24 +139,75 @@
       "title": "Registrar cultivo",
       "add_btn": "Agregar"
     },
+    "crops": {
+      "register_title": "Registrar cultivo",
+      "type_label": "Tipo de cultivo",
+      "type_placeholder": "Ej: Maíz, Papa, Trigo...",
+      "sowing_date_label": "Fecha de siembra",
+      "add": "Agregar",
+      "empty": "No hay cultivos registrados en esta parcela"
+    },
     "edit_crop_title": "Editar Cultivo",
     "save": "Guardar",
     "cancel": "Cancelar",
     "soil_coming_soon": "Análisis de suelo próximamente",
     "irrigation_coming_soon": "Gestión de riego próximamente",
+    "history_coming_soon": "Historial de la parcela próximamente",
     "harvest_history_title": "Historial de cosechas",
     "no_harvest_history": "No hay cosechas registradas aún."
   },
-  "crop_card": {
-    "edit": "Editar",
-    "harvest": "Cosechar",
-    "delete": "Eliminar",
-    "sowing": "Siembra",
-    "harvest_date": "Fecha de cosecha"
-  },
-  "plot_card": {
-    "edit": "Editar",
-    "delete": "Eliminar"
+  "soil": {
+    "status": {
+      "eyebrow": "Monitoreo",
+      "title": "Estado del suelo",
+      "humidity": "Humedad",
+      "humidity_short": "Hum",
+      "temperature": "Temperatura",
+      "temperature_short": "Temp",
+      "last_record": "Último registro",
+      "dry": "Seco",
+      "optimal": "Óptimo",
+      "wet": "Húmedo",
+      "low": "Bajo",
+      "normal": "Normal",
+      "high": "Alto",
+      "unknown": "Sin datos",
+      "no_data_message": "Aún no hay registros de suelo para esta parcela."
+    },
+    "advice": {
+      "eyebrow": "Asesoría",
+      "title": "Recomendación del suelo",
+      "dry": "La humedad está por debajo del nivel recomendado. Se sugiere revisar la parcela y considerar riego.",
+      "optimal": "El suelo se encuentra en condiciones adecuadas. No se requiere riego inmediato.",
+      "wet": "La humedad está elevada. No se recomienda regar por ahora para evitar exceso de agua.",
+      "unknown": "Registra datos de humedad y temperatura para recibir una recomendación.",
+      "confirm": "Confirmar",
+      "reject": "Rechazar",
+      "no_pending": "No hay una recomendación pendiente para esta parcela.",
+      "no_soil_record": "Registra datos del suelo para poder confirmar o rechazar una recomendación."
+    },
+    "form": {
+      "title": "Registrar datos del suelo",
+      "humidity_label": "Humedad (%)",
+      "temperature_label": "Temperatura (°C)",
+      "humidity_error": "La humedad debe estar entre 0 y 100.",
+      "temperature_error": "Ingresa una temperatura válida.",
+      "register": "Registrar"
+    },
+    "history": {
+      "title": "Historial de lecturas",
+      "empty": "Aún no hay lecturas registradas para esta parcela."
+    },
+    "irrigation": {
+      "suggested_title": "Próximos riegos sugeridos",
+      "history_title": "Historial de riegos",
+      "empty_history": "Aún no hay decisiones de riego registradas para esta parcela.",
+      "status": {
+        "applied": "Aplicado",
+        "not_applied": "No aplicado",
+        "pending": "Pendiente"
+      }
+    }
   },
   "configuration": {
     "title": "Configuración de alertas",
@@ -148,5 +224,16 @@
       "title": "Alerta de lluvia intensa",
       "desc": "Advertencias por pronóstico de lluvia fuerte."
     }
+  },
+  "crop_card": {
+    "edit": "Editar",
+    "harvest": "Cosechar",
+    "delete": "Eliminar",
+    "sowing": "Siembra",
+    "harvest_date": "Fecha de cosecha"
+  },
+  "plot_card": {
+    "edit": "Editar",
+    "delete": "Eliminar"
   }
 }
