@@ -240,7 +240,6 @@
     "greeting": "Hello",
     "subtitle": "Summary of your plots and recent alerts.",
     "card_plots": "Plots",
-    "card_attention": "In attention",
     "card_critical": "Critical",
     "your_plots": "Your plots",
     "new_plot": "+ New plot",
