@@ -32,8 +32,11 @@
           <div class="field">
             <label>{{ 'profile.plan_label' | translate }}</label>
             <div class="plan-options">
-              @for (opt of planData().upgrades; track opt.name; let i = $index) {
-                <div class="plan-option" [class.highlighted]="i === 0">
+              @for (opt of planData().upgrades; track opt.type) {
+                <div class="plan-option"
+                     [class.highlighted]="selectedPlan() === opt.type"
+                     (click)="selectPlan(opt.type)"
+                     style="cursor: pointer;">
                   <div class="plan-option-info">
                     <span class="plan-option-name">{{ opt.name | translate }}</span>
                     <span class="plan-option-desc">{{ opt.desc | translate }}</span>
@@ -43,7 +46,11 @@
               }
             </div>
           </div>
-          <button class="change-plan-btn">{{ 'profile.change_plan' | translate }}</button>
+          <button class="change-plan-btn"
+                  [disabled]="!selectedPlan()"
+                  (click)="confirmPlanChange()">
+            {{ 'profile.change_plan' | translate }}
+          </button>
         }
 
         @if (!editing()) {
