@@ -28,7 +28,7 @@
     </button>
     @if (crop.isActive()) {
       <button class="icon-btn harvest-btn" [title]="'crop_card.harvest' | translate" (click)="harvestCrop.emit(crop.getId())">
-        Cosechar
+        {{ 'crop_card.harvest' | translate }}
       </button>
     }
     <button class="icon-btn delete-btn" [title]="'crop_card.delete' | translate" (click)="deleteCrop.emit(crop.getId())">
