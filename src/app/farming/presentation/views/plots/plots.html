@@ -15,7 +15,7 @@
   <div class="summary-cards">
     <div class="summary-card">
       <span class="summary-label">{{ 'plots.summary.registered' | translate }}</span>
-      <span class="summary-value">{{ store.userPlots().length }}</span>
+      <span class="summary-value">{{ filteredPlots().length }}</span>
     </div>
 
     <div class="summary-card">
@@ -33,7 +33,7 @@
     <div class="spinner-wrapper">
       <div class="spinner"></div>
     </div>
-  } @else if (store.userPlots().length === 0) {
+  } @else if (filteredPlots().length === 0) {
     <div class="empty-state">
       <span class="material-icons empty-icon">landscape</span>
       <p>{{ 'plots.empty' | translate }}</p>
@@ -44,7 +44,7 @@
     </div>
   } @else {
     <div class="plots-grid">
-      @for (plot of store.userPlots(); track plot.getId()) {
+      @for (plot of filteredPlots(); track plot.getId()) {
         <app-plot-card
           [plot]="plot"
           (viewDetail)="goToPlot($event)"

@@ -62,7 +62,7 @@ export class PlotForm implements OnInit {
   );
 
   readonly activeUserPlotsCount = computed(() =>
-    this.store.getActiveUserPlotsCount('1')
+    this.store.getActiveUserPlotsCount(this.identityStore.currentUserId())
   );
 
   readonly maxPlots = computed(() => {
@@ -142,7 +142,7 @@ export class PlotForm implements OnInit {
       formValue.location,
       Number(formValue.sizeHectares),
       PlotStatus.ACTIVE,
-      '1',
+      this.identityStore.currentUserId(),
       new Date().toISOString()
     );
 
