@@ -8,16 +8,16 @@ export class ClimateRiskAnalyzer {
     const text = description.toLowerCase();
 
     if (
-      humidity >= 85 ||
       text.includes('rain') ||
       text.includes('storm') ||
-      text.includes('drizzle')
+      text.includes('drizzle') ||
+      text.includes('thunderstorm')
     ) {
 
       return 'High';
     }
 
-    if (humidity >= 70) {
+    if (humidity >= 85) {
 
       return 'Medium';
     }

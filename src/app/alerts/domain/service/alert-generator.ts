@@ -61,6 +61,19 @@ export class AlertGenerator {
       );
     }
 
+    if (climate.heatRisk === 'Cold Alert') {
+
+      alerts.push(
+        new AlertNotification(
+          'Cold Alert',
+          'Very low temperatures detected. Protect your crops from frost.',
+          'HIGH',
+          climate.city,
+          new Date()
+        )
+      );
+    }
+
     return alerts;
   }
 }
