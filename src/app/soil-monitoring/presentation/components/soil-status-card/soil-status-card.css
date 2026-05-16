@@ -1,0 +1,96 @@
+.soil-status-card {
+  background: #ffffff;
+  border: 1px solid #d9edd9;
+  border-radius: 14px;
+  padding: 20px 22px;
+  min-height: 160px;
+  box-shadow: 0 8px 24px rgba(44, 62, 45, 0.06);
+}
+
+.eyebrow {
+  display: block;
+  color: #2d7a3a;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.main-reading strong {
+  color: #2c3e2d;
+  font-size: 2.1rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.humidity-state {
+  margin-top: 8px;
+  color: #2d7a3a;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.humidity-state.status-dry {
+  color: #8a5a00;
+}
+
+.humidity-state.status-optimal {
+  color: #2d7a3a;
+}
+
+.humidity-state.status-wet {
+  color: #1d4ed8;
+}
+
+.humidity-state.status-unknown {
+  color: #555555;
+}
+
+.divider {
+  height: 1px;
+  background: #d9edd9;
+  margin: 18px 0 12px;
+}
+
+.soil-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.soil-footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-label {
+  color: #2d7a3a;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.soil-footer strong {
+  color: #2c3e2d;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.empty-soil-state {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+  background: #f5f0e8;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.empty-soil-state p {
+  margin: 0;
+}

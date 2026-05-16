@@ -1,0 +1,90 @@
+<div class="plot-form-page">
+
+  <button class="back-button" type="button" (click)="cancel()">
+    <span class="material-icons">arrow_back</span>
+    {{ 'plots.form.back' | translate }}
+  </button>
+
+  <div class="form-header">
+    <h1>{{ pageTitle() | translate }}</h1>
+    <p>{{ 'plots.form.subtitle' | translate }}</p>
+  </div>
+
+  @if (hasReachedPlotLimit()) {
+    <div class="limit-alert">
+      <span class="material-icons">warning</span>
+      <div>
+        <strong>{{ 'plots.form.limit_title' | translate }}</strong>
+        <p>{{ 'plots.form.limit_message' | translate: { max: maxPlots() } }}</p>
+      </div>
+    </div>
+  }
+
+  <form class="form-card" [formGroup]="plotForm" (ngSubmit)="savePlot()">
+    <div class="field">
+      <label for="plotName">{{ 'plots.form.name_label' | translate }}</label>
+      <input
+        id="plotName"
+        type="text"
+        formControlName="name"
+        [placeholder]="'plots.form.name_placeholder' | translate"
+        [class.invalid]="isFieldInvalid('name')" />
+
+      @if (isFieldInvalid('name')) {
+        <small>{{ 'plots.form.name_required' | translate }}</small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="plotLocation">{{ 'plots.form.location_label' | translate }}</label>
+      <select id="plotLocation" formControlName="location">
+        @for (department of departments; track department) {
+          <option [value]="department">{{ department }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="plotSize">{{ 'plots.form.size_label' | translate }}</label>
+      <input
+        id="plotSize"
+        type="number"
+        min="0.1"
+        step="0.1"
+        formControlName="sizeHectares"
+        [placeholder]="'plots.form.size_placeholder' | translate"
+        [class.invalid]="isFieldInvalid('sizeHectares')" />
+
+      @if (isFieldInvalid('sizeHectares')) {
+        <small>{{ 'plots.form.size_required' | translate }}</small>
+      }
+    </div>
+
+    @if (isEditMode()) {
+      <div class="field">
+        <label for="plotStatus">{{ 'plots.form.status_label' | translate }}</label>
+        <select id="plotStatus" formControlName="status">
+          <option [value]="PlotStatus.ACTIVE">{{ 'plots.status.active' | translate }}</option>
+          <option [value]="PlotStatus.INACTIVE">{{ 'plots.status.inactive' | translate }}</option>
+        </select>
+      </div>
+    }
+
+    @if (formError()) {
+      <div class="form-error">
+        {{ formError() | translate }}
+      </div>
+    }
+
+    <div class="form-actions">
+      <button class="cancel-button" type="button" (click)="cancel()">
+        {{ 'plots.form.cancel' | translate }}
+      </button>
+
+      <button class="save-button" type="submit" [disabled]="hasReachedPlotLimit()">
+        {{ submitLabel() | translate }}
+      </button>
+    </div>
+  </form>
+
+</div>

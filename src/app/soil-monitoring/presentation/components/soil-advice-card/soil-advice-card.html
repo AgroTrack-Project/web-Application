@@ -1,0 +1,28 @@
+<section class="soil-advice-card" [class]="statusClass()">
+  <div class="advice-icon">
+    <span class="material-icons">tips_and_updates</span>
+  </div>
+
+  <div class="advice-content">
+    <span class="eyebrow">{{ 'soil.advice.eyebrow' | translate }}</span>
+    <h3>{{ 'soil.advice.title' | translate }}</h3>
+
+    <p>{{ adviceMessage() }}</p>
+
+    @if (latestRecord()) {
+      <div class="advice-actions">
+        <button class="confirm-btn" type="button" (click)="confirmRecommendation()">
+          {{ 'soil.advice.confirm' | translate }}
+        </button>
+
+        <button class="reject-btn" type="button" (click)="rejectRecommendation()">
+          {{ 'soil.advice.reject' | translate }}
+        </button>
+      </div>
+    } @else {
+      <span class="no-pending-label">
+        {{ 'soil.advice.no_soil_record' | translate }}
+      </span>
+    }
+  </div>
+</section>

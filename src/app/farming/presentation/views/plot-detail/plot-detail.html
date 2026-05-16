@@ -1,0 +1,194 @@
+<div class="detail-page">
+
+  <div class="detail-header">
+    <button class="back-btn" (click)="goBack()">
+      <span class="material-icons">arrow_back</span>
+    </button>
+
+    @if (store.loading()) {
+      <div class="header-skeleton"></div>
+    } @else if (plot()) {
+      <div class="header-info">
+        <h1 class="plot-title">{{ plot()!.getName() }}</h1>
+        <span class="soil-badge" [class]="soilStore.getStatusClassForPlot(plotId())">
+      {{ soilStore.getStatusTranslationKeyForPlot(plotId()) | translate }}
+    </span>
+      </div>
+
+      <div class="detail-actions">
+        <button class="edit-plot-btn" type="button" (click)="goToEditCurrentPlot()">
+          {{ 'plot_detail.edit' | translate }}
+        </button>
+
+        <button class="delete-plot-btn" type="button" (click)="deleteCurrentPlot()">
+          {{ 'plot_detail.delete' | translate }}
+        </button>
+      </div>
+    } @else {
+      <h1 class="plot-title">{{ 'plot_detail.not_found' | translate }}</h1>
+    }
+  </div>
+
+  @if (!store.loading() && plot()) {
+    <div class="detail-summary-grid">
+      <app-soil-status-card [plotId]="plotId()"></app-soil-status-card>
+      <app-soil-advice-card [plotId]="plotId()"></app-soil-advice-card>
+    </div>
+
+    <div class="meta-row">
+      <div class="meta-item">
+        <span class="material-icons">location_on</span>
+        <span>{{ plot()!.getLocation() }}</span>
+      </div>
+
+      <div class="meta-item">
+        <span class="material-icons">straighten</span>
+        <span>{{ plot()!.getSizeHectares() }} ha</span>
+      </div>
+
+      <span class="status-badge status-{{ plot()!.getStatus().toLowerCase() }}">
+        {{ plot()!.getStatus() }}
+      </span>
+    </div>
+
+    <div class="tabs">
+      @for (tab of tabs; track tab.key) {
+        <button
+          class="tab-btn"
+          [class.active]="activeTab() === tab.key"
+          (click)="setTab(tab.key)">
+          {{ tab.labelKey | translate }}
+        </button>
+      }
+    </div>
+
+    <div class="tab-content">
+
+      @if (activeTab() === 'crops') {
+        <div class="crop-form">
+          <h3 class="form-title">{{ 'plot_detail.crops.register_title' | translate }}</h3>
+
+          <div class="crop-form-row">
+            <div class="field">
+              <label>{{ 'plot_detail.crops.type_label' | translate }}</label>
+              <input
+                type="text"
+                [value]="cropType()"
+                (input)="onCropTypeInput($event)"
+                [placeholder]="'plot_detail.crops.type_placeholder' | translate" />
+            </div>
+
+            <div class="field">
+              <label>{{ 'plot_detail.crops.sowing_date_label' | translate }}</label>
+              <input
+                type="date"
+                [value]="cropSowingDate()"
+                (input)="onCropSowingDateInput($event)" />
+            </div>
+
+            <button class="add-crop-btn" (click)="addCrop()">
+              <span class="material-icons">add</span>
+              {{ 'plot_detail.crops.add' | translate }}
+            </button>
+          </div>
+        </div>
+
+        @if (activeCrops().length === 0) {
+          <div class="empty-crops">
+            <span class="material-icons empty-icon">eco</span>
+            <p>{{ 'plot_detail.crops.empty' | translate }}</p>
+          </div>
+        } @else {
+          <div class="crops-list">
+            @for (crop of activeCrops(); track crop.getId()) {
+              <app-crop-card
+                [crop]="crop"
+                (editCrop)="openEditCrop($event)"
+                (harvestCrop)="harvestCrop($event)"
+                (deleteCrop)="deleteCrop($event)" />
+            }
+          </div>
+        }
+      }
+
+      @if (activeTab() === 'soil') {
+        <app-soil-record-summary [plotId]="plotId()"></app-soil-record-summary>
+      }
+
+      @if (activeTab() === 'irrigation') {
+        <app-irrigation-summary
+          [plotId]="plotId()"
+          [sowingDate]="activeCropSowingDate()">
+        </app-irrigation-summary>
+      }
+
+      @if (activeTab() === 'history') {
+        <div class="harvest-history">
+          <h3 class="section-title">{{ 'plot_detail.harvest_history_title' | translate }}</h3>
+
+          @if (harvestedCrops().length === 0) {
+            <div class="empty-crops">
+              <span class="material-icons empty-icon">agriculture</span>
+              <p>{{ 'plot_detail.no_harvest_history' | translate }}</p>
+            </div>
+          } @else {
+            <div class="crops-list">
+              @for (crop of harvestedCrops(); track crop.getId()) {
+                <app-crop-card
+                  [crop]="crop"
+                  (editCrop)="openEditCrop($event)"
+                  (deleteCrop)="deleteCrop($event)" />
+              }
+            </div>
+          }
+        </div>
+      }
+
+    </div>
+  }
+
+</div>
+
+@if (showEditCropModal()) {
+  <div class="modal-backdrop" (click)="closeEditCropModal()">
+    <div class="form-modal" (click)="$event.stopPropagation()">
+
+      <div class="modal-header">
+        <h2>{{ 'plot_detail.edit_crop_title' | translate }}</h2>
+
+        <button class="close-btn" type="button" (click)="closeEditCropModal()">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+
+      <div class="form-fields">
+        <div class="field">
+          <label>{{ 'plot_detail.crops.type_label' | translate }}</label>
+          <input
+            type="text"
+            [value]="editCropType()"
+            (input)="onEditCropTypeInput($event)" />
+        </div>
+
+        <div class="field">
+          <label>{{ 'plot_detail.crops.sowing_date_label' | translate }}</label>
+          <input
+            type="date"
+            [value]="editCropSowingDate()"
+            (input)="onEditCropSowingDateInput($event)" />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" type="button" (click)="closeEditCropModal()">
+          {{ 'plot_detail.cancel' | translate }}
+        </button>
+
+        <button class="save-btn" type="button" (click)="saveEditCrop()">
+          {{ 'plot_detail.save' | translate }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+}
