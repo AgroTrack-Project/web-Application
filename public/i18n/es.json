@@ -47,6 +47,7 @@
       }
     },
     "upgrades": {
+      "basic": { "name": "Plan Básico", "desc": "Para agricultores independientes", "price": "S/ 39 / mes" },
       "pro": { "name": "Plan Pro", "desc": "Para agricultores en crecimiento", "price": "S/ 85 / mes" },
       "enterprise": { "name": "Plan Enterprise", "desc": "Para PyMEs agrícolas", "price": "S/ 149 / mes" }
     }
