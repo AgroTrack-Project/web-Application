@@ -3,6 +3,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSwitcher } from '../language-switcher/language-switcher';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ import { LanguageSwitcher } from '../language-switcher/language-switcher';
 export class NavbarComponent {
   @Input() userName: string = 'Invitado';
 
-  logout() {
-    // lógica de logout
+  logout(): void {
+    window.location.assign(environment.landingPageUrl);
   }
 }
