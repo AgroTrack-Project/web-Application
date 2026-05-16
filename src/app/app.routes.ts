@@ -15,7 +15,6 @@ export const routes: Routes = [
     component: Layout,
     children: [
       { path: 'home', component: Home },
-      { path: 'parcelas', children: [] },
       {
         path: 'alertas',
         component: AlertsPageComponent
@@ -24,7 +23,6 @@ export const routes: Routes = [
       { path: 'parcelas/nueva', component: PlotForm },
       { path: 'parcelas/:id/editar', component: PlotForm },
       { path: 'parcelas/:id', component: PlotDetail },
-      { path: 'alertas', children: [] },
       { path: 'dashboard', children: [] },
       { path: 'configuracion', component: Configuration },
       { path: 'perfil', component: Profile },
