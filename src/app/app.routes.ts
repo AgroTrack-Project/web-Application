@@ -3,6 +3,7 @@ import { Layout } from './shared/presentation/components/layout/layout';
 import { Home } from './shared/presentation/views/home/home';
 import { Profile } from './identity/presentation/views/profile/profile';
 import { Configuration } from './identity/presentation/views/configuration/configuration';
+import { AlertsPageComponent } from './alerts/presentation/components/alerts-page/alerts-page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -12,7 +13,10 @@ export const routes: Routes = [
     children: [
       { path: 'home', component: Home },
       { path: 'parcelas', children: [] },
-      { path: 'alertas', children: [] },
+      {
+        path: 'alertas',
+        component: AlertsPageComponent
+      },
       { path: 'dashboard', children: [] },
       { path: 'configuracion', component: Configuration },
       { path: 'perfil', component: Profile },
