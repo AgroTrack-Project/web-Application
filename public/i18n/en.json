@@ -47,8 +47,131 @@
       }
     },
     "upgrades": {
+      "basic": { "name": "Basic Plan", "desc": "For independent farmers", "price": "S/ 39 / month" },
       "pro": { "name": "Pro Plan", "desc": "For growing farmers", "price": "S/ 85 / month" },
       "enterprise": { "name": "Enterprise Plan", "desc": "For agricultural SMEs", "price": "S/ 149 / month" }
+    }
+  },
+  "plots": {
+    "title": "My Plots",
+    "subtitle": "Manage your registered plots",
+    "add": "Add Plot",
+    "empty": "You do not have registered plots",
+    "register_first": "Register first plot",
+    "summary": {
+      "registered": "Registered plots",
+      "limit": "Plot limit",
+      "current_plan": "Current plan"
+    },
+    "crop_status": {
+      "active": "Active",
+      "harvested": "Harvested",
+      "lost": "Lost"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "back": "Back",
+      "register_title": "Register plot",
+      "edit_title": "Edit plot",
+      "subtitle": "Complete the plot information to manage its agricultural tracking.",
+      "name_label": "Name",
+      "name_placeholder": "Example: North Plot",
+      "name_required": "The name is required.",
+      "location_label": "Location",
+      "size_label": "Size (hectares)",
+      "size_placeholder": "Example: 2.5",
+      "size_required": "Enter a valid size greater than 0.",
+      "status_label": "Status",
+      "cancel": "Cancel",
+      "register_plot": "Register plot",
+      "save_changes": "Save changes",
+      "validation_error": "Review the required fields before continuing.",
+      "not_found_error": "The selected plot was not found.",
+      "limit_error": "You have reached the plot limit for your plan.",
+      "limit_title": "Limit reached",
+      "limit_message": "Your current plan allows up to {{max}} plots."
+    }
+  },
+  "plot_detail": {
+    "not_found": "Plot not found",
+    "edit": "Edit",
+    "delete": "Delete",
+    "tabs": {
+      "crops": "Crops",
+      "soil": "Soil",
+      "irrigation": "Irrigation",
+      "history": "Harvest History"
+    },
+    "edit_crop_title": "Edit Crop",
+    "save": "Save",
+    "cancel": "Cancel",
+    "harvest_history_title": "Harvest History",
+    "no_harvest_history": "No harvested crops yet.",
+    "crops": {
+      "register_title": "Register crop",
+      "type_label": "Crop type",
+      "type_placeholder": "Example: Corn, Potato, Wheat...",
+      "sowing_date_label": "Sowing date",
+      "add": "Add",
+      "empty": "There are no crops registered in this plot"
+    },
+    "irrigation_coming_soon": "Irrigation management coming soon",
+    "history_coming_soon": "Plot history coming soon"
+  },
+  "soil": {
+    "status": {
+      "eyebrow": "Monitoring",
+      "title": "Soil status",
+      "humidity": "Humidity",
+      "humidity_short": "Hum",
+      "temperature": "Temperature",
+      "temperature_short": "Temp",
+      "last_record": "Last record",
+      "dry": "Dry",
+      "optimal": "Optimal",
+      "wet": "Wet",
+      "low": "Low",
+      "normal": "Normal",
+      "high": "High",
+      "unknown": "No data",
+      "no_data_message": "There are no soil records for this plot yet."
+    },
+    "advice": {
+      "eyebrow": "Advice",
+      "title": "Soil recommendation",
+      "dry": "Humidity is below the recommended level. Check the plot and consider irrigation.",
+      "optimal": "The soil is in suitable condition. Immediate irrigation is not required.",
+      "wet": "Humidity is high. Irrigation is not recommended for now to avoid excess water.",
+      "unknown": "Register humidity and temperature data to receive a recommendation.",
+      "confirm": "Confirm",
+      "reject": "Reject",
+      "no_pending": "There is no pending recommendation for this plot.",
+      "no_soil_record": "Register soil data to confirm or reject a recommendation."
+    },
+    "form": {
+      "title": "Register soil data",
+      "humidity_label": "Humidity (%)",
+      "temperature_label": "Temperature (°C)",
+      "humidity_error": "Humidity must be between 0 and 100.",
+      "temperature_error": "Enter a valid temperature.",
+      "register": "Register"
+    },
+    "history": {
+      "title": "Reading history",
+      "empty": "There are no readings registered for this plot yet."
+    },
+    "irrigation": {
+      "suggested_title": "Upcoming suggested irrigations",
+      "history_title": "Irrigation history",
+      "empty_history": "There are no irrigation decisions registered for this plot yet.",
+      "status": {
+        "applied": "Applied",
+        "not_applied": "Not applied",
+        "pending": "Pending"
+      }
     }
   },
   "configuration": {
@@ -66,5 +189,12 @@
       "title": "Heavy rain alert",
       "desc": "Warnings for heavy rain forecast."
     }
+  },
+  "crop_card": {
+    "edit": "Edit",
+    "harvest": "Harvest",
+    "delete": "Delete",
+    "sowing": "Sowing",
+    "harvest_date": "Harvest date"
   }
 }

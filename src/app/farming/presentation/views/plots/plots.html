@@ -1,0 +1,57 @@
+<div class="plots-page">
+
+  <div class="plots-header">
+    <div>
+      <h1 class="page-title">{{ 'plots.title' | translate }}</h1>
+      <p class="page-subtitle">{{ 'plots.subtitle' | translate }}</p>
+    </div>
+
+    <button class="add-btn" (click)="goToNewPlot()">
+      <span class="material-icons">add</span>
+      {{ 'plots.add' | translate }}
+    </button>
+  </div>
+
+  <div class="summary-cards">
+    <div class="summary-card">
+      <span class="summary-label">{{ 'plots.summary.registered' | translate }}</span>
+      <span class="summary-value">{{ store.userPlots().length }}</span>
+    </div>
+
+    <div class="summary-card">
+      <span class="summary-label">{{ 'plots.summary.limit' | translate }}</span>
+      <span class="summary-value">{{ maxPlots() }}</span>
+    </div>
+
+    <div class="summary-card">
+      <span class="summary-label">{{ 'plots.summary.current_plan' | translate }}</span>
+      <span class="summary-value plan-badge">{{ planName() }}</span>
+    </div>
+  </div>
+
+  @if (store.loading()) {
+    <div class="spinner-wrapper">
+      <div class="spinner"></div>
+    </div>
+  } @else if (store.userPlots().length === 0) {
+    <div class="empty-state">
+      <span class="material-icons empty-icon">landscape</span>
+      <p>{{ 'plots.empty' | translate }}</p>
+
+      <button class="add-btn" (click)="goToNewPlot()">
+        {{ 'plots.register_first' | translate }}
+      </button>
+    </div>
+  } @else {
+    <div class="plots-grid">
+      @for (plot of store.userPlots(); track plot.getId()) {
+        <app-plot-card
+          [plot]="plot"
+          (viewDetail)="goToPlot($event)"
+          (editPlot)="goToEditPlot($event)"
+          (deletePlot)="deletePlot($event)" />
+      }
+    </div>
+  }
+
+</div>

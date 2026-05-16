@@ -3,6 +3,9 @@ import { IdentityApi } from '../infrastructure/identity-api';
 import { User } from '../domain/model/user.entity';
 import { Plan } from '../domain/model/plan.entity';
 import { AlertPreference } from '../domain/model/alert-preference.entity';
+import { BasicPlan } from '../domain/model/basic-plan.entity';
+import { ProPlan } from '../domain/model/pro-plan.entity';
+import { EnterprisePlan } from '../domain/model/enterprise-plan.entity';
 
 @Injectable({ providedIn: 'root' })
 export class IdentityStore {
@@ -81,6 +84,16 @@ export class IdentityStore {
       },
       error: err => this.errorSignal.set(err.message)
     });
+  }
+
+  switchCurrentUser(planType: 'BASIC' | 'PRO' | 'ENTERPRISE'): void {
+    const target = this.usersSignal().find(u => {
+      const plan = u.getPlan();
+      if (planType === 'ENTERPRISE') return plan instanceof EnterprisePlan;
+      if (planType === 'PRO')        return plan instanceof ProPlan;
+      return plan instanceof BasicPlan;
+    });
+    if (target) this.currentUserIdSignal.set(target.getId());
   }
 
   getUserById(id: string): User | undefined {

@@ -1,0 +1,131 @@
+.irrigation-card {
+  background: #ffffff;
+  border: 1px solid #d9edd9;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(44, 62, 45, 0.05);
+}
+
+.irrigation-card h3 {
+  margin: 0 0 18px;
+  color: #2d7a3a;
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.suggested-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.suggested-item {
+  border: 1px solid #d9edd9;
+  border-radius: 4px;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.suggested-item strong {
+  display: block;
+  color: #2c3e2d;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.suggested-item span {
+  color: #2d7a3a;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.history-card {
+  margin-top: 18px;
+}
+
+.irrigation-history-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.irrigation-history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #d9edd9;
+}
+
+.irrigation-history-row:last-child {
+  border-bottom: none;
+}
+
+.irrigation-history-row strong {
+  display: block;
+  color: #2c3e2d;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.irrigation-history-row p {
+  margin: 0;
+  color: #2d7a3a;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.history-status {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-applied {
+  background: #d9edd9;
+  color: #2d7a3a;
+}
+
+.status-not-applied {
+  background: #eeeeee;
+  color: #555555;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #8a5a00;
+}
+
+.empty-irrigation-history {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b7280;
+  background: #f5f0e8;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.empty-irrigation-history p {
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .suggested-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .irrigation-history-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

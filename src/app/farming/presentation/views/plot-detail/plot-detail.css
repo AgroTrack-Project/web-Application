@@ -1,0 +1,480 @@
+.detail-page {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Header ───────────────────────────── */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  background: #f0ece3;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.back-btn:hover { background: #e0dbd0; }
+.back-btn .material-icons { font-size: 1.2rem; }
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.detail-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.edit-plot-btn,
+.delete-plot-btn {
+  min-height: 38px;
+  padding: 0 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.edit-plot-btn {
+  background: #2d7a3a;
+  color: #ffffff;
+}
+
+.edit-plot-btn:hover {
+  background: #23652f;
+}
+
+.delete-plot-btn {
+  background: #eeeeee;
+  color: #2c3e2d;
+}
+
+.delete-plot-btn:hover {
+  background: #fce4ec;
+  color: #b71c1c;
+}
+
+.plot-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1a3a1a;
+  margin: 0;
+}
+
+.soil-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.soil-badge.status-dry {
+  background: #fff3cd;
+  color: #8a5a00;
+}
+
+.soil-badge.status-optimal {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.soil-badge.status-wet {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.soil-badge.status-unknown {
+  background: #eeeeee;
+  color: #555555;
+}
+
+.header-skeleton {
+  height: 2rem;
+  width: 200px;
+  background: #eee;
+  border-radius: 8px;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Advisory text ────────────────────── */
+.advisory-text {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  color: #555;
+  background: #f8faf5;
+  border: 1px solid #d4eacf;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  margin: 0;
+}
+
+.advisory-icon {
+  font-size: 1rem;
+  color: #4a7c4a;
+  flex-shrink: 0;
+}
+
+.detail-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* ── Meta row ─────────────────────────── */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.meta-item .material-icons { font-size: 1rem; color: #4a7c4a; }
+
+/* ── Status badge ─────────────────────── */
+.status-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.status-active   { background: #e8f5e9; color: #1b5e20; }
+.status-inactive { background: #fff3e0; color: #e65100; }
+.status-deleted  { background: #fce4ec; color: #b71c1c; }
+
+/* ── Tabs ─────────────────────────────── */
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 2px solid #eeeae2;
+  padding-bottom: 0;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-btn:hover { color: #1b5e20; }
+
+.tab-btn.active {
+  color: #1b5e20;
+  border-bottom-color: #1b5e20;
+  font-weight: 600;
+}
+
+/* ── Tab content ──────────────────────── */
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Crop form ────────────────────────── */
+.crop-form {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem;
+  border: 1.5px solid #eeeae2;
+}
+
+.form-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a3a1a;
+  margin: 0 0 1rem 0;
+}
+
+.crop-form-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.crop-form-row .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 150px;
+}
+
+.crop-form-row .field label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.crop-form-row .field input {
+  padding: 0.7rem 0.9rem;
+  background: #eeebe4;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #333;
+  outline: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.crop-form-row .field input:focus {
+  background: #fff;
+  border-color: #4a7c4a;
+}
+
+.add-crop-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.7rem 1.1rem;
+  background: #1b5e20;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.add-crop-btn:hover { background: #145214; }
+.add-crop-btn .material-icons { font-size: 1rem; }
+
+/* ── Crops list ───────────────────────── */
+.crops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Empty crops ──────────────────────── */
+.empty-crops {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 0;
+  color: #aaa;
+}
+
+.empty-icon { font-size: 3rem; color: #ccc; }
+.empty-crops p { margin: 0; font-size: 0.95rem; }
+
+/* ── Tab placeholders ─────────────────── */
+.tab-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 0;
+  color: #aaa;
+}
+
+.placeholder-icon { font-size: 3rem; color: #ccc; }
+.tab-placeholder p { margin: 0; font-size: 0.95rem; }
+
+/* ── Responsive ───────────────────────── */
+@media (max-width: 768px) {
+  .detail-page { padding: 1rem; }
+  .plot-title { font-size: 1.4rem; }
+  .crop-form-row { flex-direction: column; }
+  .add-crop-btn { width: 100%; justify-content: center; }
+  .detail-summary-grid { grid-template-columns: 1fr }
+  .detail-header { align-items: flex-start; flex-wrap: wrap;}
+
+  .detail-actions { width: 100%; margin-left: 0; }
+
+  .edit-plot-btn,
+  .delete-plot-btn { flex: 1 }
+}
+
+.harvest-history {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a3a1a;
+  margin: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.form-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a3a1a;
+  margin: 0;
+}
+
+.close-btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: #f0ece3;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #e0dbd0;
+}
+
+.close-btn .material-icons {
+  font-size: 1.1rem;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.form-fields .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-fields .field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-fields .field input {
+  padding: 0.75rem 1rem;
+  background: #eeebe4;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  outline: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.form-fields .field input:focus {
+  background: #fff;
+  border-color: #4a7c4a;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.save-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: #1b5e20;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.save-btn:hover {
+  background: #145214;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 0.75rem;
+  background: transparent;
+  color: #555;
+  border: 1.5px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #f5f5f5;
+}

@@ -1,0 +1,28 @@
+<div class="plot-card" (click)="viewDetail.emit(plot)">
+  <div class="plot-card-header">
+    <h3 class="plot-name">{{ plot.getName() }}</h3>
+    <span class="status-badge status-{{ plot.getStatus().toLowerCase() }}">
+      {{ plot.getStatus() }}
+    </span>
+  </div>
+
+  <div class="plot-info">
+    <div class="info-item">
+      <span class="material-icons">location_on</span>
+      <span>{{ plot.getLocation() }}</span>
+    </div>
+    <div class="info-item">
+      <span class="material-icons">straighten</span>
+      <span>{{ plot.getSizeHectares() }} ha</span>
+    </div>
+  </div>
+
+  <div class="plot-actions" (click)="$event.stopPropagation()">
+    <button class="icon-btn" title="Editar" (click)="editPlot.emit(plot)">
+      <span class="material-icons">edit</span>
+    </button>
+    <button class="icon-btn delete-btn" title="Eliminar" (click)="deletePlot.emit(plot.getId())">
+      <span class="material-icons">delete</span>
+    </button>
+  </div>
+</div>
