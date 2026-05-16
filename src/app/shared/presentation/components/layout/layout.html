@@ -1,10 +1,14 @@
+<div
+  class="app-shell"
+  [class.app-shell--entry-pending]="entryPending()"
+  [class.app-shell--entry-active]="entryActive()"
+>
+  <app-navbar class="app-shell__navbar"></app-navbar>
 
-<app-navbar></app-navbar>
-
-<div class="layout">
-  <app-sidebar></app-sidebar>
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
+  <div class="layout app-shell__body">
+    <app-sidebar class="app-shell__sidebar"></app-sidebar>
+    <main class="content app-shell__content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>
-
