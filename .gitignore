@@ -46,3 +46,9 @@ db-backup.json
 .env.development.local
 .env.production.local
 .claude/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example

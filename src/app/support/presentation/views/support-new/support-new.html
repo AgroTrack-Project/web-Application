@@ -1,0 +1,32 @@
+<div class="sup-page sup-page-narrow">
+  <a routerLink="/support" class="sup-back">
+    <span class="material-icons">arrow_back</span>
+    {{ 'support.back_list' | translate }}
+  </a>
+  <p class="sup-breadcrumb">{{ 'support.breadcrumb_new' | translate }}</p>
+  <h1 class="sup-heading">{{ 'support.title_new' | translate }}</h1>
+
+  <section class="sup-panel sup-form">
+    <div class="sup-field">
+      <label for="subj">{{ 'support.subject_label' | translate }}</label>
+      <input id="subj" type="text" [ngModel]="subject()" (ngModelChange)="onSubjectInput($event)" [placeholder]="'support.subject_placeholder' | translate" />
+      @if (submitted() && subjectError()) {
+        <span class="sup-field-error">{{ 'support.subject_required' | translate }}</span>
+      }
+    </div>
+    <div class="sup-field">
+      <label for="msg">{{ 'support.message_label' | translate }}</label>
+      <textarea id="msg" rows="7" [ngModel]="message()" (ngModelChange)="onMessageInput($event)" [placeholder]="'support.message_placeholder' | translate"></textarea>
+      @if (submitted() && messageError()) {
+        <span class="sup-field-error">{{ 'support.message_required' | translate }}</span>
+      }
+    </div>
+    <button type="button" class="sup-btn-primary sup-btn-block" [disabled]="saving()" (click)="submit()">
+      <span class="material-icons">send</span>
+      {{ saving() ? ('support.submitting' | translate) : ('support.submit' | translate) }}
+    </button>
+    @if (store.error()) {
+      <p class="sup-field-error">{{ store.error() | translate }}</p>
+    }
+  </section>
+</div>

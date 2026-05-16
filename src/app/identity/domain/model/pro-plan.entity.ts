@@ -11,5 +11,6 @@ export class ProPlan implements Plan {
   getPrice(): number { return this.price; }
   isDashboardEnabled(): boolean { return true; }
   isExportEnabled(): boolean { return true; }
+  isExcelExportEnabled(): boolean { return false; }
   hasPrioritySupport(): boolean { return false; }
 }

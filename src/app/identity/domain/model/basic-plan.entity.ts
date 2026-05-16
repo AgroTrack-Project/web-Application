@@ -11,5 +11,6 @@ export class BasicPlan implements Plan {
   getPrice(): number { return this.price; }
   isDashboardEnabled(): boolean { return false; }
   isExportEnabled(): boolean { return false; }
+  isExcelExportEnabled(): boolean { return false; }
   hasPrioritySupport(): boolean { return false; }
 }

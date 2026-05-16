@@ -1,0 +1,61 @@
+<div class="sup-page">
+  <header class="sup-toolbar">
+    <div class="sup-toolbar-text">
+      <p class="sup-breadcrumb">{{ 'support.breadcrumb_list' | translate }}</p>
+      <h1 class="sup-heading">{{ 'support.title_center' | translate }}</h1>
+      <p class="sup-lead">{{ 'support.lead_list' | translate }}</p>
+    </div>
+    <a routerLink="/support/new" class="sup-btn-primary">
+      <span class="material-icons">add</span>
+      {{ 'support.new_ticket' | translate }}
+    </a>
+  </header>
+
+  @if (store.loading()) {
+    <div class="sup-loading"><div class="sup-spinner"></div></div>
+  } @else if (store.error()) {
+    <div class="sup-panel sup-empty">
+      <p>{{ store.error() | translate }}</p>
+      <button type="button" class="sup-btn-primary" (click)="store.loadTickets()">{{ 'support.retry' | translate }}</button>
+    </div>
+  } @else if (hasTickets()) {
+    <section class="sup-panel">
+      <div class="sup-table-scroll">
+        <table class="sup-table">
+          <thead>
+            <tr>
+              <th scope="col">{{ 'support.col_subject' | translate }}</th>
+              <th scope="col">{{ 'support.col_status' | translate }}</th>
+              <th scope="col">{{ 'support.col_date' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (t of store.tickets(); track t.id) {
+              <tr>
+                <td><a class="sup-link" [routerLink]="['/support', t.id]">{{ t.getSubject() }}</a></td>
+                <td>
+                  @switch (t.getStatus()) {
+                    @case (TicketStatus.OPEN) { <span class="sup-badge sup-badge-open">{{ 'support.status.open' | translate }}</span> }
+                    @case (TicketStatus.IN_PROGRESS) { <span class="sup-badge sup-badge-progress">{{ 'support.status.in_progress' | translate }}</span> }
+                    @case (TicketStatus.CLOSED) { <span class="sup-badge sup-badge-closed">{{ 'support.status.closed' | translate }}</span> }
+                  }
+                </td>
+                <td class="sup-td-muted">{{ t.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  } @else {
+    <section class="sup-panel sup-empty">
+      <span class="material-icons sup-empty-icon">inbox</span>
+      <p class="sup-empty-title">{{ 'support.empty_title' | translate }}</p>
+      <p class="sup-empty-text">{{ 'support.empty_text' | translate }}</p>
+      <a routerLink="/support/new" class="sup-btn-primary">
+        <span class="material-icons">add</span>
+        {{ 'support.new_ticket' | translate }}
+      </a>
+    </section>
+  }
+</div>

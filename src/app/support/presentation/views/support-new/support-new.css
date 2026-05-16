@@ -1,0 +1,38 @@
+:host {
+  --sup-green: #1e5a24;
+  --sup-green-soft: #2d6a2d;
+  --sup-text: #1a231a;
+  --sup-text-secondary: #5c6560;
+  --sup-border: #e2e8e4;
+  --sup-surface: #fff;
+  --sup-radius: 16px;
+  --sup-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 24px rgba(15, 23, 42, 0.06);
+  display: block;
+}
+
+.sup-page-narrow { max-width: 640px; margin: 0 auto; padding-bottom: 2rem; }
+.sup-back {
+  display: inline-flex; align-items: center; gap: 0.25rem; margin-bottom: 0.75rem;
+  font-size: 0.8125rem; font-weight: 600; color: var(--sup-green-soft); text-decoration: none;
+}
+.sup-breadcrumb {
+  margin: 0 0 0.35rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--sup-green-soft);
+}
+.sup-heading { margin: 0 0 1rem; font-size: 1.75rem; font-weight: 700; }
+.sup-panel { background: var(--sup-surface); border: 1px solid var(--sup-border); border-radius: var(--sup-radius); box-shadow: var(--sup-shadow); }
+.sup-form { padding: 1.5rem; }
+.sup-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.sup-field label { font-size: 0.8125rem; font-weight: 700; }
+.sup-field input, .sup-field textarea {
+  padding: 0.75rem 1rem; border: 1px solid var(--sup-border); border-radius: 10px;
+  font-family: inherit; font-size: 0.9375rem; background: #fafcfa;
+}
+.sup-field-error { font-size: 0.8125rem; color: #c62828; }
+.sup-btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  padding: 0.65rem 1.2rem; background: var(--sup-green); color: #fff; border: none;
+  border-radius: 10px; font-weight: 600; cursor: pointer;
+}
+.sup-btn-block { width: 100%; }
+.sup-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }

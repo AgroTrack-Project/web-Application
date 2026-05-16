@@ -1,0 +1,54 @@
+<div class="sup-page">
+  @if (loading()) {
+    <div class="sup-loading"><div class="sup-spinner"></div></div>
+  } @else if (ticket(); as t) {
+    <header class="sup-toolbar">
+      <div class="sup-toolbar-text">
+        <a routerLink="/support" class="sup-back">
+          <span class="material-icons">arrow_back</span>
+          {{ 'support.back' | translate }}
+        </a>
+        <p class="sup-breadcrumb">{{ 'support.breadcrumb_detail' | translate }}</p>
+        <h1 class="sup-heading">{{ t.getSubject() }}</h1>
+      </div>
+      @if (canClose()) {
+        <button type="button" class="sup-btn-outline" (click)="closeTicket()">
+          <span class="material-icons">lock</span>
+          {{ 'support.close_ticket' | translate }}
+        </button>
+      }
+    </header>
+
+    <div class="sup-detail-grid">
+      <section class="sup-panel sup-meta">
+        <h2 class="sup-meta-title">{{ 'support.detail_summary' | translate }}</h2>
+        <dl>
+          <div class="sup-meta-row">
+            <dt>{{ 'support.status_label' | translate }}</dt>
+            <dd>
+              @switch (t.getStatus()) {
+                @case (TicketStatus.OPEN) { <span class="sup-badge sup-badge-open">{{ 'support.status.open' | translate }}</span> }
+                @case (TicketStatus.IN_PROGRESS) { <span class="sup-badge sup-badge-progress">{{ 'support.status.in_progress' | translate }}</span> }
+                @case (TicketStatus.CLOSED) { <span class="sup-badge sup-badge-closed">{{ 'support.status.closed' | translate }}</span> }
+              }
+            </dd>
+          </div>
+          <div class="sup-meta-row">
+            <dt>{{ 'support.created_label' | translate }}</dt>
+            <dd>{{ t.createdAt | date: 'dd/MM/yyyy HH:mm' }}</dd>
+          </div>
+          @if (t.getRespondedAt(); as ra) {
+            <div class="sup-meta-row">
+              <dt>{{ 'support.closed_label' | translate }}</dt>
+              <dd>{{ ra | date: 'dd/MM/yyyy HH:mm' }}</dd>
+            </div>
+          }
+        </dl>
+      </section>
+      <section class="sup-panel sup-message">
+        <h2 class="sup-meta-title">{{ 'support.detail_message' | translate }}</h2>
+        <p class="sup-message-body">{{ t.getMessage() }}</p>
+      </section>
+    </div>
+  }
+</div>

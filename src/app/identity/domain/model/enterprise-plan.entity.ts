@@ -11,5 +11,6 @@ export class EnterprisePlan implements Plan {
   getPrice(): number { return this.price; }
   isDashboardEnabled(): boolean { return true; }
   isExportEnabled(): boolean { return true; }
+  isExcelExportEnabled(): boolean { return true; }
   hasPrioritySupport(): boolean { return true; }
 }

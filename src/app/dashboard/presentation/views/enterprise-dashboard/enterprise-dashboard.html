@@ -1,0 +1,169 @@
+@if (identityStore.loading() || store.loading()) {
+  <div class="dash-spinner-wrap" aria-busy="true">
+    <div class="dash-spinner"></div>
+  </div>
+} @else if (store.accessDenied()) {
+  <div class="dash-page">
+    <div class="dash-empty-card">
+      <span class="material-icons dash-empty-icon">lock</span>
+      <p class="dash-empty-title">{{ 'dashboard.access_denied_title' | translate }}</p>
+      <p class="dash-empty-text">{{ 'dashboard.access_denied_text' | translate }}</p>
+      <a routerLink="/perfil" class="dash-btn-primary">{{ 'dashboard.view_plans' | translate }}</a>
+    </div>
+  </div>
+} @else if (store.error()) {
+  <div class="dash-page">
+    <div class="dash-empty-card">
+      <p class="dash-empty-title">{{ store.error() | translate }}</p>
+      <button type="button" class="dash-btn-primary" (click)="store.load()">{{ 'dashboard.retry' | translate }}</button>
+    </div>
+  </div>
+} @else if (store.dashboard(); as d) {
+  <div class="dash-page">
+    @if (!d.hasPlots()) {
+      <header class="dash-toolbar">
+        <div class="dash-toolbar-text">
+          <p class="dash-breadcrumb">{{ 'dashboard.breadcrumb_no_plots' | translate }}</p>
+          <h1 class="dash-heading">{{ 'dashboard.title_enterprise' | translate }}</h1>
+        </div>
+      </header>
+      <div class="dash-empty-card">
+        <span class="material-icons dash-empty-icon">agriculture</span>
+        <p class="dash-empty-title">{{ 'dashboard.no_plots_title' | translate }}</p>
+        <p class="dash-empty-text">{{ 'dashboard.no_plots_text' | translate }}</p>
+        <a routerLink="/parcelas/nueva" class="dash-btn-primary">
+          <span class="material-icons">add</span>
+          {{ 'dashboard.register_plot' | translate }}
+        </a>
+      </div>
+    } @else {
+      <header class="dash-toolbar">
+        <div class="dash-toolbar-text">
+          <p class="dash-breadcrumb">{{ 'dashboard.breadcrumb_summary' | translate }}</p>
+          <h1 class="dash-heading">{{ 'dashboard.title_operational' | translate }}</h1>
+          <p class="dash-lead">{{ 'dashboard.lead' | translate }}</p>
+        </div>
+        @if (showPdfExport() || showExcelExport()) {
+          <div class="dash-export-actions">
+            @if (showPdfExport()) {
+              <button type="button" class="dash-btn-export" [disabled]="exporting()" (click)="exportPdf()">
+                <span class="material-icons">picture_as_pdf</span>
+                {{ 'dashboard.export_pdf' | translate }}
+              </button>
+            }
+            @if (showExcelExport()) {
+              <button type="button" class="dash-btn-export" [disabled]="exporting()" (click)="exportExcel()">
+                <span class="material-icons">table_chart</span>
+                {{ 'dashboard.export_excel' | translate }}
+              </button>
+            }
+          </div>
+        }
+      </header>
+
+      @if (!d.hasMetrics()) {
+        <div class="dash-empty-card dash-empty-inline">
+          <p class="dash-empty-text">{{ 'dashboard.no_metrics_text' | translate }}</p>
+        </div>
+      }
+
+      <div class="dash-grid">
+        <section class="dash-panel" aria-labelledby="dash-yield">
+          <div class="dash-panel-head">
+            <span class="material-icons dash-panel-icon">agriculture</span>
+            <div>
+              <h2 id="dash-yield" class="dash-panel-title">{{ 'dashboard.yield_title' | translate }}</h2>
+              <p class="dash-panel-desc">{{ 'dashboard.yield_desc' | translate }}</p>
+            </div>
+          </div>
+          <div class="dash-table-scroll">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ 'dashboard.col_plot' | translate }}</th>
+                  <th scope="col" class="dash-th-num">{{ 'dashboard.col_yield' | translate }}</th>
+                  <th scope="col">{{ 'dashboard.col_season' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (y of d.yieldSummaries; track y.plotId) {
+                  <tr>
+                    <td><span class="dash-cell-strong">{{ y.plotName }}</span></td>
+                    <td class="dash-td-num">{{ y.yieldPerHectare | number: '1.1-2' }}</td>
+                    <td><span class="dash-pill">{{ y.season }}</span></td>
+                  </tr>
+                } @empty {
+                  <tr><td colspan="3" class="dash-td-empty">{{ 'dashboard.no_data' | translate }}</td></tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dash-panel" aria-labelledby="dash-loss">
+          <div class="dash-panel-head">
+            <span class="material-icons dash-panel-icon">warning_amber</span>
+            <div>
+              <h2 id="dash-loss" class="dash-panel-title">{{ 'dashboard.loss_title' | translate }}</h2>
+              <p class="dash-panel-desc">{{ 'dashboard.loss_desc' | translate }}</p>
+            </div>
+          </div>
+          <div class="dash-table-scroll">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ 'dashboard.col_plot' | translate }}</th>
+                  <th scope="col" class="dash-th-num">{{ 'dashboard.col_loss_pct' | translate }}</th>
+                  <th scope="col">{{ 'dashboard.col_cause' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (l of d.lossSummaries; track l.plotId + l.season) {
+                  <tr>
+                    <td><span class="dash-cell-strong">{{ l.plotName }}</span></td>
+                    <td class="dash-td-num">{{ l.lossPercentage | number: '1.1-1' }}</td>
+                    <td>{{ l.cause }}</td>
+                  </tr>
+                } @empty {
+                  <tr><td colspan="3" class="dash-td-empty">{{ 'dashboard.no_data' | translate }}</td></tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="dash-panel dash-panel-wide" aria-labelledby="dash-water">
+          <div class="dash-panel-head">
+            <span class="material-icons dash-panel-icon">water_drop</span>
+            <div>
+              <h2 id="dash-water" class="dash-panel-title">{{ 'dashboard.water_title' | translate }}</h2>
+              <p class="dash-panel-desc">{{ 'dashboard.water_desc' | translate }}</p>
+            </div>
+          </div>
+          <div class="dash-table-scroll">
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ 'dashboard.col_plot' | translate }}</th>
+                  <th scope="col" class="dash-th-num">{{ 'dashboard.col_liters' | translate }}</th>
+                  <th scope="col">{{ 'dashboard.col_season' | translate }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (w of d.waterConsumptions; track w.plotId) {
+                  <tr>
+                    <td><span class="dash-cell-strong">{{ w.plotName }}</span></td>
+                    <td class="dash-td-num">{{ w.totalLiters | number: '1.0-0' }}</td>
+                    <td><span class="dash-pill">{{ w.season }}</span></td>
+                  </tr>
+                } @empty {
+                  <tr><td colspan="3" class="dash-td-empty">{{ 'dashboard.no_data' | translate }}</td></tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    }
+  </div>
+}
