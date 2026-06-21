@@ -1,23 +1,8 @@
-export interface ClimateResponse {
-
-  weather: {
-    description: string;
-    icon: string;
-  }[];
-
-  main: {
-    temp: number;
-    temp_min: number;
-    humidity: number;
-  };
-
-  wind: {
-    speed: number;
-  };
-
-  sys: {
-    country: string;
-  };
-
-  name: string;
+export interface AlertResource {
+  id: string;
+  city: string;
+  title: string;
+  description: string;
+  urgency: string;
+  generated_at: string;
 }
