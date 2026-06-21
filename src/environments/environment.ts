@@ -1,0 +1,18 @@
+export const environment = {
+  production: true,
+  landingPageUrl: 'https://agrotrack-project.github.io/Landing-Page/',
+  apiBaseUrl: 'https://agotrack.onrender.com/api/v1',
+  usersEndpointPath: '/users',
+  plansEndpointPath: '/plans',
+  alertPreferencesEndpointPath: '/alert_preferences',
+  supportTicketsEndpointPath: '/support_tickets',
+  plotsEndpointPath: '/plots',
+  cropsEndpointPath: '/crops',
+  soilRecordsEndpointPath: '/soil_records',
+  irrigationRecommendationsEndpointPath: '/irrigation_recommendations',
+  irrigationSchedulesEndpointPath: '/irrigation_schedules',
+  climateAlertsEndpointPath: '/climate_alerts',
+  yieldSummariesEndpointPath: '/yield_summaries',
+  lossSummariesEndpointPath: '/loss_summaries',
+  waterConsumptionsEndpointPath: '/water_consumptions',
+};
