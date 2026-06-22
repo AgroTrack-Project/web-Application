@@ -1,10 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
 import { Observable, map } from 'rxjs';
 
-import { ClimateEntity } from '../domain/model/climate.entity';
-import { ClimateResponse } from './climate-response';
+import { AlertNotification } from '../domain/model/alerts-notification.entity';
+import { AlertResource } from './climate-response';
 import { ClimateAssembler } from './climate-assembler';
 import { ClimateApiEndpoint } from './climate-api-endpoint';
 
@@ -15,15 +14,12 @@ export class AlertsApi {
 
   private http = inject(HttpClient);
 
-  getWeatherByCity(city: string): Observable<ClimateEntity> {
-
-    const endpoint = ClimateApiEndpoint.weatherByCity(city);
-
+  getAlertsByCity(city: string): Observable<AlertNotification[]> {
+    const endpoint = ClimateApiEndpoint.alertsByCity(city);
     return this.http
-      .get<ClimateResponse>(endpoint)
+      .get<AlertResource[]>(endpoint)
       .pipe(
-        map(response =>
-          ClimateAssembler.toEntity(response)        )
+        map(resources => resources.map(r => ClimateAssembler.toNotification(r)))
       );
   }
 }
