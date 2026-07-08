@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FarmingStore } from '../../../application/farming.store';
-import { IdentityStore } from '../../../../identity/application/identity.store';
+import { IdentityStore } from '../../../../iam/application/identity.store';
 import { Plot } from '../../../domain/model/plot.entity';
 import { PlotCard } from '../../components/plot-card/plot-card';
-import { ProPlan } from '../../../../identity/domain/model/pro-plan.entity';
-import { EnterprisePlan } from '../../../../identity/domain/model/enterprise-plan.entity';
 import { SoilMonitoringStore } from '../../../../soil-monitoring/application/soil-monitoring.store';
 
 @Component({
@@ -23,12 +21,10 @@ export class Plots implements OnInit {
   soilStore = inject(SoilMonitoringStore);
 
   readonly planName = computed(() => {
-    const user = this.identityStore.currentUser();
-    if (!user) return 'BASIC';
-    if (user.getPlan() instanceof EnterprisePlan) return 'ENTERPRISE';
-    if (user.getPlan() instanceof ProPlan) return 'PRO';
-    return 'BASIC';
+    return this.identityStore.currentPlanType();
   });
+
+  readonly currentUserName = computed(() => this.identityStore.currentUser()?.getName() ?? 'Invitado');
 
   readonly maxPlots = computed<number | string>(() => {
     const user = this.identityStore.currentUser();
