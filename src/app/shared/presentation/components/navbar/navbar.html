@@ -5,6 +5,10 @@
       <span class="brand-name">AgroTrack</span>
     </div>
     <div class="navbar-actions">
+      <div class="user-chip">
+        <span class="user-name">{{ currentUserName() }}</span>
+        <span class="user-plan">{{ currentPlan() }}</span>
+      </div>
       <app-language-switcher />
       <button class="btn-logout" (click)="logout()">
         <span class="material-icons">logout</span>
