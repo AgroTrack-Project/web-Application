@@ -1,0 +1,112 @@
+<main class="auth-page">
+  <header class="auth-header">
+    <a class="brand" routerLink="/sign-in" aria-label="AgroTrack">
+      <img src="assets/images/logoagrotrack.png" alt="" />
+      <span>AgroTrack</span>
+    </a>
+  </header>
+
+  <section class="auth-stage">
+    @if (mode() === 'sign-in') {
+      <form class="auth-card compact" [formGroup]="signInForm" (ngSubmit)="submitSignIn()">
+        <h1>Ingresa a tu cuenta</h1>
+        <p>Bienvenido de vuelta.</p>
+
+        <label for="email">Correo electronico</label>
+        <input id="email" type="email" formControlName="email" [class.invalid]="fieldInvalid('signIn', 'email')" />
+
+        <label for="password">Contrasena</label>
+        <input id="password" type="password" formControlName="password" [class.invalid]="fieldInvalid('signIn', 'password')" />
+
+        @if (message) {
+          <span class="form-message">{{ message }}</span>
+        }
+
+        <button type="submit">Ingresar</button>
+
+        <p class="auth-link">¿No tienes cuenta? <a routerLink="/create-acount-basic">Registrate</a></p>
+        <a class="muted-link" routerLink="/reset-password">¿Olvidaste tu contrasena?</a>
+      </form>
+    }
+
+    @if (mode() === 'create-account') {
+      <form class="auth-card" [class.enterprise]="isEnterprise()" [formGroup]="accountForm" (ngSubmit)="submitCreateAccount()">
+        <h1>Create your account</h1>
+
+        @if (!isEnterprise()) {
+          <p>Start farming with real data.</p>
+        } @else {
+          <span class="section-label">DATOS DE LA EMPRESA</span>
+        }
+
+        <label for="fullName">Full name</label>
+        <input id="fullName" type="text" formControlName="fullName" [class.invalid]="fieldInvalid('account', 'fullName')" />
+
+        @if (isEnterprise()) {
+          <label for="phone">Phone</label>
+          <input id="phone" type="tel" formControlName="phone" [class.invalid]="fieldInvalid('account', 'phone')" />
+
+          <label for="companyName">Company name</label>
+          <input id="companyName" type="text" formControlName="companyName" [class.invalid]="fieldInvalid('account', 'companyName')" />
+
+          <label for="ruc">RUC</label>
+          <input id="ruc" type="text" formControlName="ruc" [class.invalid]="fieldInvalid('account', 'ruc')" />
+
+          <label for="sector">Sector</label>
+          <input id="sector" type="text" formControlName="sector" [class.invalid]="fieldInvalid('account', 'sector')" />
+
+          <label for="corporateEmail">Corporate email</label>
+        } @else {
+          <label for="corporateEmail">Email</label>
+        }
+        <input id="corporateEmail" type="email" formControlName="email" [class.invalid]="fieldInvalid('account', 'email')" />
+
+        <label for="newPassword">Password</label>
+        <input id="newPassword" type="password" formControlName="password" [class.invalid]="fieldInvalid('account', 'password')" />
+
+        <span class="plan-title">Plan</span>
+        <div class="plan-list" role="radiogroup" aria-label="Plan">
+          @for (plan of plans; track plan.type) {
+            <button
+              class="plan-choice"
+              type="button"
+              role="radio"
+              [attr.aria-checked]="selectedPlan() === plan.type"
+              [class.selected]="selectedPlan() === plan.type"
+              (click)="choosePlan(plan.type)">
+              <strong>{{ plan.name }}<span>{{ plan.price }}</span></strong>
+              <small>{{ plan.description }}</small>
+              <ul class="plan-features">
+                @for (feature of plan.features; track feature) {
+                  <li>{{ feature }}</li>
+                }
+              </ul>
+            </button>
+          }
+        </div>
+
+        <button type="submit">Create account</button>
+        <p class="auth-link">Do you already have an account? <a routerLink="/sign-in">Enter</a></p>
+      </form>
+    }
+
+    @if (mode() === 'reset-password') {
+      <form class="auth-card compact" [formGroup]="resetForm" (ngSubmit)="submitReset()">
+        <h1>Recover password</h1>
+        <p>We will send you instructions to your email.</p>
+
+        <label for="resetEmail">Email</label>
+        <input id="resetEmail" type="email" formControlName="email" [class.invalid]="fieldInvalid('reset', 'email')" />
+
+        @if (message) {
+          <span class="form-message success">{{ message }}</span>
+        }
+
+        <button type="submit">Send instructions</button>
+        <a class="auth-link standalone" routerLink="/sign-in">Re-enter</a>
+      </form>
+    }
+  </section>
+
+  <a class="footer-link" routerLink="/sign-in">{{ mode() === 'sign-in' ? 'Volver al inicio' : 'Back to top' }}</a>
+</main>
