@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   landingPageUrl: 'https://agrotrack-project.github.io/Landing-Page/',
   apiBaseUrl: 'https://agotrack.onrender.com/api/v1',
+  authenticationEndpointPath: '/authentication',
   usersEndpointPath: '/users',
   plansEndpointPath: '/plans',
   alertPreferencesEndpointPath: '/alert_preferences',
