@@ -11,9 +11,11 @@ import { EnterpriseDashboard } from './dashboard/presentation/views/enterprise-d
 import { SupportList } from './support/presentation/views/support-list/support-list';
 import { SupportNew } from './support/presentation/views/support-new/support-new';
 import { SupportDetail } from './support/presentation/views/support-detail/support-detail';
+import { Login } from './iam/presentation/views/login/login';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: Login },
   {
     path: '',
     component: Layout,
