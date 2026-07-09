@@ -1,0 +1,42 @@
+<main class="login-page">
+  <header class="login-header">
+    <span class="brand" aria-label="AgroTrack">
+      <span class="brand-icon">
+        <img src="assets/images/logoagrotrack.png" alt="" />
+      </span>
+      <span>AgroTrack</span>
+    </span>
+    <div class="header-actions">
+      <app-language-switcher />
+      <a class="btn-back-landing" [href]="landingPageUrl">{{ 'login.back_to_site' | translate }}</a>
+    </div>
+  </header>
+
+  <section class="login-content" aria-label="Inicio de sesión">
+    <form class="login-card" (ngSubmit)="onSubmit()">
+      <h1>{{ 'login.heading' | translate }}</h1>
+      <p>{{ 'login.subheading' | translate }}</p>
+
+      <label for="email">{{ 'login.email_label' | translate }}</label>
+      <input id="email" name="email" type="email" [(ngModel)]="form.email" autocomplete="email" />
+
+      <label for="password">{{ 'login.password_label' | translate }}</label>
+      <input id="password" name="password" type="password" [(ngModel)]="form.password" autocomplete="current-password" />
+
+      <p class="form-error" *ngIf="error()">{{ error() }}</p>
+
+      <button class="login" type="submit" [disabled]="loading()">
+        {{ (loading() ? 'login.submitting' : 'login.submit') | translate }}
+      </button>
+
+      <div class="login-links">
+        <span>
+          {{ 'login.no_account' | translate }}
+          <a routerLink="/register">{{ 'login.sign_up' | translate }}</a>
+        </span>
+        <button type="button" class="link-button" (click)="showForgotPasswordMessage()">{{ 'login.forgot_password' | translate }}</button>
+        <p class="form-info" *ngIf="forgotPasswordMessage()">{{ forgotPasswordMessage()! | translate }}</p>
+      </div>
+    </form>
+  </section>
+</main>

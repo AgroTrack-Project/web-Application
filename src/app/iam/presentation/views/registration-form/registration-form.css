@@ -1,0 +1,376 @@
+:host {
+  display: block;
+  font-family: Roboto, Arial, sans-serif;
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+}
+
+.register-page {
+  min-height: 100vh;
+  background: #f4eee8;
+  display: grid;
+  grid-template-rows: 58px minmax(0, 1fr);
+  color: #23352b;
+}
+
+.register-header {
+  background: #ffffff;
+  border-bottom: 1px solid #ebe7df;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 max(24px, calc((100vw - 1024px) / 2));
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: #2f8842;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.btn-back-landing {
+  color: #35473b;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-back-landing:hover {
+  color: #2f8842;
+  text-decoration: underline;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #eef5ef;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.register-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px 40px;
+}
+
+.register-card {
+  box-sizing: border-box;
+  width: min(100%, 440px);
+  background: #ffffff;
+  border: 1px solid #dee7df;
+  border-radius: 9px;
+  box-shadow: 0 12px 28px rgba(34, 48, 39, 0.04);
+  padding: 30px 31px 29px;
+}
+
+.register-card h1 {
+  margin: 0 0 7px;
+  color: #26362d;
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.register-card p {
+  margin: 0 0 25px;
+  color: #637067;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.register-card label {
+  display: block;
+  color: #35473b;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 0 7px;
+}
+
+.register-card input[type='text'],
+.register-card input[type='email'],
+.register-card input[type='password'],
+.register-card input[type='tel'] {
+  box-sizing: border-box;
+  width: 100%;
+  height: 38px;
+  border: 1px solid #e8dfd6;
+  border-radius: 5px;
+  background: #f1ece6;
+  color: #24352c;
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.register-card label {
+  margin-top: 17px;
+}
+
+.register-card input:focus {
+  border-color: #2f8842;
+  box-shadow: 0 0 0 3px rgba(47, 136, 66, 0.14);
+}
+
+.password-field {
+  box-sizing: border-box;
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #e8dfd6;
+  border-radius: 5px;
+  background: #f1ece6;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-field:focus-within {
+  border-color: #2f8842;
+  box-shadow: 0 0 0 3px rgba(47, 136, 66, 0.14);
+}
+
+.password-field input[type='text'],
+.password-field input[type='password'] {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  border: none;
+  background: transparent;
+  padding: 8px 0 8px 10px;
+  box-shadow: none;
+
+}
+
+.password-field input:focus {
+  border: none;
+  box-shadow: none;
+
+}
+
+.password-field .toggle-password {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 34px;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: #8b9389;
+}
+
+.password-field .toggle-password:hover {
+  background: none;
+  color: #2f8842;
+}
+
+.password-field .toggle-password:active {
+  transform: none;
+}
+
+.toggle-password svg {
+  display: block;
+}
+
+.register-card .field-error {
+  margin: 6px 0 0;
+  color: #d32f2f;
+  font-size: 12px;
+}
+
+.register-card .field-hint {
+  margin: 6px 0 0;
+  color: #d32f2f;
+  font-size: 12px;
+}
+
+.register-card .field-success {
+  margin: 6px 0 0;
+  color: #2f8842;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.section-label {
+  margin: 20px 0 7px;
+  color: #8b9389;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.plan-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.plan-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  border: 1px solid #e3ded6;
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.plan-option input[type='radio'] {
+  margin-top: 3px;
+  accent-color: #2f8842;
+}
+
+.plan-option.selected {
+  border-color: #2f8842;
+  background: #eef7ef;
+}
+
+.plan-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.plan-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #26362d;
+}
+
+.plan-price {
+  color: #2f8842;
+  font-weight: 700;
+}
+
+.plan-desc {
+  color: #7a8479;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.register-card .form-error {
+  margin: 10px 0 0;
+  color: #d32f2f;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.register-card button {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 46px;
+  border: none;
+  border-radius: 8px;
+  background: #2f8842;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 23px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.register-card button:hover {
+  background: #277539;
+}
+
+.register-card button:active {
+  transform: translateY(1px);
+}
+
+.register-card button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.register-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  margin-top: 21px;
+  color: #68746b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.register-links a {
+  color: #2f8842;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.register-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .register-header {
+    padding: 0 20px;
+  }
+
+  .brand {
+    font-size: 17px;
+  }
+
+  .btn-back-landing {
+    display: none;
+  }
+
+  .register-content {
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  .register-card {
+    padding: 26px 22px 25px;
+  }
+
+  .plan-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+}

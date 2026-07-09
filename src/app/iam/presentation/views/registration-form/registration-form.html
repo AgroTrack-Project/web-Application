@@ -1,0 +1,106 @@
+<main class="register-page">
+  <header class="register-header">
+    <span class="brand" aria-label="AgroTrack">
+      <span class="brand-icon">
+        <img src="assets/images/logoagrotrack.png" alt="" />
+      </span>
+      <span>AgroTrack</span>
+    </span>
+    <div class="header-actions">
+      <app-language-switcher />
+      <a class="btn-back-landing" [href]="landingPageUrl">{{ 'register.back_to_site' | translate }}</a>
+    </div>
+  </header>
+
+  <section class="register-content" aria-label="Crear cuenta">
+    <form class="register-card" (ngSubmit)="onSubmit()">
+      <h1>{{ 'register.heading' | translate }}</h1>
+      <p>{{ 'register.subheading' | translate }}</p>
+
+      <label for="fullName">{{ 'register.full_name_label' | translate }}</label>
+      <input id="fullName" name="fullName" type="text" [(ngModel)]="form.fullName" autocomplete="name" />
+
+      <label for="email">{{ 'register.email_label' | translate }}</label>
+      <input id="email" name="email" type="email" [(ngModel)]="form.email" autocomplete="email"
+        (blur)="emailTouched.set(true)" />
+      <p class="field-error" *ngIf="emailTouched() && form.email && !isEmailValid">{{ 'register.email_invalid' | translate }}</p>
+
+      <label for="password">{{ 'register.password_label' | translate }}</label>
+      <div class="password-field">
+        <input id="password" name="password" [type]="showPassword() ? 'text' : 'password'"
+          [(ngModel)]="form.password" autocomplete="new-password" />
+        <button type="button" class="toggle-password" (click)="togglePasswordVisibility()" tabindex="-1"
+          [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+            <circle cx="12" cy="12" r="3" />
+            <line *ngIf="showPassword()" x1="2" y1="2" x2="22" y2="22" />
+          </svg>
+        </button>
+      </div>
+      <p class="field-hint" *ngIf="form.password && !isPasswordStrong">
+        {{ 'register.password_hint' | translate }}
+      </p>
+
+      <label for="confirmPassword">{{ 'register.confirm_password_label' | translate }}</label>
+      <div class="password-field">
+        <input id="confirmPassword" name="confirmPassword" [type]="showConfirmPassword() ? 'text' : 'password'"
+          [(ngModel)]="form.confirmPassword" autocomplete="new-password"
+          (blur)="confirmPasswordTouched.set(true)" />
+        <button type="button" class="toggle-password" (click)="toggleConfirmPasswordVisibility()" tabindex="-1"
+          [attr.aria-label]="showConfirmPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z" />
+            <circle cx="12" cy="12" r="3" />
+            <line *ngIf="showConfirmPassword()" x1="2" y1="2" x2="22" y2="22" />
+          </svg>
+        </button>
+      </div>
+      <p class="field-success" *ngIf="passwordsMatch">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        {{ 'register.passwords_match' | translate }}
+      </p>
+      <p class="field-error" *ngIf="confirmPasswordTouched() && form.confirmPassword && !passwordsMatch">
+        {{ 'register.passwords_mismatch' | translate }}
+      </p>
+
+      <div class="plan-options">
+        <label
+          *ngFor="let plan of plans"
+          class="plan-option"
+          [class.selected]="form.plan === plan.id"
+        >
+          <input type="radio" name="plan" [value]="plan.id" [(ngModel)]="form.plan" />
+          <span class="plan-info">
+            <span class="plan-title">
+              <span class="plan-name">{{ plan.nameKey | translate }}</span>
+              <span class="plan-price">{{ plan.price }}</span>
+            </span>
+            <span class="plan-desc">{{ plan.descKey | translate }}</span>
+          </span>
+        </label>
+      </div>
+
+      <ng-container *ngIf="form.plan === 'enterprise'">
+        <label for="companyName">{{ 'register.company_label' | translate }}</label>
+        <input id="companyName" name="companyName" type="text" [(ngModel)]="form.companyName" autocomplete="organization" />
+      </ng-container>
+
+      <p class="form-error" *ngIf="error()">{{ error() }}</p>
+
+      <button type="submit" [disabled]="loading() || !canSubmit">
+        {{ (loading() ? 'register.submitting' : 'register.submit') | translate }}
+      </button>
+
+      <div class="register-links">
+        <span>
+          {{ 'register.has_account' | translate }}
+          <a routerLink="/login">{{ 'register.sign_in' | translate }}</a>
+        </span>
+      </div>
+    </form>
+  </section>
+</main>
