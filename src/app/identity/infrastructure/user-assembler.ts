@@ -24,9 +24,9 @@ export class UserAssembler implements BaseAssembler<User, UserResource, BaseResp
       resource.email,
       resource.password,
       plan,
-      resource.company_name ?? '',
       resource.created_at,
-      resource.updated_at
+      resource.updated_at,
+      resource.company_name ?? ''
     );
   }
 
