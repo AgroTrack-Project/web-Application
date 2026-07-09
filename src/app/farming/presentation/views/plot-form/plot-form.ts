@@ -38,11 +38,11 @@ export class PlotForm implements OnInit {
   formError = signal('');
   private formInitialized = signal(false);
 
-  plotForm = this.fb.nonNullable.group({
-    name: ['', Validators.required],
-    location: [PERU_DEPARTMENTS[0], Validators.required],
-    sizeHectares: [0, [Validators.required, Validators.min(0.1)]],
-    status: [PlotStatus.ACTIVE, Validators.required]
+  plotForm = this.fb.group({
+    name: this.fb.nonNullable.control('', Validators.required),
+    location: this.fb.nonNullable.control(PERU_DEPARTMENTS[0], Validators.required),
+    sizeHectares: this.fb.control<number | null>(null, [Validators.required, Validators.min(0.1)]),
+    status: this.fb.nonNullable.control(PlotStatus.ACTIVE, Validators.required)
   });
 
   readonly isEditMode = computed(() => this.plotId() !== null);
