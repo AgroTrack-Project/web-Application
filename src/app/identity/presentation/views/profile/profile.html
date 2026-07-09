@@ -10,6 +10,20 @@
 
       <!-- Left card -->
       <div class="profile-card">
+        <div class="profile-header">
+          <app-avatar [name]="store.currentUser()!.getName()" size="lg" />
+          <div class="profile-header-info">
+            <span class="user-type-badge">
+              {{ (isManager() ? 'profile.user_type_manager' : 'profile.user_type_farmer') | translate }}
+            </span>
+            @if (store.currentUser()!.getCreatedAt()) {
+              <span class="member-since">
+                {{ 'profile.member_since' | translate }} {{ store.currentUser()!.getCreatedAt() | date:'mediumDate' }}
+              </span>
+            }
+          </div>
+        </div>
+
         <div class="field">
           <label>{{ 'profile.name_label' | translate }}</label>
           <input type="text"
@@ -28,29 +42,11 @@
             (input)="onEmailInput($event)" />
         </div>
 
-        @if (!editing() && planData().upgrades.length > 0) {
+        @if (companyName()) {
           <div class="field">
-            <label>{{ 'profile.plan_label' | translate }}</label>
-            <div class="plan-options">
-              @for (opt of planData().upgrades; track opt.type) {
-                <div class="plan-option"
-                     [class.highlighted]="selectedPlan() === opt.type"
-                     (click)="selectPlan(opt.type)"
-                     style="cursor: pointer;">
-                  <div class="plan-option-info">
-                    <span class="plan-option-name">{{ opt.name | translate }}</span>
-                    <span class="plan-option-desc">{{ opt.desc | translate }}</span>
-                  </div>
-                  <span class="plan-option-price">{{ opt.price | translate }}</span>
-                </div>
-              }
-            </div>
+            <label>{{ 'profile.company_label' | translate }}</label>
+            <input type="text" readonly [value]="companyName()" />
           </div>
-          <button class="change-plan-btn"
-                  [disabled]="!selectedPlan()"
-                  (click)="confirmPlanChange()">
-            {{ 'profile.change_plan' | translate }}
-          </button>
         }
 
         @if (!editing()) {
