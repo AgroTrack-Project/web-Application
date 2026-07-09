@@ -5,6 +5,13 @@
       <span class="brand-name">AgroTrack</span>
     </div>
     <div class="navbar-actions">
+      <div class="user-chip">
+        <app-avatar [name]="currentUserName()" size="sm" />
+        <div class="user-chip-text">
+          <span class="user-name">{{ currentUserName() }}</span>
+          <span class="user-plan" *ngIf="currentPlan()">{{ currentPlan() }}</span>
+        </div>
+      </div>
       <app-language-switcher />
       <button class="btn-logout" (click)="logout()">
         <span class="material-icons">logout</span>
