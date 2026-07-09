@@ -145,15 +145,7 @@ export class PlotDetail implements OnInit {
   }
 
   harvestCrop(id: string): void {
-    const crop = this.store.getCropsForPlot(this.plotId())
-      .find(item => item.getId() === id);
-
-    if (!crop) {
-      return;
-    }
-
-    crop.markAsHarvested(new Date().toISOString().split('T')[0]);
-    this.store.updateCrop(crop);
+    this.store.harvestCrop(id, new Date().toISOString().split('T')[0]);
   }
 
   onEditCropTypeInput(event: Event): void {
