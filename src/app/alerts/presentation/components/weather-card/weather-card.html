@@ -1,40 +1,61 @@
 <div class="alerts-wrapper">
 
-  <h1>ALERTAS CLIMÁTICAS</h1>
+  <div class="alerts-header">
+    <h1>{{ 'alerts_page.title' | translate }}</h1>
+    <p class="alerts-subtitle">{{ 'alerts_page.subtitle' | translate }}</p>
+  </div>
 
   <div *ngIf="store.loading()" class="loading-state">
-    Cargando alertas...
+    <div class="spinner"></div>
+    {{ 'alerts_page.loading' | translate }}
   </div>
 
   <ng-container *ngIf="!store.loading()">
 
     <div *ngIf="userPlots().length === 0" class="empty-alerts">
-      No tienes parcelas registradas para monitorear.
+      <span class="material-icons">grass</span>
+      {{ 'alerts_page.no_plots' | translate }}
     </div>
 
     <ng-container *ngIf="userPlots().length > 0">
 
       <div class="alerts-total">
-        TOTAL: {{ store.alerts().length }}
+        <span class="material-icons">notifications_active</span>
+        {{ 'alerts_page.total' | translate }}: <strong>{{ visibleAlerts().length }}</strong>
       </div>
 
-      <div *ngIf="store.alerts().length === 0" class="empty-alerts">
-        No hay alertas para tus parcelas.
+      <div *ngIf="visibleAlerts().length === 0" class="empty-alerts empty-alerts--ok">
+        <span class="material-icons">check_circle</span>
+        {{ 'alerts_page.no_alerts' | translate }}
       </div>
 
-      <div *ngIf="store.alerts().length > 0" class="alerts-container">
+      <div *ngIf="visibleAlerts().length > 0" class="alerts-container">
 
-        <div *ngFor="let alert of store.alerts()" class="alert-card">
+        <div *ngFor="let alert of visibleAlerts()" class="alert-card" [class]="severityClass(alert)">
 
-          <h2>{{ alert.title }}</h2>
+          <div class="alert-icon">
+            <span class="material-icons">{{ alertIcon(alert) }}</span>
+          </div>
 
-          <p class="alert-plot-name">
-            Parcela: {{ getPlotNames(alert.city) }}
-          </p>
+          <div class="alert-content">
+            <div class="alert-top-row">
+              <h2>{{ alert.title }}</h2>
+              <span class="severity-badge">{{ alert.severity }}</span>
+            </div>
 
-          <p>{{ alert.message }}</p>
+            <p class="alert-message">{{ alert.message }}</p>
 
-          <span class="alert-city">{{ alert.city }}</span>
+            <div class="alert-meta">
+              <span class="meta-item">
+                <span class="material-icons">grass</span>
+                {{ 'alerts_page.plot_label' | translate }}: {{ getPlotNames(alert.city) }}
+              </span>
+              <span class="meta-item">
+                <span class="material-icons">location_on</span>
+                {{ alert.city }}
+              </span>
+            </div>
+          </div>
 
         </div>
 
