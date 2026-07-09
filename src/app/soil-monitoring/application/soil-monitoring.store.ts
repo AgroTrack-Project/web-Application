@@ -198,6 +198,11 @@ export class SoilMonitoringStore {
       .find(recommendation => recommendation.getStatus() === IrrigationRecommendationStatus.PENDING);
   }
 
+  getRecommendationForSoilRecord(soilRecordId: string): IrrigationRecommendation | undefined {
+    return this.irrigationRecommendationsSignal()
+      .find(recommendation => recommendation.getSoilRecordId() === soilRecordId);
+  }
+
   confirmRecommendation(recommendation: IrrigationRecommendation): void {
     recommendation.confirm();
 

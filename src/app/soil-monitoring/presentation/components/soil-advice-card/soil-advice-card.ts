@@ -42,6 +42,27 @@ export class SoilAdviceCard {
     return this.translate.instant(this.adviceTranslationKey());
   }
 
+  decisionForLatestRecord() {
+    const latest = this.latestRecord();
+    if (!latest) return undefined;
+    return this.soilStore.getRecommendationForSoilRecord(latest.getId());
+  }
+
+  hasDecisionForLatestRecord(): boolean {
+    const decision = this.decisionForLatestRecord();
+    return !!decision && decision.getStatus() !== IrrigationRecommendationStatus.PENDING;
+  }
+
+  decisionStatusTranslationKey(): string {
+    const decision = this.decisionForLatestRecord();
+    return decision ? this.soilStore.getIrrigationStatusTranslationKey(decision) : '';
+  }
+
+  decisionStatusClass(): string {
+    const decision = this.decisionForLatestRecord();
+    return decision ? this.soilStore.getIrrigationStatusClass(decision) : '';
+  }
+
   confirmRecommendation(): void {
     const pending = this.pendingRecommendation();
 

@@ -98,6 +98,26 @@
   font-weight: 700;
 }
 
+.decision-label {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.decision-label.status-applied {
+  background: #d9edd9;
+  color: #2d7a3a;
+}
+
+.decision-label.status-not-applied {
+  background: #eeeeee;
+  color: #555555;
+}
+
 @media (max-width: 560px) {
   .advice-actions {
     flex-direction: column;

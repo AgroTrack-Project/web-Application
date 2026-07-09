@@ -9,7 +9,7 @@
 
     <p>{{ adviceMessage() }}</p>
 
-    @if (latestRecord()) {
+    @if (latestRecord() && !hasDecisionForLatestRecord()) {
       <div class="advice-actions">
         <button class="confirm-btn" type="button" (click)="confirmRecommendation()">
           {{ 'soil.advice.confirm' | translate }}
@@ -19,6 +19,10 @@
           {{ 'soil.advice.reject' | translate }}
         </button>
       </div>
+    } @else if (latestRecord() && hasDecisionForLatestRecord()) {
+      <span class="decision-label" [class]="decisionStatusClass()">
+        {{ decisionStatusTranslationKey() | translate }}
+      </span>
     } @else {
       <span class="no-pending-label">
         {{ 'soil.advice.no_soil_record' | translate }}
