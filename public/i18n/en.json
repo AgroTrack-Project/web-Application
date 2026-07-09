@@ -2,6 +2,52 @@
   "navbar": {
     "logout": "Sign out"
   },
+  "alerts_page": {
+    "title": "Weather Alerts",
+    "subtitle": "Detected risks for the cities where you have plots.",
+    "loading": "Loading alerts...",
+    "no_plots": "You have no registered plots to monitor.",
+    "total": "Total",
+    "no_alerts": "No alerts for your plots.",
+    "plot_label": "Plot"
+  },
+  "login": {
+    "back_to_site": "Back to site",
+    "heading": "Sign in to your account",
+    "subheading": "Welcome back.",
+    "email_label": "Email",
+    "password_label": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in...",
+    "no_account": "Don't have an account?",
+    "sign_up": "Sign up",
+    "forgot_password": "Forgot your password?",
+    "forgot_password_message": "Feature not available"
+  },
+  "register": {
+    "back_to_site": "Back to site",
+    "heading": "Create your account",
+    "subheading": "Start farming with real data.",
+    "full_name_label": "Full name",
+    "email_label": "Email",
+    "email_invalid": "Invalid email",
+    "password_label": "Password",
+    "password_hint": "Minimum 8 characters, with uppercase, lowercase and a number.",
+    "confirm_password_label": "Confirm password",
+    "passwords_match": "Passwords match",
+    "passwords_mismatch": "Passwords do not match",
+    "company_label": "Company name",
+    "submit": "Create account",
+    "submitting": "Creating...",
+    "has_account": "Do you already have an account?",
+    "sign_in": "Sign in",
+    "plan_basic_name": "Basic Plan",
+    "plan_basic_desc": "For independent farmers",
+    "plan_pro_name": "Pro Plan",
+    "plan_pro_desc": "For growing farmers",
+    "plan_enterprise_name": "Enterprise Plan",
+    "plan_enterprise_desc": "For agricultural SMEs"
+  },
   "sidebar": {
     "start": "Home",
     "plots": "Plots",
@@ -24,6 +70,11 @@
     "after": "After",
     "most_popular": "Most Popular",
     "improve": "Improve your experience",
+    "user_type_label": "Account type",
+    "user_type_farmer": "Farmer",
+    "user_type_manager": "Agricultural Manager",
+    "company_label": "Company",
+    "member_since": "Member since",
     "plans": {
       "basic": {
         "label": "PLAN - BASIC",
@@ -264,7 +315,7 @@
     "no_plots_title": "No registered plots",
     "no_plots_text": "Register plots in Farming to see yield, losses and water consumption.",
     "register_plot": "Register plot",
-    "no_metrics_text": "You have registered plots, but the API returns no metrics matching your plots' plot_id. This is common on the Pro plan until those records exist in MockAPI.",
+    "no_metrics_text": "There is no yield, loss, or water consumption data recorded for your plots yet.",
     "yield_title": "Yield per plot",
     "yield_desc": "t/ha per season",
     "loss_title": "Loss summary",

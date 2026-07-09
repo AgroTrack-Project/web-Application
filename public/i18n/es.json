@@ -2,6 +2,52 @@
   "navbar": {
     "logout": "Salir"
   },
+  "alerts_page": {
+    "title": "Alertas climáticas",
+    "subtitle": "Riesgos detectados para las ciudades donde tienes parcelas.",
+    "loading": "Cargando alertas...",
+    "no_plots": "No tienes parcelas registradas para monitorear.",
+    "total": "Total",
+    "no_alerts": "No hay alertas para tus parcelas.",
+    "plot_label": "Parcela"
+  },
+  "login": {
+    "back_to_site": "Volver al sitio",
+    "heading": "Ingresa a tu cuenta",
+    "subheading": "Bienvenido de vuelta.",
+    "email_label": "Correo electrónico",
+    "password_label": "Contraseña",
+    "submit": "Ingresar",
+    "submitting": "Ingresando...",
+    "no_account": "¿No tienes cuenta?",
+    "sign_up": "Regístrate",
+    "forgot_password": "¿Olvidaste tu contraseña?",
+    "forgot_password_message": "Función no disponible"
+  },
+  "register": {
+    "back_to_site": "Volver al sitio",
+    "heading": "Crea tu cuenta",
+    "subheading": "Empieza a cultivar con datos reales.",
+    "full_name_label": "Nombre completo",
+    "email_label": "Correo electrónico",
+    "email_invalid": "Correo inválido",
+    "password_label": "Contraseña",
+    "password_hint": "Mínimo 8 caracteres, con mayúscula, minúscula y un número.",
+    "confirm_password_label": "Confirmar contraseña",
+    "passwords_match": "Contraseñas iguales",
+    "passwords_mismatch": "Las contraseñas no coinciden",
+    "company_label": "Nombre de la empresa",
+    "submit": "Crear cuenta",
+    "submitting": "Creando...",
+    "has_account": "¿Ya tienes una cuenta?",
+    "sign_in": "Inicia sesión",
+    "plan_basic_name": "Plan Básico",
+    "plan_basic_desc": "Para agricultores independientes",
+    "plan_pro_name": "Plan Pro",
+    "plan_pro_desc": "Para agricultores en crecimiento",
+    "plan_enterprise_name": "Plan Enterprise",
+    "plan_enterprise_desc": "Para PyMEs agrícolas"
+  },
   "sidebar": {
     "start": "Home",
     "plots": "Parcelas",
@@ -24,6 +70,11 @@
     "after": "Después",
     "most_popular": "Más popular",
     "improve": "Mejora tu experiencia",
+    "user_type_label": "Tipo de cuenta",
+    "user_type_farmer": "Agricultor",
+    "user_type_manager": "Empresario Agrícola",
+    "company_label": "Empresa",
+    "member_since": "Miembro desde",
     "plans": {
       "basic": {
         "label": "PLAN - BÁSICO",
@@ -264,7 +315,7 @@
     "no_plots_title": "Sin parcelas registradas",
     "no_plots_text": "Registra parcelas en Farming para ver rendimiento, pérdidas y consumo de agua.",
     "register_plot": "Registrar parcela",
-    "no_metrics_text": "Tienes parcelas registradas, pero la API no devuelve métricas con el mismo plot_id de tus parcelas. En el plan Pro es habitual si aún no cargaste esos datos en MockAPI.",
+    "no_metrics_text": "Aún no hay datos de rendimiento, pérdidas o consumo de agua registrados para tus parcelas.",
     "yield_title": "Rendimiento por parcela",
     "yield_desc": "t/ha por temporada",
     "loss_title": "Resumen de pérdidas",

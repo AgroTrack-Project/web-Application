@@ -4,9 +4,10 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import {provideTranslateHttpLoader} from '@ngx-translate/http-loader';
 import {provideTranslateService, TranslateService} from '@ngx-translate/core';
-import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import { SupportTicketRepository } from './support/domain/repository/support-ticket.repository';
 import { HttpSupportTicketRepository } from './support/infrastructure/http-support-ticket.repository';
+import { authInterceptor } from './iam/infrastructure/auth-interceptor';
 
 function initDefaultLanguage(): () => Promise<void> {
   const translate = inject(TranslateService);
@@ -21,7 +22,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     { provide: SupportTicketRepository, useExisting: HttpSupportTicketRepository },
     provideTranslateService({
       loader: provideTranslateHttpLoader({
