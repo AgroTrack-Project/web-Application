@@ -20,9 +20,9 @@ export class SoilRecordSummary {
 
   submitted = false;
 
-  soilForm = this.fb.nonNullable.group({
-    humidity: [0, [Validators.required, Validators.min(0), Validators.max(100)]],
-    temperature: [0, [Validators.required]]
+  soilForm = this.fb.group({
+    humidity: this.fb.control<number | null>(null, [Validators.required, Validators.min(0), Validators.max(100)]),
+    temperature: this.fb.control<number | null>(null, [Validators.required])
   });
 
   records() {
@@ -67,8 +67,8 @@ export class SoilRecordSummary {
     this.soilStore.createSoilRecord(soilRecord);
 
     this.soilForm.reset({
-      humidity: 0,
-      temperature: 0
+      humidity: null,
+      temperature: null
     });
 
     this.submitted = false;

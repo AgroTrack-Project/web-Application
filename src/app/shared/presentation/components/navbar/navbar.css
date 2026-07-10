@@ -37,6 +37,38 @@
   gap: 12px;
 }
 
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 4px;
+}
+
+.user-chip-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #23352b;
+}
+
+.user-plan {
+  font-size: 11px;
+  color: #2f8842;
+  text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .user-chip {
+    display: none;
+  }
+}
+
 .btn-logout {
   display: flex;
   align-items: center;

@@ -99,6 +99,15 @@ export class FarmingStore {
     });
   }
 
+  harvestCrop(id: string, harvestDate: string): void {
+    this.farmingApi.crops.harvest(id, harvestDate).subscribe({
+      next: updated => this.cropsSignal.update(crops =>
+        crops.map(c => c.getId() === updated.getId() ? updated : c)
+      ),
+      error: err => this.errorSignal.set(err.message)
+    });
+  }
+
   deleteCrop(id: string): void {
     this.farmingApi.crops.delete(id).subscribe({
       next: () => this.cropsSignal.update(crops => crops.filter(c => c.getId() !== id)),

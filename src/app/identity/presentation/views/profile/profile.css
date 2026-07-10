@@ -42,6 +42,34 @@
   gap: 1rem;
 }
 
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.profile-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.user-type-badge {
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eef7ef;
+  color: #2f8842;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.member-since {
+  font-size: 0.8rem;
+  color: #777;
+}
+
 .field {
   display: flex;
   flex-direction: column;

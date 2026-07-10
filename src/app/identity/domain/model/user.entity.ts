@@ -35,4 +35,5 @@ export abstract class User {
   getEmail(): string { return this.email; }
   getPassword(): string { return this.password; }
   getPlan(): Plan { return this.plan; }
+  getCreatedAt(): Date { return this.createdAt; }
 }

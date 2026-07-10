@@ -3,20 +3,19 @@ import { IdentityApi } from '../infrastructure/identity-api';
 import { User } from '../domain/model/user.entity';
 import { Plan } from '../domain/model/plan.entity';
 import { AlertPreference } from '../domain/model/alert-preference.entity';
-import { BasicPlan } from '../domain/model/basic-plan.entity';
-import { ProPlan } from '../domain/model/pro-plan.entity';
-import { EnterprisePlan } from '../domain/model/enterprise-plan.entity';
+import { SessionStore } from '../../iam/application/session.store';
 
 @Injectable({ providedIn: 'root' })
 export class IdentityStore {
   private identityApi = inject(IdentityApi);
+  private sessionStore = inject(SessionStore);
 
   private usersSignal = signal<User[]>([]);
   private plansSignal = signal<Plan[]>([]);
   private alertPreferencesSignal = signal<AlertPreference[]>([]);
   private loadingSignal = signal<boolean>(false);
   private errorSignal = signal<string | null>(null);
-  private currentUserIdSignal = signal<string>('1');
+  private currentUserIdSignal = signal<string>('');
 
   readonly users = this.usersSignal.asReadonly();
   readonly plans = this.plansSignal.asReadonly();
@@ -28,10 +27,17 @@ export class IdentityStore {
   readonly currentAlertPreference = computed(() => this.alertPreferencesSignal().find(p => p.getUserId() === this.currentUserIdSignal()));
 
   loadUsers(): void {
+    const profileId = this.sessionStore.currentUser()?.profileId;
+    if (!profileId) {
+      this.usersSignal.set([]);
+      return;
+    }
+
     this.loadingSignal.set(true);
-    this.identityApi.users.getAll().subscribe({
-      next: users => {
-        this.usersSignal.set(users);
+    this.identityApi.users.getById(profileId).subscribe({
+      next: user => {
+        this.usersSignal.set([user]);
+        this.currentUserIdSignal.set(user.getId());
         this.loadingSignal.set(false);
       },
       error: err => {
@@ -85,16 +91,6 @@ export class IdentityStore {
       },
       error: err => this.errorSignal.set(err.message)
     });
-  }
-
-  switchCurrentUser(planType: 'BASIC' | 'PRO' | 'ENTERPRISE'): void {
-    const target = this.usersSignal().find(u => {
-      const plan = u.getPlan();
-      if (planType === 'ENTERPRISE') return plan instanceof EnterprisePlan;
-      if (planType === 'PRO')        return plan instanceof ProPlan;
-      return plan instanceof BasicPlan;
-    });
-    if (target) this.currentUserIdSignal.set(target.getId());
   }
 
   getUserById(id: string): User | undefined {
