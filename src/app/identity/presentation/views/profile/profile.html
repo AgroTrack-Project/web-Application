@@ -61,33 +61,71 @@
 
       <!-- Right section -->
       <div class="plan-section">
+
+        <!-- Current plan -->
         <div class="current-plan-card">
           <div class="plan-header">
-            <span class="plan-label">{{ planData().label | translate }}</span>
+            <span class="plan-label">{{ currentPlanInfo().labelKey | translate }}</span>
             <span class="now-badge">{{ 'profile.now' | translate }}</span>
           </div>
           <ul class="plan-features">
-            @for (f of planData().features; track f) {
+            @for (f of currentPlanInfo().features; track f) {
               <li>{{ f | translate }}</li>
             }
           </ul>
+
+          @if (!changingPlan()) {
+            @if (availablePlans().length > 0) {
+              <button class="change-plan-btn" (click)="startPlanChange()">
+                {{ 'profile.change_plan' | translate }}
+              </button>
+            } @else {
+              <p class="no-upgrade-text">{{ 'profile.no_upgrade' | translate }}</p>
+            }
+          }
         </div>
 
-        @if (planData().nextPlan) {
-          <p class="improve-text">{{ 'profile.improve' | translate }}</p>
-          <div class="next-plan-card">
-            <div class="plan-header">
-              <span class="next-plan-label">{{ planData().nextPlan!.label | translate }}</span>
-              <span class="after-badge">{{ 'profile.after' | translate }}</span>
-            </div>
-            <ul class="next-plan-features">
-              @for (f of planData().nextPlan!.features; track f) {
-                <li>{{ f | translate }}</li>
-              }
-            </ul>
-            <span class="most-popular">{{ 'profile.most_popular' | translate }}</span>
+        <!-- Plan selector -->
+        @if (changingPlan()) {
+          <div class="plan-selector">
+            <p class="selector-title">{{ 'profile.select_plan' | translate }}</p>
+
+            @for (type of availablePlans(); track type) {
+              <div
+                class="plan-option"
+                [class.selected]="selectedPlan() === type"
+                (click)="selectPlan(type)"
+              >
+                <div class="plan-option-info">
+                  <span class="plan-option-name">{{ getPlanInfo(type).labelKey | translate }}</span>
+                </div>
+                <span class="plan-option-price">{{ getPlanInfo(type).price }}</span>
+              </div>
+            }
+
+            @if (selectedPlan()) {
+              <div class="payment-section">
+                <label class="payment-label">{{ 'profile.payment_label' | translate }}</label>
+                <div #stripeCardRef class="stripe-card-profile"></div>
+                @if (paymentError()) {
+                  <p class="payment-error">{{ paymentError() }}</p>
+                }
+                <button
+                  class="confirm-plan-btn"
+                  [disabled]="isBusy()"
+                  (click)="confirmPlanChange()"
+                >
+                  {{ processingPayment() ? ('profile.processing' | translate) : ('profile.confirm_plan' | translate) }}
+                </button>
+              </div>
+            }
+
+            <button class="cancel-change-btn" (click)="cancelPlanChange()">
+              {{ 'profile.cancel' | translate }}
+            </button>
           </div>
         }
+
       </div>
 
     </div>

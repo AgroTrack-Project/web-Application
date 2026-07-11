@@ -73,7 +73,7 @@
           class="plan-option"
           [class.selected]="form.plan === plan.id"
         >
-          <input type="radio" name="plan" [value]="plan.id" [(ngModel)]="form.plan" />
+          <input type="radio" name="plan" [value]="plan.id" [ngModel]="form.plan" (ngModelChange)="onPlanChange($event)" />
           <span class="plan-info">
             <span class="plan-title">
               <span class="plan-name">{{ plan.nameKey | translate }}</span>
@@ -89,10 +89,14 @@
         <input id="companyName" name="companyName" type="text" [(ngModel)]="form.companyName" autocomplete="organization" />
       </ng-container>
 
+      <label class="stripe-label">{{ 'profile.payment_label' | translate }}</label>
+      <div #stripeCard class="stripe-card-element"></div>
+      <p class="form-error" *ngIf="paymentError()">{{ paymentError() }}</p>
+
       <p class="form-error" *ngIf="error()">{{ error() }}</p>
 
-      <button type="submit" [disabled]="loading() || !canSubmit">
-        {{ (loading() ? 'register.submitting' : 'register.submit') | translate }}
+      <button type="submit" [disabled]="isBusy || !canSubmit">
+        {{ (isBusy ? 'register.submitting' : 'register.submit') | translate }}
       </button>
 
       <div class="register-links">

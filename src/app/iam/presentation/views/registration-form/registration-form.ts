@@ -1,9 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, OnDestroy, ViewChild, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 import { SessionStore } from '../../../application/session.store';
+import { StripePaymentService } from '../../../infrastructure/stripe-payment.service';
+import { PaymentIntentApi } from '../../../infrastructure/payment-intent-api';
 import { LanguageSwitcher } from '../../../../shared/presentation/components/language-switcher/language-switcher';
 import { environment } from '../../../../../environments/environment';
 
@@ -22,23 +25,28 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   templateUrl: './registration-form.html',
   styleUrl: './registration-form.css',
 })
-export class RegistrationForm {
+export class RegistrationForm implements AfterViewInit, OnDestroy {
+  @ViewChild('stripeCard') private stripeCardRef?: ElementRef<HTMLElement>;
+
   private sessionStore = inject(SessionStore);
+  private stripeService = inject(StripePaymentService);
+  private paymentIntentApi = inject(PaymentIntentApi);
   private router = inject(Router);
 
   readonly loading = this.sessionStore.loading;
   readonly error = this.sessionStore.error;
-
   readonly landingPageUrl = environment.landingPageUrl;
 
   readonly showPassword = signal(false);
   readonly showConfirmPassword = signal(false);
   readonly emailTouched = signal(false);
   readonly confirmPasswordTouched = signal(false);
+  readonly paymentError = signal<string | null>(null);
+  readonly processingPayment = signal(false);
 
   plans: Plan[] = [
-    { id: 'basic', nameKey: 'register.plan_basic_name', price: 'S/ 39 / mes', descKey: 'register.plan_basic_desc' },
-    { id: 'pro', nameKey: 'register.plan_pro_name', price: 'S/ 85 / mes', descKey: 'register.plan_pro_desc' },
+    { id: 'basic',      nameKey: 'register.plan_basic_name',      price: 'S/ 39 / mes',  descKey: 'register.plan_basic_desc' },
+    { id: 'pro',        nameKey: 'register.plan_pro_name',        price: 'S/ 85 / mes',  descKey: 'register.plan_pro_desc' },
     { id: 'enterprise', nameKey: 'register.plan_enterprise_name', price: 'S/ 149 / mes', descKey: 'register.plan_enterprise_desc' },
   ];
 
@@ -55,6 +63,16 @@ export class RegistrationForm {
     this.sessionStore.clearError();
   }
 
+  ngAfterViewInit(): void {
+    if (this.stripeCardRef?.nativeElement) {
+      this.stripeService.mountCardElement(this.stripeCardRef.nativeElement);
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stripeService.destroyCardElement();
+  }
+
   get isEmailValid(): boolean {
     return EMAIL_PATTERN.test(this.form.email.trim());
   }
@@ -64,8 +82,8 @@ export class RegistrationForm {
   }
 
   get isPasswordStrong(): boolean {
-    const value = this.form.password;
-    return value.length >= 8 && /[a-z]/.test(value) && /[A-Z]/.test(value) && /\d/.test(value);
+    const v = this.form.password;
+    return v.length >= 8 && /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v);
   }
 
   get canSubmit(): boolean {
@@ -76,12 +94,16 @@ export class RegistrationForm {
       && (this.form.plan !== 'enterprise' || !!this.form.companyName.trim());
   }
 
-  togglePasswordVisibility(): void {
-    this.showPassword.set(!this.showPassword());
+  get isBusy(): boolean {
+    return this.loading() || this.processingPayment();
   }
 
-  toggleConfirmPasswordVisibility(): void {
-    this.showConfirmPassword.set(!this.showConfirmPassword());
+  togglePasswordVisibility(): void { this.showPassword.set(!this.showPassword()); }
+  toggleConfirmPasswordVisibility(): void { this.showConfirmPassword.set(!this.showConfirmPassword()); }
+
+  onPlanChange(planId: string): void {
+    this.form.plan = planId;
+    this.paymentError.set(null);
   }
 
   async onSubmit(): Promise<void> {
@@ -91,15 +113,22 @@ export class RegistrationForm {
 
     const planType = this.form.plan.toUpperCase();
     const companyName = this.form.plan === 'enterprise' ? this.form.companyName : undefined;
-    const ok = await this.sessionStore.register(
-      this.form.fullName,
-      this.form.email,
-      this.form.password,
-      planType,
-      companyName
-    );
-    if (ok) {
-      this.router.navigate(['/login']);
+
+    this.processingPayment.set(true);
+    this.paymentError.set(null);
+    try {
+      const { client_secret } = await firstValueFrom(this.paymentIntentApi.create(planType));
+      const paymentErr = await this.stripeService.confirmPayment(client_secret);
+      if (paymentErr) {
+        this.paymentError.set(paymentErr);
+        return;
+      }
+      const ok = await this.sessionStore.register(this.form.fullName, this.form.email, this.form.password, planType, companyName);
+      if (ok) this.router.navigate(['/login']);
+    } catch {
+      this.paymentError.set('Error procesando el pago. Por favor intentá de nuevo.');
+    } finally {
+      this.processingPayment.set(false);
     }
   }
 }
